@@ -1,22 +1,14 @@
-import { Icons } from '@/libs';
-import Link from 'next/link';
 import React, { FC } from 'react';
+import { NavItem } from './NavItem';
 
 export const NavHeader: FC = () => {
   return (
-    <div className='bg-primary py-5 text-white'>
+    <div className='bg-primary text-white'>
       <div className='container'>
-        <nav>
+        <nav className='relative w-full'>
           <ul className='flex items-center justify-between gap-5'>
             {Array.from(Array(5)).map((_, index) => {
-              return (
-                <li key={index}>
-                  <Link href='#' className='text-small flex items-center gap-2 font-medium uppercase'>
-                    <span>Мэдээ, мэдээлэл</span>
-                    <Icons.IoChevronDownSharp size={18} />
-                  </Link>
-                </li>
-              );
+              return <NavItem megaMenu={index === 0} key={index} />;
             })}
           </ul>
         </nav>
