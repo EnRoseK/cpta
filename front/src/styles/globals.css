@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply transition-all duration-200;
+  }
+
+  body {
+    @apply overflow-x-hidden bg-white font-sans;
+  }
+}
+
+@layer utilities {
+  .container {
+    @apply mx-auto w-full max-w-[1320px] px-4;
+  }
+
+  .transition {
+    @apply transition-all duration-200;
+  }
+}
