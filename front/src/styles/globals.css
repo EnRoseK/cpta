@@ -22,4 +22,44 @@
   .transition {
     @apply transition-all duration-200;
   }
+
+  .blog-details p {
+    @apply mb-5 text-base font-normal leading-[30px] text-description;
+  }
+
+  .blog-details h1 {
+    @apply mb-4 text-3xl font-bold capitalize leading-normal text-dark;
+  }
+
+  .blog-details h2 {
+    @apply mb-4 text-2xl font-bold capitalize leading-normal text-dark;
+  }
+
+  .blog-details h3 {
+    @apply mb-4 text-xl font-bold capitalize leading-normal text-dark;
+  }
+
+  .blog-details h4 {
+    @apply mb-4 text-lg font-bold capitalize leading-normal text-dark;
+  }
+
+  .blog-details h5 {
+    @apply mb-4 text-base font-bold capitalize leading-normal text-dark;
+  }
+
+  .blog-details h6 {
+    @apply mb-4 text-sm font-bold capitalize leading-normal text-dark;
+  }
+
+  .blog-details img {
+    @apply mb-7 block aspect-[1.9/1] w-full overflow-hidden rounded-xl;
+  }
+
+  .blog-details blockquote {
+    @apply relative mb-10 overflow-hidden rounded-xl bg-primary px-10 py-8 text-xl leading-[1.7] text-white before:absolute before:bottom-5 before:left-0 before:top-5 before:w-2.5 before:bg-secondary;
+  }
+
+  .blog-details blockquote p {
+    @apply mt-2 text-white before:content-['“'] after:content-['”'];
+  }
 }

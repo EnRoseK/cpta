@@ -5,11 +5,11 @@ import { Button } from '.';
 export const DefaultBlogCard: FC = () => {
   return (
     <div className='w-full overflow-hidden rounded-xl shadow-card'>
-      <div className='aspect-[2.16/1] w-full overflow-hidden bg-[#d9d9d9]'></div>
+      <Link href='/blog/1' className='block aspect-[2.16/1] w-full overflow-hidden bg-[#d9d9d9]'></Link>
 
       <div className='bg-white p-[30px]'>
         <span className='mb-4 block text-date text-description'>April 21, 2023</span>
-        <Link href={'#'} className='mb-5 block text-3xl font-bold leading-none text-dark hover:text-primary'>
+        <Link href={'/blog/1'} className='mb-5 block text-3xl font-bold leading-none text-dark hover:text-primary'>
           Aliquam vel nibh sapien. Suspendisse placerat.
         </Link>
         <p className='mb-6 text-base leading-[30px] text-description'>
@@ -18,7 +18,7 @@ export const DefaultBlogCard: FC = () => {
           ullamcorper. Quisque risus lacus, luctus eget arcu rhoncus Aliquam vel nibh sapien. Suspendisse placerat,
           augue sed tempus lacinia, orci augue luctus odio.
         </p>
-        <Button asLink variant='gray'>
+        <Button asLink href='/blog/1' variant='gray'>
           Дэлгэрэнгүй
         </Button>
       </div>
