@@ -1,6 +1,7 @@
 import { Icons } from '@/libs';
 import Link from 'next/link';
 import React, { FC } from 'react';
+import { LanguageButton } from './LanguageButton';
 
 export const TopHeader: FC = () => {
   return (
@@ -18,9 +19,13 @@ export const TopHeader: FC = () => {
             </Link>
           </div>
 
-          <Link href='/jobs' className='capitalize transition hover:text-primary'>
-            Ажлын байр
-          </Link>
+          <div className='flex items-center gap-4'>
+            <Link href='/jobs' className='capitalize transition hover:text-primary'>
+              Ажлын байр
+            </Link>
+
+            <LanguageButton />
+          </div>
         </div>
       </div>
     </div>

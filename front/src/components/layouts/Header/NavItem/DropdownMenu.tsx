@@ -12,7 +12,7 @@ export const DropdownMenu: FC<DropdownMenuProps> = ({ show, onAnimationEnd }) =>
     <ul
       onAnimationEnd={onAnimationEnd}
       className={classNames(
-        'absolute left-0 top-full -mt-2 w-max min-w-full space-y-2 rounded-md bg-white p-5 text-dark shadow-card',
+        'absolute left-0 top-full -mt-2 w-max min-w-[150%] space-y-2 rounded-md bg-white p-5 text-dark shadow-card',
         { 'animate-fadeIn': show, 'animate-fadeOut': !show },
       )}
     >
