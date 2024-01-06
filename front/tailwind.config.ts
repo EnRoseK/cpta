@@ -86,12 +86,22 @@ const config: Config = {
           '0%': { transform: 'scale(1)', opacity: '1' },
           '100%': { transform: 'scale(0)', opacity: '0' },
         },
+        scrollBtnIn: {
+          '0%': { opacity: '0', transform: 'translateY(100%)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        scrollBtnOut: {
+          '0%': { opacity: '1', transform: 'translateY(0)' },
+          '100%': { opacity: '0', transform: 'translateY(100%)' },
+        },
       },
       animation: {
         fadeIn: 'fadeIn .2s ease forwards',
         fadeOut: 'fadeOut .2s ease forwards',
         modalIn: 'modalIn .2s ease forwards',
         modalOut: 'modalOut .2s ease forwards',
+        scrollBtnIn: 'scrollBtnIn .4s ease forwards',
+        scrollBtnOut: 'scrollBtnOut .4s ease forwards',
       },
     },
   },

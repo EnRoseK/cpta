@@ -1,4 +1,4 @@
-import { Footer, Header } from '@/components/layouts';
+import { Footer, Header, ScrollButton } from '@/components/layouts';
 import React, { FC, ReactNode } from 'react';
 
 interface MainLayoutProps {
@@ -11,6 +11,8 @@ export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
       <Header />
       <main>{children}</main>
       <Footer />
+
+      <ScrollButton />
     </>
   );
 };
