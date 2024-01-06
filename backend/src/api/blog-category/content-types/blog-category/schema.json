@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blog_categories",
+  "info": {
+    "singularName": "blog-category",
+    "pluralName": "blog-categories",
+    "displayName": "Мэдээний ангилал",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "pluginOptions": {},
+      "type": "uid",
+      "required": true
+    },
+    "title": {
+      "type": "component",
+      "repeatable": false,
+      "required": true,
+      "component": "translations.orchuulga"
+    }
+  }
+}

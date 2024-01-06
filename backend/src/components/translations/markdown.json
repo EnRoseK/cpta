@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_translations_markdowns",
+  "info": {
+    "displayName": "Markdown"
+  },
+  "options": {},
+  "attributes": {
+    "mn": {
+      "type": "richtext",
+      "required": true
+    },
+    "eng": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

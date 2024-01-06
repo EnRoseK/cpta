@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blogs",
+  "info": {
+    "singularName": "blog",
+    "pluralName": "blogs",
+    "displayName": "Мэдээ",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translations.orchuulga",
+      "required": true
+    },
+    "description": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translations.urt-tekst",
+      "required": true
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "content": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translations.markdown",
+      "required": true
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog-category.blog-category"
+    }
+  }
+}

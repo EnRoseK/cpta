@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_utils_orchuulga",
+  "info": {
+    "displayName": "Богино текст",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "mn": {
+      "type": "string",
+      "required": true
+    },
+    "eng": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
