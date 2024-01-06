@@ -39,7 +39,7 @@ const config: Config = {
         small: [
           '14px',
           {
-            lineHeight: 'normal',
+            lineHeight: '1.5',
           },
         ],
         sectionTitle: [
@@ -57,6 +57,7 @@ const config: Config = {
       },
       boxShadow: {
         card: '0px 4px 10px 0px rgba(0, 0, 0, 0.06)',
+        cardSmall: '0px 2px 5px 0px rgba(0, 0, 0, 0.10)',
       },
       spacing: {
         15: '60px',

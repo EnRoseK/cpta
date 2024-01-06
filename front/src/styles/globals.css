@@ -23,31 +23,38 @@
     @apply transition-all duration-200;
   }
 
-  .blog-details p {
+  .blog-details p,
+  .job-details p {
     @apply mb-5 text-base font-normal leading-[30px] text-description;
   }
 
-  .blog-details h1 {
+  .blog-details h1,
+  .job-details h1 {
     @apply mb-4 text-3xl font-bold capitalize leading-normal text-dark;
   }
 
-  .blog-details h2 {
+  .blog-details h2,
+  .job-details h2 {
     @apply mb-4 text-2xl font-bold capitalize leading-normal text-dark;
   }
 
-  .blog-details h3 {
+  .blog-details h3,
+  .job-details h3 {
     @apply mb-4 text-xl font-bold capitalize leading-normal text-dark;
   }
 
-  .blog-details h4 {
+  .blog-details h4,
+  .job-details h4 {
     @apply mb-4 text-lg font-bold capitalize leading-normal text-dark;
   }
 
-  .blog-details h5 {
+  .blog-details h5,
+  .job-details h5 {
     @apply mb-4 text-base font-bold capitalize leading-normal text-dark;
   }
 
-  .blog-details h6 {
+  .blog-details h6,
+  .job-details h6 {
     @apply mb-4 text-sm font-bold capitalize leading-normal text-dark;
   }
 
@@ -61,5 +68,9 @@
 
   .blog-details blockquote p {
     @apply mt-2 text-white before:content-['“'] after:content-['”'];
+  }
+
+  .job-details img {
+    @apply mb-7 block h-auto w-full;
   }
 }

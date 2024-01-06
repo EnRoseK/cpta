@@ -5,3 +5,4 @@ export * from './PageHeader';
 export * from './MemberCard';
 export * from './DefaultBlogCard';
 export * from './Pagination';
+export * from './JobCard';
