@@ -1,24 +1,31 @@
-import { getAllBlogCategories } from '@/api/services';
+import { getAllBlogCategories, getPaginatedBlogs } from '@/api/services';
 import { BlogCategoryFilter } from '@/components/features';
 import { DefaultBlogCard, PageHeader, Pagination } from '@/components/global';
-import { IBlogCategory } from '@/interfaces';
+import { IBlog, IBlogCategory, IPagination } from '@/interfaces';
 import { GetServerSideProps, NextPage } from 'next';
 
 interface BlogPageProps {
   categories: IBlogCategory[];
+  blogs: IBlog[];
+  pagination: IPagination;
 }
 
 export const getServerSideProps: GetServerSideProps<BlogPageProps> = async ({ locale = 'mn' }) => {
-  const [categoriesRes] = await Promise.all([getAllBlogCategories({ locale })]);
+  const [categoriesRes, blogsRes] = await Promise.all([
+    getAllBlogCategories({ locale }),
+    getPaginatedBlogs({ locale }),
+  ]);
 
   return {
     props: {
       categories: categoriesRes.data,
+      blogs: blogsRes.data,
+      pagination: blogsRes.meta.pagination,
     },
   };
 };
 
-const BlogPage: NextPage<BlogPageProps> = ({ categories }) => {
+const BlogPage: NextPage<BlogPageProps> = ({ categories, blogs, pagination }) => {
   return (
     <>
       <PageHeader title='Мэдээ мэдээлэл' pages={[{ title: 'Мэдээ мэдээлэл', link: '/blog' }]} />
@@ -27,12 +34,12 @@ const BlogPage: NextPage<BlogPageProps> = ({ categories }) => {
         <div className='grid grid-cols-4 gap-10'>
           <section className='col-span-3 space-y-15'>
             <div className='space-y-[30px]'>
-              {Array.from(Array(10)).map((_, index) => {
-                return <DefaultBlogCard key={index} />;
+              {blogs.map((blog) => {
+                return <DefaultBlogCard key={blog.id} blog={blog} />;
               })}
             </div>
 
-            <Pagination />
+            <Pagination pagination={pagination} />
           </section>
 
           <aside className='sticky top-44 col-span-1 h-max space-y-[30px]'>
