@@ -1068,6 +1068,82 @@ export interface ApiClientClient extends Schema.CollectionType {
   };
 }
 
+export interface ApiHonoraryMemberHonoraryMember extends Schema.CollectionType {
+  collectionName: 'honorary_members';
+  info: {
+    singularName: 'honorary-member';
+    pluralName: 'honorary-members';
+    displayName: '\u0425\u04AF\u043D\u0434\u044D\u0442 \u0433\u0438\u0448\u04AF\u04AF\u0434';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    firstName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    lastName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    picture: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    priority: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::honorary-member.honorary-member',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::honorary-member.honorary-member',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::honorary-member.honorary-member',
+      'oneToMany',
+      'api::honorary-member.honorary-member'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiMainMenuMainMenu extends Schema.CollectionType {
   collectionName: 'main_menus';
   info: {
@@ -1226,6 +1302,7 @@ declare module '@strapi/types' {
       'api::blog.blog': ApiBlogBlog;
       'api::blog-category.blog-category': ApiBlogCategoryBlogCategory;
       'api::client.client': ApiClientClient;
+      'api::honorary-member.honorary-member': ApiHonoraryMemberHonoraryMember;
       'api::main-menu.main-menu': ApiMainMenuMainMenu;
       'api::statistic.statistic': ApiStatisticStatistic;
     }

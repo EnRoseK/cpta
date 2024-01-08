@@ -1,14 +1,18 @@
 import { FC } from 'react';
 import { Button } from '..';
 import classNames from 'classnames';
+import { IHonoraryMember } from '@/interfaces';
+import Image from 'next/image';
+import { convertAttachmentUrl } from '@/utils';
 
 interface MemberDetailsProps {
   closeHandler: () => void;
   show: boolean;
   onAnimationEnd: () => void;
+  honoraryMember: IHonoraryMember;
 }
 
-export const MemberDetails: FC<MemberDetailsProps> = ({ closeHandler, show, onAnimationEnd }) => {
+export const MemberDetails: FC<MemberDetailsProps> = ({ closeHandler, show, onAnimationEnd, honoraryMember }) => {
   return (
     <div className='fixed inset-0 z-[1000] flex items-center justify-center'>
       <div
@@ -19,17 +23,22 @@ export const MemberDetails: FC<MemberDetailsProps> = ({ closeHandler, show, onAn
         onAnimationEnd={onAnimationEnd}
       >
         <div className='grid w-full grid-cols-2 gap-8'>
-          <div className='col-span-1 aspect-[1/1.2] overflow-hidden rounded-lg bg-[#d9d9d9]'></div>
+          <div className='col-span-1 aspect-[1/1.2] overflow-hidden rounded-lg bg-[#d9d9d9]'>
+            <Image
+              src={convertAttachmentUrl(honoraryMember.picture.url)}
+              alt={honoraryMember.picture.alternativeText || honoraryMember.firstName}
+              className='h-full w-full object-cover'
+              width={honoraryMember.picture.width}
+              height={honoraryMember.picture.height}
+            />
+          </div>
 
           <div className='col-span-1 flex flex-col justify-between'>
             <div className='space-y-8'>
-              <h5 className='text-xl font-bold leading-normal text-dark'>Ядмаагийн МИШИГЛҮНДЭН</h5>
-              <p className='text-base italic leading-normal text-description'>
-                1971 онд Сангийн яамнаас ажил хөдөлмөрийн гараагаа эхэлж, Үндэсний татварын ерөнхий газарт хэлтэс,
-                газрын дарга, дэд дарга, Сургалтын төвийн захирал, Улсын бүртгэлийн албаны дарга, Дэд дарга гэсэн
-                албуудыг хашиж санхүү, татварын албанд 41 жил ажилласан бөгөөд шинэ үеийн татварын тогтолцооны боловсон
-                хүчнийг бэлтгэх, мэргэшүүлэх үйл хэргийг гардан хэрэгжүүлсэн.
-              </p>
+              <h5 className='text-xl font-bold leading-normal text-dark'>
+                {honoraryMember.lastName} <span className='uppercase'>{honoraryMember.firstName}</span>
+              </h5>
+              <p className='text-base italic leading-normal text-description'>{honoraryMember.description}</p>
             </div>
 
             <Button variant='gray' onClick={closeHandler}>

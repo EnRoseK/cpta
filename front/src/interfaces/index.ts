@@ -7,3 +7,4 @@ export * from './QueryFilters';
 export * from './data/statistic';
 export * from './data/about-us-page';
 export * from './data/client';
+export * from './data/honorary-member';
