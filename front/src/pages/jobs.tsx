@@ -12,7 +12,7 @@ const JobsPage: NextPage = () => {
             return <JobCard key={index} />;
           })}
         </div>
-        <Pagination />
+        {/* <Pagination /> */}
       </section>
     </>
   );

@@ -5,3 +5,5 @@ export * from './data/attachment';
 export * from './data/pagination';
 export * from './QueryFilters';
 export * from './data/statistic';
+export * from './data/about-us-page';
+export * from './data/client';

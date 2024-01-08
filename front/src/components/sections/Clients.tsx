@@ -1,10 +1,14 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { SeeMoreLink } from '../global';
-import Link from 'next/link';
+import { IClient } from '@/interfaces';
+import Image from 'next/image';
+import { convertAttachmentUrl } from '@/utils';
 
-export const Clients: FC = () => {
-  const [showAll, setShowAll] = useState<boolean>(false);
+interface ClientsProps {
+  clients: IClient[];
+}
 
+export const Clients: FC<ClientsProps> = ({ clients }) => {
   return (
     <section className='py-[120px]'>
       <div className='container'>
@@ -13,24 +17,26 @@ export const Clients: FC = () => {
             Татварын итгэмжлэгдсэн хуулийн этгээд
           </h3>
 
-          <SeeMoreLink
-            asButton
-            onClick={() => setShowAll((prev) => !prev)}
-            text={showAll ? 'Хураангуй' : 'Дэлгэрэнгүй'}
-          />
+          <SeeMoreLink href='#' />
         </div>
 
         <div className='grid grid-cols-6 gap-6'>
-          {Array.from(Array(showAll ? 24 : 12)).map((_, index) => {
+          {clients.map((client) => {
             return (
-              <Link
-                target='_blank'
-                href={'#'}
-                key={index}
+              <div
+                key={client.id}
                 className='flex aspect-square w-full items-center justify-center rounded-xl border border-dark/10 p-8 hover:border-secondary'
               >
-                <div className='h-full w-full'></div>
-              </Link>
+                <div className='h-full w-full'>
+                  <Image
+                    src={convertAttachmentUrl(client.logo.url)}
+                    alt={client.logo.alternativeText || client.name}
+                    width={client.logo.width}
+                    height={client.logo.height}
+                    className='h-full w-full object-cover'
+                  />
+                </div>
+              </div>
             );
           })}
         </div>

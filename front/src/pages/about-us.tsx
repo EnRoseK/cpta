@@ -1,11 +1,32 @@
+import { getAboutUsPage, getStatistics } from '@/api/services';
 import { PageHeader } from '@/components/global';
 import { Statistics } from '@/components/sections';
-import { NextPage } from 'next';
+import { IAboutUsPage, IStatistic } from '@/interfaces';
+import { GetStaticProps, NextPage } from 'next';
 
-const AboutUsPage: NextPage = () => {
+interface AboutUsPageProps {
+  statistics: IStatistic[];
+  pageInfo: IAboutUsPage;
+}
+
+export const getStaticProps: GetStaticProps<AboutUsPageProps> = async ({ locale }) => {
+  const [statisticsRes, pageInfoRes] = await Promise.all([
+    getStatistics({ locale: locale as string }),
+    getAboutUsPage({ locale: locale as string }),
+  ]);
+
+  return {
+    props: {
+      statistics: statisticsRes.data,
+      pageInfo: pageInfoRes.data,
+    },
+  };
+};
+
+const AboutUsPage: NextPage<AboutUsPageProps> = ({ statistics, pageInfo }) => {
   return (
     <>
-      <PageHeader title='Бидний тухай' pages={[{ title: 'Бидний тухай', link: '/about-us' }]} />
+      <PageHeader title={pageInfo.pageTitle} pages={[{ title: pageInfo.pageTitle, link: '/about-us' }]} />
 
       <section className='container py-[120px]'>
         <div className='mb-25 text-center'>
@@ -15,7 +36,7 @@ const AboutUsPage: NextPage = () => {
           <p className='text-base text-description'>Мэргэшсэн багаар, мэргэжлийн үйлчилгээг</p>
         </div>
 
-        <Statistics />
+        <Statistics statistics={statistics} />
 
         <div className='mb-5 aspect-[2.6/1] w-full overflow-hidden rounded-xl bg-[#c4c4c4]'></div>
 

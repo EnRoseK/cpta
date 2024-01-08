@@ -65,16 +65,14 @@ const BlogDetailsPage: NextPage = () => {
             <div className='w-full py-[120px]'>
               <h6 className='mb-14 text-sectionTitle font-bold text-dark'>Төстэй мэдээнүүд</h6>
               <div className='grid grid-cols-3 gap-6'>
+                {/* <GridBlogCard />
                 <GridBlogCard />
-                <GridBlogCard />
-                <GridBlogCard />
+                <GridBlogCard /> */}
               </div>
             </div>
           </section>
 
-          <aside className='sticky top-44 col-span-1 h-max space-y-[30px]'>
-            <BlogCategoryFilter />
-          </aside>
+          <aside className='sticky top-44 col-span-1 h-max space-y-[30px]'>{/* <BlogCategoryFilter /> */}</aside>
         </div>
       </div>
     </>

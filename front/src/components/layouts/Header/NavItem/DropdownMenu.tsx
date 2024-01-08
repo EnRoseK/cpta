@@ -25,8 +25,8 @@ export const DropdownMenu: FC<DropdownMenuProps> = ({ show, onAnimationEnd, item
             <li
               key={index}
               className={classNames({
-                'border-b border-b-dark/10 pb-0': index !== arr.length - 1,
-                'pb-2': index === arr.length - 1,
+                'border-b border-b-dark/10 pb-2': index !== arr.length - 1,
+                'pb-0': index === arr.length - 1,
               })}
             >
               <Link href={item.link} className='text-base hover:text-primary'>

@@ -1,4 +1,4 @@
-import { getAllMainMenus } from '@/api/services/main-menu';
+import { getAllMainMenus } from '@/api/services';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function GET(req: NextApiRequest, res: NextApiResponse) {
