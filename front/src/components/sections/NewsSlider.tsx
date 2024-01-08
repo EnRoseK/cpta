@@ -3,27 +3,68 @@ import { Button } from '../global';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ShapeOne } from '@/assets/shapes';
 import { Icons } from '@/libs';
+import { IBlog } from '@/interfaces';
+import Image from 'next/image';
+import { convertAttachmentUrl } from '@/utils';
+import Link from 'next/link';
+import { Navigation } from 'swiper/modules';
 
-export const NewsSlider: FC = () => {
+interface NewsSliderProps {
+  blogs: IBlog[];
+}
+
+export const NewsSlider: FC<NewsSliderProps> = ({ blogs }) => {
   return (
     <section className='relative flex min-h-[675px] w-full items-center justify-center overflow-hidden bg-[#D9D9D9]'>
       <div className='container'>
-        <Swiper>
-          {Array.from(Array(3)).map((_, index) => {
+        <Swiper
+          modules={[Navigation]}
+          slidesPerView={1}
+          spaceBetween={1}
+          navigation={{
+            nextEl: '.swiper-news__navigation-next',
+            prevEl: '.swiper-news__navigation-prev',
+            disabledClass: 'pointer-events-none text-dark/50',
+          }}
+        >
+          {blogs.map((blog, index) => {
+            const moreUrl = `/blog/${blog.slug}`;
+
             return (
               <SwiperSlide key={index}>
                 <div className='grid grid-cols-5 items-center gap-10'>
-                  <div className='col-span-2 aspect-square w-full overflow-hidden rounded-xl bg-black'></div>
+                  <Link
+                    href={moreUrl}
+                    className='group col-span-2 block aspect-square w-full overflow-hidden rounded-xl bg-black'
+                  >
+                    {blog.thumbnail.mime.includes('image') && (
+                      <Image
+                        src={convertAttachmentUrl(blog.thumbnail.url)}
+                        alt={blog.thumbnail.alternativeText || blog.thumbnail.name}
+                        width={blog.thumbnail.width}
+                        height={blog.thumbnail.height}
+                        className='h-full w-full object-cover group-hover:scale-105'
+                      />
+                    )}
+                    {blog.thumbnail.mime.includes('video') && (
+                      <video className='h-full w-full object-cover' controls>
+                        <source src={convertAttachmentUrl(blog.thumbnail.url)} type='video/mp4' />
+                        Таны вэб хөтөч видео тоглуулах боломжгүй байна.
+                      </video>
+                    )}
+                  </Link>
 
                   <div className='col-span-3'>
-                    <h2 className='text-dark mb-6 text-5xl font-bold capitalize leading-normal'>
-                      Labaid testing and Laboratory Center.
-                    </h2>
-                    <p className='text-description mb-10 text-xl leading-normal'>
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa nemo consequuntur tenetur harum
-                      perspiciatis! Omnis architecto vel provident? Illo, debitis.
-                    </p>
-                    <Button asLink>Дэлгэрэнгүй</Button>
+                    <Link
+                      href={moreUrl}
+                      className='mb-6 text-5xl font-bold capitalize leading-normal text-dark hover:text-primary'
+                    >
+                      {blog.title}
+                    </Link>
+                    <p className='mb-10 text-xl leading-normal text-description'>{blog.description}</p>
+                    <Button asLink href={moreUrl}>
+                      Дэлгэрэнгүй
+                    </Button>
                   </div>
                 </div>
               </SwiperSlide>
@@ -32,17 +73,11 @@ export const NewsSlider: FC = () => {
         </Swiper>
       </div>
 
-      <button
-        type='button'
-        className='hover:text-primary text-dark absolute left-4 top-1/2 z-10 -translate-y-1/2 cursor-pointer'
-      >
+      <button type='button' className='swiper-news__navigation-prev'>
         <Icons.IoIosArrowRoundBack size={60} />
       </button>
 
-      <button
-        type='button'
-        className='hover:text-primary text-dark absolute right-4 top-1/2 z-10 -translate-y-1/2 cursor-pointer'
-      >
+      <button type='button' className='swiper-news__navigation-next'>
         <Icons.IoIosArrowRoundForward size={60} />
       </button>
 

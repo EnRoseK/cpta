@@ -5,22 +5,27 @@ import { GetStaticProps, NextPage } from 'next';
 
 interface HomeProps {
   blogs: IBlog[];
+  sliderBlogs: IBlog[];
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const [blogsRes] = await Promise.all([getPaginatedBlogs({ locale: 'mn', pageSize: 3 })]);
+  const [sliderBlogsRes, blogsRes] = await Promise.all([
+    getPaginatedBlogs({ locale: 'mn', pageSize: 10, filters: { showOnSlider: { $eq: true } } }),
+    getPaginatedBlogs({ locale: 'mn', pageSize: 3 }),
+  ]);
 
   return {
     props: {
       blogs: blogsRes.data,
+      sliderBlogs: sliderBlogsRes.data,
     },
   };
 };
 
-const HomePage: NextPage<HomeProps> = ({ blogs }) => {
+const HomePage: NextPage<HomeProps> = ({ blogs, sliderBlogs }) => {
   return (
     <>
-      <NewsSlider />
+      <NewsSlider blogs={blogs} />
       <LatestNews blogs={blogs} />
       <Statistics />
       <Clients />

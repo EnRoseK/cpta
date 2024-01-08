@@ -774,6 +774,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     singularName: 'blog';
     pluralName: 'blogs';
     displayName: '\u041C\u044D\u0434\u044D\u044D';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -824,6 +825,14 @@ export interface ApiBlogBlog extends Schema.CollectionType {
       'oneToMany',
       'api::blog-category.blog-category'
     >;
+    showOnSlider: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
