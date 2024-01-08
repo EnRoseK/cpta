@@ -1,6 +1,6 @@
 import { Icons } from '@/libs';
 import React, { FC } from 'react';
-import { CustomLink } from '.';
+import Link from 'next/link';
 
 interface SeeMoreLinkProps {
   asButton?: boolean;
@@ -29,12 +29,9 @@ export const SeeMoreLink: FC<SeeMoreLinkProps> = ({
   }
 
   return (
-    <CustomLink
-      href={href}
-      className='flex items-center gap-2 text-base leading-normal text-description hover:underline'
-    >
+    <Link href={href} className='flex items-center gap-2 text-base leading-normal text-description hover:underline'>
       <span>{text}</span>
       <Icons.IoIosArrowRoundForward size={20} />
-    </CustomLink>
+    </Link>
   );
 };

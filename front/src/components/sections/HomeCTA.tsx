@@ -1,6 +1,6 @@
 import { Icons } from '@/libs';
 import React, { FC } from 'react';
-import { CustomLink } from '../global';
+import Link from 'next/link';
 
 export const HomeCTA: FC = () => {
   return (
@@ -8,7 +8,7 @@ export const HomeCTA: FC = () => {
       <div className='container grid grid-cols-3 gap-6'>
         {Array.from(Array(3)).map((_, ind) => {
           return (
-            <CustomLink
+            <Link
               key={ind}
               href={'#'}
               className='group flex items-center justify-between gap-4 rounded-[1000px] border border-gray bg-transparent p-[5px] pr-[30px] hover:border-primary hover:bg-primary'
@@ -22,7 +22,7 @@ export const HomeCTA: FC = () => {
               <span className='text-description group-hover:text-white'>
                 <Icons.IoIosArrowRoundForward size={24} />
               </span>
-            </CustomLink>
+            </Link>
           );
         })}
       </div>

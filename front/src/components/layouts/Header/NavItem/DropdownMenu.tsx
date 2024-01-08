@@ -1,13 +1,15 @@
-import { CustomLink } from '@/components/global';
+import { IMenuItem } from '@/interfaces';
 import classNames from 'classnames';
+import Link from 'next/link';
 import React, { FC } from 'react';
 
 interface DropdownMenuProps {
   onAnimationEnd: () => void;
   show: boolean;
+  items: IMenuItem[];
 }
 
-export const DropdownMenu: FC<DropdownMenuProps> = ({ show, onAnimationEnd }) => {
+export const DropdownMenu: FC<DropdownMenuProps> = ({ show, onAnimationEnd, items }) => {
   return (
     <ul
       onAnimationEnd={onAnimationEnd}
@@ -16,15 +18,23 @@ export const DropdownMenu: FC<DropdownMenuProps> = ({ show, onAnimationEnd }) =>
         { 'animate-fadeIn': show, 'animate-fadeOut': !show },
       )}
     >
-      {Array.from(Array(5)).map((_, index) => {
-        return (
-          <li key={index} className={classNames('pb-2', { 'border-b border-b-dark/10': index !== 4 })}>
-            <CustomLink href={'#'} className='text-base hover:text-primary'>
-              Хүндэт гишүүн
-            </CustomLink>
-          </li>
-        );
-      })}
+      {items
+        .sort((a, b) => a.priority - b.priority)
+        .map((item, index, arr) => {
+          return (
+            <li
+              key={index}
+              className={classNames({
+                'border-b border-b-dark/10 pb-0': index !== arr.length - 1,
+                'pb-2': index === arr.length - 1,
+              })}
+            >
+              <Link href={item.link} className='text-base hover:text-primary'>
+                {item.title}
+              </Link>
+            </li>
+          );
+        })}
     </ul>
   );
 };

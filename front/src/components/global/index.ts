@@ -6,4 +6,3 @@ export * from './MemberCard';
 export * from './DefaultBlogCard';
 export * from './Pagination';
 export * from './JobCard';
-export * from './CustomLink';

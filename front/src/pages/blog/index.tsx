@@ -8,10 +8,8 @@ interface BlogPageProps {
   categories: IBlogCategory[];
 }
 
-export const getServerSideProps: GetServerSideProps<BlogPageProps> = async ({ query }) => {
-  const { locale = 'mn' } = query;
-
-  const [categoriesRes] = await Promise.all([getAllBlogCategories({ locale: locale as string })]);
+export const getServerSideProps: GetServerSideProps<BlogPageProps> = async ({ locale = 'mn' }) => {
+  const [categoriesRes] = await Promise.all([getAllBlogCategories({ locale })]);
 
   return {
     props: {

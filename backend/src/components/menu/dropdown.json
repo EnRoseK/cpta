@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_menu_dropdowns",
+  "info": {
+    "displayName": "Dropdown"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "menu.menu-item"
+    }
+  }
+}

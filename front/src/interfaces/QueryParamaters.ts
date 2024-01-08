@@ -1,5 +1,5 @@
 export interface QueryParamaters {
-  populate?: string[] | string;
+  populate?: string[] | string | { [key: string]: string | { [key: string]: string } };
   fields?: string[] | string;
   pagination?: {
     page?: number;

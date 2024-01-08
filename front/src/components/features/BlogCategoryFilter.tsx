@@ -1,6 +1,6 @@
 import { IBlogCategory } from '@/interfaces';
 import React, { FC } from 'react';
-import { CustomLink } from '../global';
+import Link from 'next/link';
 
 interface BlogCategoryFilterProps {
   categories: IBlogCategory[];
@@ -15,12 +15,12 @@ export const BlogCategoryFilter: FC<BlogCategoryFilterProps> = ({ categories }) 
         {categories.map((category, index) => {
           return (
             <li key={index}>
-              <CustomLink
+              <Link
                 href={'#'}
                 className='text-base font-medium capitalize leading-normal text-description hover:text-primary'
               >
                 {category.title}
-              </CustomLink>
+              </Link>
             </li>
           );
         })}

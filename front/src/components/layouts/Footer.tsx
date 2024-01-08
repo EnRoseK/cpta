@@ -1,22 +1,26 @@
+import { useLocale } from '@/hooks';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { FC } from 'react';
-import { CustomLink } from '../global';
 
 export const Footer: FC = () => {
+  const { currentLocale } = useLocale();
+
   return (
     <footer className='bg-dark text-white'>
       <div className='container pb-[100px] pt-[120px]'>
         <div className='flex gap-20'>
           <div className='max-w-[420px] shrink-0'>
-            <CustomLink href={'/'} className='mb-4 flex items-center gap-4'>
+            <Link href={'/'} className='mb-4 flex items-center gap-4'>
               <div className='h-[60px] w-[60px] shrink-0'>
                 <Image src='/logo-1.png' alt='TMZ' className='h-full w-full object-cover' width={60} height={60} />
               </div>
               <span className='text-base font-medium uppercase text-white'>
-                Монгол улсын татварын мэргэшсэн зөвлөхийн нийгэмлэг
+                {currentLocale === 'mn'
+                  ? 'Монгол улсын татварын мэргэшсэн зөвлөхийн нийгэмлэг'
+                  : 'Mongolian Association of Certified Tax Consultants'}
               </span>
-            </CustomLink>
+            </Link>
 
             <p className='text-base leading-[30px] text-white/70'>
               There are many variations of passages of Lorem Ipsum available, but the majority have suffered predefined

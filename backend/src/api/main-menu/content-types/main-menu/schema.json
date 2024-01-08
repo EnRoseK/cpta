@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "main_menus",
+  "info": {
+    "singularName": "main-menu",
+    "pluralName": "main-menus",
+    "displayName": "Үндсэн меню",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "priority": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "integer",
+      "required": true,
+      "default": 0
+    },
+    "title": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true,
+      "default": "Нүүр"
+    },
+    "link": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "default": "#",
+      "required": true
+    },
+    "child": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "menu.dropdown",
+        "menu.mega-menu"
+      ],
+      "required": false,
+      "max": 1,
+      "min": 1
+    }
+  }
+}

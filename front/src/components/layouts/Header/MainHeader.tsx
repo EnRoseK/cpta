@@ -1,6 +1,7 @@
-import { Button, CustomLink } from '@/components/global';
+import { Button } from '@/components/global';
 import { useLocale } from '@/hooks';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { FC } from 'react';
 
 export const MainHeader: FC = () => {
@@ -11,7 +12,7 @@ export const MainHeader: FC = () => {
       <div className='container'>
         <div className='flex items-center justify-between'>
           {/* Logo */}
-          <CustomLink href={'/'} className='group flex items-center gap-4'>
+          <Link href={'/'} className='group flex items-center gap-4'>
             <div className='h-[60px] w-[60px]'>
               <Image
                 src='/logo-1.png'
@@ -26,7 +27,7 @@ export const MainHeader: FC = () => {
                 ? 'Монгол улсын татварын мэргэшсэн зөвлөхийн нийгэмлэг'
                 : 'Mongolian Association of Certified Tax Consultants'}
             </span>
-          </CustomLink>
+          </Link>
 
           <Button asLink>Гишүүний программ</Button>
         </div>

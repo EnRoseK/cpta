@@ -3,36 +3,45 @@ import React, { FC, useState } from 'react';
 import { MegaMenu } from './MegaMenu';
 import { DropdownMenu } from './DropdownMenu';
 import { useAnimation } from '@/hooks';
-import { CustomLink } from '@/components/global';
+import { IMainMenuItem, IMegaMenuItem, IMenuItem } from '@/interfaces';
+import Link from 'next/link';
 
 interface NavItemProps {
-  megaMenu?: boolean;
+  menuItem: IMainMenuItem;
 }
 
-export const NavItem: FC<NavItemProps> = ({ megaMenu = false }) => {
+export const NavItem: FC<NavItemProps> = ({ menuItem }) => {
+  const hasChild = !!menuItem.child?.[0];
+  const megaMenu = menuItem.child?.[0]?.__component === 'menu.mega-menu';
+  const childItems =
+    menuItem.child?.[0]?.__component === 'menu.mega-menu' ? menuItem.child?.[0]?.menuItems : menuItem.child?.[0]?.items;
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [renderDropdown, onAnimationEnd] = useAnimation(showDropdown);
 
   return (
     <li
       className={megaMenu ? '' : 'relative'}
-      onMouseEnter={() => setShowDropdown(true)}
-      onMouseLeave={() => setShowDropdown(false)}
+      onMouseEnter={() => {
+        hasChild && setShowDropdown(true);
+      }}
+      onMouseLeave={() => {
+        hasChild && setShowDropdown(false);
+      }}
     >
-      <CustomLink
-        href='#'
-        className='group flex items-center gap-2 py-5 text-small font-medium uppercase hover:text-secondary'
+      <Link
+        href={menuItem.link}
+        className='group flex items-center gap-1 py-5 text-small font-medium uppercase hover:text-secondary'
       >
-        <span>Мэдээ, мэдээлэл</span>
-        <Icons.IoChevronDownSharp size={18} className='group-hover:rotate-180' />
-      </CustomLink>
+        <span>{menuItem.title}</span>
+        {hasChild && <Icons.IoChevronDownSharp size={18} className='group-hover:rotate-180' />}
+      </Link>
 
       {renderDropdown && (
         <>
           {megaMenu ? (
-            <MegaMenu show={showDropdown} onAnimationEnd={onAnimationEnd} />
+            <MegaMenu childItems={childItems as IMegaMenuItem[]} show={showDropdown} onAnimationEnd={onAnimationEnd} />
           ) : (
-            <DropdownMenu onAnimationEnd={onAnimationEnd} show={showDropdown} />
+            <DropdownMenu items={childItems as IMenuItem[]} onAnimationEnd={onAnimationEnd} show={showDropdown} />
           )}
         </>
       )}

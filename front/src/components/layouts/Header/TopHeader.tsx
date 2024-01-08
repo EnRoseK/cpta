@@ -1,7 +1,7 @@
 import { Icons } from '@/libs';
 import React, { FC } from 'react';
 import { LanguageButton } from './LanguageButton';
-import { CustomLink } from '@/components/global';
+import Link from 'next/link';
 
 export const TopHeader: FC = () => {
   return (
@@ -9,20 +9,20 @@ export const TopHeader: FC = () => {
       <div className='container'>
         <div className='flex items-center justify-between text-small text-description'>
           <div className='flex items-center gap-5'>
-            <CustomLink href='#' className='group inline-flex items-center gap-2 transition hover:text-primary'>
+            <Link href='#' className='group inline-flex items-center gap-2 transition hover:text-primary'>
               <Icons.FaPhoneAlt size={16} />
               <span>76118989</span>
-            </CustomLink>
-            <CustomLink href='#' className='inline-flex items-center gap-2 transition hover:text-primary'>
+            </Link>
+            <Link href='#' className='inline-flex items-center gap-2 transition hover:text-primary'>
               <Icons.IoMail size={18} />
               <span>info@cpta.mn</span>
-            </CustomLink>
+            </Link>
           </div>
 
           <div className='flex items-center gap-4'>
-            <CustomLink href='/jobs' className='capitalize transition hover:text-primary'>
+            <Link href='/jobs' className='capitalize transition hover:text-primary'>
               Ажлын байр
-            </CustomLink>
+            </Link>
 
             <LanguageButton />
           </div>

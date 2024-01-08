@@ -2,15 +2,10 @@ import { useRouter } from 'next/router';
 
 export const useLocale = () => {
   const router = useRouter();
-  const { locale = 'mn' } = router.query;
+  const locale = router.locale;
 
   const switchLocale = () => {
-    if (locale === 'mn') {
-      router.push({ query: { ...router.query, locale: 'en' } });
-    } else if (locale === 'en') {
-      delete router.query.locale;
-      router.push({ query: router.query });
-    }
+    router.push({}, undefined, { locale: locale === 'mn' ? 'en' : 'mn' });
   };
 
   return { currentLocale: locale, switchLocale };
