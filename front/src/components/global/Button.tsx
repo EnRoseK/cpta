@@ -1,6 +1,6 @@
 import { VariantProps, cva } from 'class-variance-authority';
-import Link from 'next/link';
 import React, { ComponentProps, FC, ReactNode } from 'react';
+import { CustomLink } from '.';
 
 const button = cva('flex items-center gap-2.5', {
   variants: {
@@ -35,9 +35,9 @@ interface ButtonProps extends ComponentProps<'button'>, VariantProps<typeof butt
 export const Button: FC<ButtonProps> = ({ children, variant, size, fullWidth, asLink = false, href, ...rest }) => {
   if (asLink) {
     return (
-      <Link href={href || '#'} className={button({ variant, size, fullWidth })}>
+      <CustomLink href={href || '#'} className={button({ variant, size, fullWidth })}>
         {children}
-      </Link>
+      </CustomLink>
     );
   }
 

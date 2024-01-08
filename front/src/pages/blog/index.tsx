@@ -1,8 +1,26 @@
+import { getAllBlogCategories } from '@/api/services';
 import { BlogCategoryFilter } from '@/components/features';
 import { DefaultBlogCard, PageHeader, Pagination } from '@/components/global';
-import { NextPage } from 'next';
+import { IBlogCategory } from '@/interfaces';
+import { GetServerSideProps, NextPage } from 'next';
 
-const BlogPage: NextPage = () => {
+interface BlogPageProps {
+  categories: IBlogCategory[];
+}
+
+export const getServerSideProps: GetServerSideProps<BlogPageProps> = async ({ query }) => {
+  const { locale = 'mn' } = query;
+
+  const [categoriesRes] = await Promise.all([getAllBlogCategories({ locale: locale as string })]);
+
+  return {
+    props: {
+      categories: categoriesRes.data,
+    },
+  };
+};
+
+const BlogPage: NextPage<BlogPageProps> = ({ categories }) => {
   return (
     <>
       <PageHeader title='Мэдээ мэдээлэл' pages={[{ title: 'Мэдээ мэдээлэл', link: '/blog' }]} />
@@ -20,7 +38,7 @@ const BlogPage: NextPage = () => {
           </section>
 
           <aside className='sticky top-44 col-span-1 h-max space-y-[30px]'>
-            <BlogCategoryFilter />
+            <BlogCategoryFilter categories={categories} />
           </aside>
         </div>
       </div>

@@ -1,5 +1,5 @@
+import { CustomLink } from '@/components/global';
 import classNames from 'classnames';
-import Link from 'next/link';
 import React, { FC } from 'react';
 
 interface DropdownMenuProps {
@@ -19,9 +19,9 @@ export const DropdownMenu: FC<DropdownMenuProps> = ({ show, onAnimationEnd }) =>
       {Array.from(Array(5)).map((_, index) => {
         return (
           <li key={index} className={classNames('pb-2', { 'border-b border-b-dark/10': index !== 4 })}>
-            <Link href={'#'} className='text-base hover:text-primary'>
+            <CustomLink href={'#'} className='text-base hover:text-primary'>
               Хүндэт гишүүн
-            </Link>
+            </CustomLink>
           </li>
         );
       })}

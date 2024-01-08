@@ -4,24 +4,37 @@
   "info": {
     "singularName": "blog-category",
     "pluralName": "blog-categories",
-    "displayName": "Мэдээний ангилал",
-    "description": ""
+    "displayName": "Мэдээний ангилал"
   },
   "options": {
     "draftAndPublish": false
   },
-  "pluginOptions": {},
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
-    "slug": {
-      "pluginOptions": {},
-      "type": "uid",
-      "required": true
-    },
     "title": {
-      "type": "component",
-      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
       "required": true,
-      "component": "translations.orchuulga"
+      "maxLength": 50,
+      "minLength": 3
+    },
+    "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     }
   }
 }

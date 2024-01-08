@@ -9,7 +9,7 @@ export const Clients: FC = () => {
     <section className='py-[120px]'>
       <div className='container'>
         <div className='mb-14 flex items-center justify-between'>
-          <h3 className='text-dark text-sectionTitle max-w-[400px] font-bold capitalize'>
+          <h3 className='max-w-[400px] text-sectionTitle font-bold capitalize text-dark'>
             Татварын итгэмжлэгдсэн хуулийн этгээд
           </h3>
 
@@ -27,7 +27,7 @@ export const Clients: FC = () => {
                 target='_blank'
                 href={'#'}
                 key={index}
-                className='border-dark/10 hover:border-secondary flex aspect-square w-full items-center justify-center rounded-xl border p-8'
+                className='flex aspect-square w-full items-center justify-center rounded-xl border border-dark/10 p-8 hover:border-secondary'
               >
                 <div className='h-full w-full'></div>
               </Link>
