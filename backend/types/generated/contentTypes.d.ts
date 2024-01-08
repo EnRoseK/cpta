@@ -981,6 +981,69 @@ export interface ApiMainMenuMainMenu extends Schema.CollectionType {
   };
 }
 
+export interface ApiStatisticStatistic extends Schema.CollectionType {
+  collectionName: 'statistics';
+  info: {
+    singularName: 'statistic';
+    pluralName: 'statistics';
+    displayName: '\u0422\u043E\u043E\u043D \u0441\u0442\u0430\u0442\u0438\u0441\u0442\u0438\u043A';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    stat: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    priority: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::statistic.statistic',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::statistic.statistic',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::statistic.statistic',
+      'oneToMany',
+      'api::statistic.statistic'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1002,6 +1065,7 @@ declare module '@strapi/types' {
       'api::blog.blog': ApiBlogBlog;
       'api::blog-category.blog-category': ApiBlogCategoryBlogCategory;
       'api::main-menu.main-menu': ApiMainMenuMainMenu;
+      'api::statistic.statistic': ApiStatisticStatistic;
     }
   }
 }

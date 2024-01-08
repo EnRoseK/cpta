@@ -4,3 +4,4 @@ export * from './data/main-menu';
 export * from './data/attachment';
 export * from './data/pagination';
 export * from './QueryFilters';
+export * from './data/statistic';
