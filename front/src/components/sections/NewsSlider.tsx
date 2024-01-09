@@ -57,7 +57,7 @@ export const NewsSlider: FC<NewsSliderProps> = ({ blogs }) => {
                   <div className='col-span-3'>
                     <Link
                       href={moreUrl}
-                      className='mb-6 text-5xl font-bold capitalize leading-normal text-dark hover:text-primary'
+                      className='mb-6 text-5xl font-bold normal-case leading-normal text-dark hover:text-primary'
                     >
                       {blog.title}
                     </Link>
