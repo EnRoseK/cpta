@@ -1218,6 +1218,73 @@ export interface ApiMainMenuMainMenu extends Schema.CollectionType {
   };
 }
 
+export interface ApiStaticPageStaticPage extends Schema.CollectionType {
+  collectionName: 'static_pages';
+  info: {
+    singularName: 'static-page';
+    pluralName: 'static-pages';
+    displayName: '\u0421\u0442\u0430\u0442\u0438\u043A \u0445\u0443\u0443\u0434\u0441\u0443\u0443\u0434';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageContent: Attribute.RichText &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::static-page.static-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::static-page.static-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::static-page.static-page',
+      'oneToMany',
+      'api::static-page.static-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiStatisticStatistic extends Schema.CollectionType {
   collectionName: 'statistics';
   info: {
@@ -1304,6 +1371,7 @@ declare module '@strapi/types' {
       'api::client.client': ApiClientClient;
       'api::honorary-member.honorary-member': ApiHonoraryMemberHonoraryMember;
       'api::main-menu.main-menu': ApiMainMenuMainMenu;
+      'api::static-page.static-page': ApiStaticPageStaticPage;
       'api::statistic.statistic': ApiStatisticStatistic;
     }
   }

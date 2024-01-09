@@ -60,7 +60,7 @@
 
   .blog-details img,
   .blog-details video {
-    @apply mb-7 block aspect-[1.9/1] w-full overflow-hidden rounded-xl;
+    @apply mb-7 block h-auto w-full overflow-hidden rounded-xl;
   }
 
   .blog-details blockquote {
