@@ -14,7 +14,7 @@ export const PageHeader: FC<PageHeaderProps> = ({ title, pages }) => {
   return (
     <section className='relative flex min-h-[250px] w-full items-center justify-center'>
       <div className='container relative z-10 flex items-center justify-between'>
-        <h1 className='text-[50px] font-bold capitalize leading-normal text-dark'>{title}</h1>
+        <h1 className='max-w-[600px] text-[40px] font-bold capitalize leading-normal text-dark'>{title}</h1>
 
         <div className='flex items-center gap-4'>
           <Link href='/' className='text-base font-medium leading-[30px] text-dark'>

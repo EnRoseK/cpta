@@ -11,4 +11,5 @@ export interface IClient {
   phoneOne: string;
   phoneTwo: string;
   logo: IAttachment;
+  isExpired: boolean;
 }
