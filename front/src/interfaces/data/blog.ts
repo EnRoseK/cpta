@@ -17,4 +17,6 @@ export interface IBlog {
   content: string;
   createdAt: string;
   thumbnail: IAttachment;
+  locale: string;
+  category: IBlogCategory;
 }

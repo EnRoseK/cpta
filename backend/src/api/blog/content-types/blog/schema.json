@@ -67,9 +67,9 @@
       "type": "richtext",
       "required": true
     },
-    "categories": {
+    "category": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "oneToOne",
       "target": "api::blog-category.blog-category"
     },
     "showOnSlider": {

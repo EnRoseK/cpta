@@ -866,9 +866,9 @@ export interface ApiBlogBlog extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    categories: Attribute.Relation<
+    category: Attribute.Relation<
       'api::blog.blog',
-      'oneToMany',
+      'oneToOne',
       'api::blog-category.blog-category'
     >;
     showOnSlider: Attribute.Boolean &

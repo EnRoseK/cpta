@@ -5,7 +5,7 @@ export const useLocale = () => {
   const locale = router.locale;
 
   const switchLocale = () => {
-    router.push({}, undefined, { locale: locale === 'mn' ? 'en' : 'mn' });
+    router.push(router.asPath, undefined, { locale: locale === 'mn' ? 'en' : 'mn' });
   };
 
   return { currentLocale: locale, switchLocale };

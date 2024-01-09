@@ -1,78 +1,122 @@
+import { getAllBlogCategories, getBlogBySlug, getBlogSlugs, getPaginatedBlogs } from '@/api/services';
 import { BlogCategoryFilter } from '@/components/features';
-import { GridBlogCard, PageHeader } from '@/components/global';
-import { NextPage } from 'next';
+import { GridBlogCard } from '@/components/global';
+import { useLocale } from '@/hooks';
+import { IBlog, IBlogCategory } from '@/interfaces';
+import { convertAttachmentUrl, parseMarkDown } from '@/utils';
+import axios from 'axios';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
-const BlogDetailsPage: NextPage = () => {
+interface BlogDetailsPageProps {
+  blog: IBlog;
+  categories: IBlogCategory[];
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await getBlogSlugs({ locale: 'all' });
+  const paths = res.data.map((blog) => ({ params: { slug: blog.slug }, locale: blog.locale }));
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+};
+
+export const getStaticProps: GetStaticProps<BlogDetailsPageProps> = async ({ params, locale }) => {
+  try {
+    const [blogRes, categoriesRes] = await Promise.all([
+      getBlogBySlug(params?.slug as string),
+      getAllBlogCategories({ locale: locale as string }),
+    ]);
+
+    return {
+      props: {
+        blog: blogRes.data,
+        categories: categoriesRes.data,
+      },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
+};
+
+const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) => {
+  const { currentLocale } = useLocale();
+  const router = useRouter();
+  const content = parseMarkDown(blog.content);
+  const [relatedBlogs, setRelatedBlogs] = useState<IBlog[]>([]);
+
+  useEffect(() => {
+    if (currentLocale !== blog.locale) {
+      router.replace('/blog');
+    }
+  }, [currentLocale, blog.locale, router]);
+
+  useEffect(() => {
+    const fetchRelatedBlogs = async () => {
+      try {
+        const res = await axios
+          .get<{ data: IBlog[] }>(`/api/related-blogs?locale=${currentLocale}&categorySlug=${blog.category.slug}`)
+          .then((res) => res.data);
+
+        setRelatedBlogs(res.data.filter((b) => b.id !== blog.id));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchRelatedBlogs();
+  }, [blog.category, currentLocale, blog.id]);
+
   return (
     <>
-      <PageHeader
-        title='Мэдээний дэлгэрэнгүй'
-        pages={[
-          { title: 'Мэдээ', link: '/blog' },
-          { title: 'Мэдээний дэлгэрэнгүй', link: '/blog/1' },
-        ]}
-      />
-
       <div className='container py-[120px]'>
         <div className='grid grid-cols-4 gap-10'>
           <section className='col-span-3'>
-            <div className='mb-7 aspect-[1.9/1] w-full overflow-hidden rounded-xl bg-[#c4c4c4]'></div>
+            <div className='mb-7 aspect-[1.9/1] w-full overflow-hidden rounded-xl bg-[#c4c4c4]'>
+              {blog.thumbnail.mime.includes('image') && (
+                <Image
+                  src={convertAttachmentUrl(blog.thumbnail.url)}
+                  alt={blog.thumbnail.alternativeText || blog.thumbnail.name}
+                  className='h-full w-full object-cover group-hover:scale-105'
+                  width={blog.thumbnail.width}
+                  height={blog.thumbnail.height}
+                />
+              )}
+              {blog.thumbnail.mime.includes('video') && (
+                <video className='h-full w-full object-cover' controls>
+                  <source src={convertAttachmentUrl(blog.thumbnail.url)} type='video/mp4' />
+                  Таны вэб хөтөч видео тоглуулах боломжгүй байна.
+                </video>
+              )}
+            </div>
 
             <span className='mb-4 block text-date capitalize text-description'>April 21, 2023</span>
 
-            <h1 className='mb-5 text-3xl font-bold capitalize leading-none text-dark'>
-              Aliquam vel nibh sapien. Suspendisse placerat.
-            </h1>
+            <h1 className='mb-5 text-3xl font-bold normal-case leading-none text-dark'>{blog.title}</h1>
 
-            <div className='blog-details'>
-              <p>
-                Sed nec sapien eu nibh porta fringilla. Aenean in lectus id tellus tempus rutrum vitae a elit. Nulla sit
-                amet interdum ligula. Duis bibendum porttitor tempus. Morbi nisi nisl, sagittis in enim at this, tempus
-                convallis magna. Nam malesuada risus non congue viverra. Nullam ultrices massa orci, in the eleifend
-                diam fringilla a. Maecenas eu dignissim nulla. Morbi aliquet luctus massa fermentum pulvinar. Fusce vel
-                dictum magna. Suspendisse purus erat, semper laoreet eros sed, vehicula aliquet quam. Maecens eget arcu
-                sapien. Nam convallis sit amet lacus ut tristique. Ut posuere risus ipsum, sit amet efficitur eros
-                varius eu. Cras placerat lacus purus, facilisis volutpat.
-              </p>
+            <div className='blog-details' dangerouslySetInnerHTML={{ __html: content }} />
 
-              <h2>laboratory Couses History</h2>
-
-              <p>
-                Nullam ultrices massa orci, in the eleifend diam fringilla a. Maecenas eu dignissim nulla. Morbi aliquet
-                luctus massa fermentum pulvinar. Fusce vel dictum magna. Suspendisse purus erat, semper laoreet eros
-                sed, vehicula aliquet quam. Maecens eget arcu sapien. Nam convallis sit amet lacus ut tristique. Ut
-                posuere risus ipsum, sit amet efficitur eros varius eu. Cras placerat lacus purus, facilisis volutpat.
-              </p>
-
-              <p>
-                Porttitor tempus. Morbi nisi nisl, sagittis in enim at this, tempus convallis magna. Nam malesuada risus
-                non congue viverra. Nullam ultrices massa orci, in the eleifend diam fringilla a. Maecenas eu dignissim
-                nulla. Morbi aliquet luctus massa fermentum pulvinar. Fusce vel dictum magna. Suspendisse purus erat,
-                semper laoreet eros sed, vehicula aliquet quam. Maecens eget arcu sapien. Nam convallis sit amet lacus
-                ut tristique. Ut posuere risus ipsum, sit amet efficitur eros varius eu. Cras placerat lacus purus,
-                facilisis volutpat.
-              </p>
-
-              <blockquote>
-                <p>
-                  Praesent eu efficitur nulla. Pellentesque commodo ut lorem vel accumsan. Vivamus sit amet metus
-                  convallis, suscipit elit ac, tincidunt enim. Vivamus sagittis eleifend maximus. Nunc turpis sem,
-                  malesuada a faucibus sed, cursus quis est.
-                </p>
-              </blockquote>
-            </div>
-
-            <div className='w-full py-[120px]'>
-              <h6 className='mb-14 text-sectionTitle font-bold text-dark'>Төстэй мэдээнүүд</h6>
-              <div className='grid grid-cols-3 gap-6'>
-                {/* <GridBlogCard />
-                <GridBlogCard />
-                <GridBlogCard /> */}
+            {relatedBlogs.length > 0 && (
+              <div className='w-full py-[120px]'>
+                <h6 className='mb-14 text-sectionTitle font-bold text-dark'>Төстэй мэдээнүүд</h6>
+                <div className='grid grid-cols-2 gap-6'>
+                  {relatedBlogs.map((blog) => {
+                    return <GridBlogCard key={blog.id} blog={blog} />;
+                  })}
+                </div>
               </div>
-            </div>
+            )}
           </section>
 
-          <aside className='sticky top-44 col-span-1 h-max space-y-[30px]'>{/* <BlogCategoryFilter /> */}</aside>
+          <aside className='sticky top-44 col-span-1 h-max space-y-[30px]'>
+            <BlogCategoryFilter categories={categories} isDetailsPage />
+          </aside>
         </div>
       </div>
     </>

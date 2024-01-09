@@ -4,12 +4,15 @@ import Link from 'next/link';
 import { IBlog } from '@/interfaces';
 import { convertAttachmentUrl, convertDateToString } from '@/utils';
 import Image from 'next/image';
+import { useLocale } from '@/hooks';
 
 interface DefaultBlogCardProps {
   blog: IBlog;
 }
 
 export const DefaultBlogCard: FC<DefaultBlogCardProps> = ({ blog }) => {
+  const { currentLocale } = useLocale();
+
   const moreUrl = `/blog/${blog.slug}`;
 
   return (
@@ -39,7 +42,7 @@ export const DefaultBlogCard: FC<DefaultBlogCardProps> = ({ blog }) => {
         </Link>
         <p className='mb-6 text-base leading-[30px] text-description'>{blog.description}</p>
         <Button asLink href={moreUrl} variant='gray'>
-          Дэлгэрэнгүй
+          {currentLocale === 'mn' ? 'Дэлгэрэнгүй' : 'Read More'}
         </Button>
       </div>
     </div>
