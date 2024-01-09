@@ -1,19 +1,35 @@
+import { useOnScreen } from '@/hooks/';
 import { IStatistic } from '@/interfaces';
-import React, { FC } from 'react';
+import React, { FC, useRef } from 'react';
+import { CountUp } from 'use-count-up';
 
 interface StatisticsProps {
   statistics: IStatistic[];
 }
 
 export const Statistics: FC<StatisticsProps> = ({ statistics }) => {
+  const ref = useRef<HTMLScriptElement>(null);
+  const isVisible = useOnScreen(ref);
+
   return (
-    <section className='container mb-25 border-t border-t-dark/[0.07] pt-14'>
+    <section ref={ref} className='container mb-25 border-t border-t-dark/[0.07] pt-14'>
       <div className='grid grid-cols-4 gap-40'>
         {statistics.map((statistic, index) => {
           return (
             <div key={index} className='text-center'>
               <h5 className='mb-5 text-5xl font-semibold leading-[44px] text-primary'>
-                {statistic.stat.toLocaleString()}
+                {isVisible ? (
+                  <CountUp
+                    isCounting
+                    end={statistic.stat}
+                    duration={6}
+                    formatter={(value) =>
+                      value.toLocaleString(undefined, {
+                        maximumFractionDigits: 0,
+                      })
+                    }
+                  />
+                ) : null}
               </h5>
               <span className='block text-small capitalize text-description'>{statistic.title}</span>
             </div>
