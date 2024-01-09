@@ -48,6 +48,21 @@ export const getBlogSlugs = async ({ locale }: QueryFilters) => {
   return await axiosInstance.get<{ data: IBlog[] }>(convertApiUrl(GET_BLOG_SLUGS, paramaters)).then((res) => res.data);
 };
 
-export const getBlogBySlug = async (slug: string) => {
-  return await axiosInstance.get<{ data: IBlog }>(GET_BLOG_BY_SLUG(slug)).then((res) => res.data);
+export const getBlogBySlug = async (slug: string, locale: string) => {
+  const paramaters: QueryParamaters = {
+    locale,
+    pagination: {
+      limit: -1,
+    },
+    filters: {
+      slug: {
+        $eq: slug,
+      },
+    },
+    populate: ['thumbnail', 'category'],
+  };
+
+  return await axiosInstance
+    .get<{ data: IBlog[] }>(convertApiUrl(GET_PAGINATED_BLOGS, paramaters))
+    .then((res) => res.data);
 };

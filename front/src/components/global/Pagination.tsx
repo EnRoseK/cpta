@@ -1,43 +1,33 @@
 import { IPagination } from '@/interfaces';
 import { Icons } from '@/libs';
-import classNames from 'classnames';
-import React, { FC, ReactNode } from 'react';
+import { useRouter } from 'next/router';
+import React, { FC } from 'react';
+import ReactPaginate from 'react-paginate';
 
 interface PaginationProps {
   pagination: IPagination;
 }
 
 export const Pagination: FC<PaginationProps> = ({ pagination }) => {
-  return (
-    <div className='flex w-full items-center justify-center gap-2.5'>
-      <PaginationButton disabled={pagination.page === 1}>
-        <Icons.IoIosArrowRoundBack size={24} />
-      </PaginationButton>
-      <PaginationButton active>{pagination.page}</PaginationButton>
-      <PaginationButton disabled={pagination.page === pagination.pageCount}>
-        <Icons.IoIosArrowRoundForward size={24} />
-      </PaginationButton>
-    </div>
-  );
-};
+  const router = useRouter();
 
-interface PaginationButtonProps {
-  children: ReactNode;
-  disabled?: boolean;
-  active?: boolean;
-}
-
-const PaginationButton: FC<PaginationButtonProps> = ({ children, disabled = false, active = false }) => {
   return (
-    <button
-      type='button'
-      className={classNames(
-        'flex max-h-[50px] items-center justify-center rounded-[3px] border border-dark/[0.07] px-6 py-4 text-small uppercase text-description hover:bg-primary hover:text-white disabled:pointer-events-none disabled:bg-description/10',
-        { 'pointer-events-none bg-primary text-white': active },
-      )}
-      disabled={disabled}
-    >
-      {children}
-    </button>
+    <ReactPaginate
+      className='flex w-full items-center justify-center gap-2.5'
+      pageCount={pagination.pageCount}
+      breakLabel={'...'}
+      pageLinkClassName='flex max-h-[50px] items-center justify-center rounded-[3px] border border-dark/[0.07] px-6 py-4 text-small uppercase text-description hover:bg-primary hover:text-white disabled:pointer-events-none disabled:bg-description/10'
+      activeLinkClassName='pointer-events-none bg-primary text-white'
+      marginPagesDisplayed={2}
+      pageRangeDisplayed={3}
+      previousLinkClassName='flex max-h-[50px] items-center justify-center rounded-[3px] border border-dark/[0.07] px-6 py-4 text-small uppercase text-description hover:bg-primary hover:text-white disabled:pointer-events-none disabled:bg-description/10'
+      nextLinkClassName='flex max-h-[50px] items-center justify-center rounded-[3px] border border-dark/[0.07] px-6 py-4 text-small uppercase text-description hover:bg-primary hover:text-white disabled:pointer-events-none disabled:bg-description/10'
+      previousLabel={<Icons.IoIosArrowRoundBack size={24} />}
+      nextLabel={<Icons.IoIosArrowRoundForward size={24} />}
+      forcePage={pagination.page - 1}
+      onPageChange={(e) => {
+        router.push({ query: { ...router.query, page: e.selected + 1 } }, undefined, { scroll: true });
+      }}
+    />
   );
 };

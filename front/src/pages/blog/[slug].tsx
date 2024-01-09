@@ -7,8 +7,7 @@ import { convertAttachmentUrl, parseMarkDown } from '@/utils';
 import axios from 'axios';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface BlogDetailsPageProps {
   blog: IBlog;
@@ -28,13 +27,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<BlogDetailsPageProps> = async ({ params, locale }) => {
   try {
     const [blogRes, categoriesRes] = await Promise.all([
-      getBlogBySlug(params?.slug as string),
+      getBlogBySlug(params?.slug as string, locale as string),
       getAllBlogCategories({ locale: locale as string }),
     ]);
 
+    if (blogRes.data.length === 0) {
+      throw new Error();
+    }
+
     return {
       props: {
-        blog: blogRes.data,
+        blog: blogRes.data[0],
         categories: categoriesRes.data,
       },
     };
@@ -47,15 +50,9 @@ export const getStaticProps: GetStaticProps<BlogDetailsPageProps> = async ({ par
 
 const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) => {
   const { currentLocale } = useLocale();
-  const router = useRouter();
   const content = parseMarkDown(blog.content);
   const [relatedBlogs, setRelatedBlogs] = useState<IBlog[]>([]);
-
-  useEffect(() => {
-    if (currentLocale !== blog.locale) {
-      router.replace('/blog');
-    }
-  }, [currentLocale, blog.locale, router]);
+  const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const fetchRelatedBlogs = async () => {
@@ -73,6 +70,10 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) =
     fetchRelatedBlogs();
   }, [blog.category, currentLocale, blog.id]);
 
+  useEffect(() => {
+    ref.current?.load();
+  }, [blog.id]);
+
   return (
     <>
       <div className='container py-[120px]'>
@@ -89,7 +90,7 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) =
                 />
               )}
               {blog.thumbnail.mime.includes('video') && (
-                <video className='h-full w-full object-cover' controls>
+                <video ref={ref} className='h-full w-full object-cover' controls>
                   <source src={convertAttachmentUrl(blog.thumbnail.url)} type='video/mp4' />
                   Таны вэб хөтөч видео тоглуулах боломжгүй байна.
                 </video>

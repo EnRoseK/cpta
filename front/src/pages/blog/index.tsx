@@ -15,7 +15,11 @@ export const getServerSideProps: GetServerSideProps<BlogPageProps> = async ({ lo
 
   const [categoriesRes, blogsRes] = await Promise.all([
     getAllBlogCategories({ locale }),
-    getPaginatedBlogs({ locale, page: Number(page), filters: { category: { slug: { $eq: category as string } } } }),
+    getPaginatedBlogs({
+      locale,
+      page: Number(page),
+      filters: { category: { slug: { $eq: category as string } } },
+    }),
   ]);
 
   return {
