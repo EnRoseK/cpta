@@ -15,6 +15,6 @@ export interface IBlog {
   description: string;
   slug: string;
   content: string;
-  publishedAt: string;
+  createdAt: string;
   thumbnail: IAttachment;
 }

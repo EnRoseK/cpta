@@ -8,7 +8,7 @@ export interface QueryParamaters {
   };
   filters?: {
     [key: string]: {
-      [key: string]: string | boolean;
+      [key: string]: string | boolean | { [key: string]: string | boolean };
     };
   };
   sort?: string[] | string;

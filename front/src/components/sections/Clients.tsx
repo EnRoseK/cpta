@@ -17,7 +17,7 @@ export const Clients: FC<ClientsProps> = ({ clients }) => {
             Татварын итгэмжлэгдсэн хуулийн этгээд
           </h3>
 
-          <SeeMoreLink href='#' />
+          <SeeMoreLink href='/members/clients' />
         </div>
 
         <div className='grid grid-cols-6 gap-6'>

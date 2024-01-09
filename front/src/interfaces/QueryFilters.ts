@@ -5,7 +5,7 @@ export interface QueryFilters {
   limit?: number;
   filters?: {
     [key: string]: {
-      [key: string]: string | boolean;
+      [key: string]: string | boolean | { [key: string]: string | boolean };
     };
   };
   fields?: string[] | string;

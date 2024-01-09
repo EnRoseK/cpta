@@ -16,7 +16,7 @@ export const getAllBlogCategories = async ({ locale }: QueryFilters) => {
     .then((res) => res.data);
 };
 
-export const getPaginatedBlogs = async ({ locale, page = 1, pageSize = 10 }: QueryFilters) => {
+export const getPaginatedBlogs = async ({ locale, page = 1, pageSize = 10, filters }: QueryFilters) => {
   const paramaters: QueryParamaters = {
     pagination: {
       page,
@@ -26,6 +26,10 @@ export const getPaginatedBlogs = async ({ locale, page = 1, pageSize = 10 }: Que
     populate: ['thumbnail'],
     sort: 'createdAt:desc',
   };
+
+  if (filters) {
+    paramaters.filters = filters;
+  }
 
   return await axiosInstance
     .get<{ data: IBlog[]; meta: { pagination: IPagination } }>(convertApiUrl(GET_PAGINATED_BLOGS, paramaters))
