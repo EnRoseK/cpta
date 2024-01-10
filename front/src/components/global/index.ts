@@ -8,3 +8,5 @@ export * from './Pagination';
 export * from './JobCard';
 export * from './SearchInput';
 export * from './Dropdown';
+export * from './TaxAnalystCard';
+export * from './Input';

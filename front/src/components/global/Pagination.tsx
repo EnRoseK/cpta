@@ -28,6 +28,7 @@ export const Pagination: FC<PaginationProps> = ({ pagination }) => {
       onPageChange={(e) => {
         router.push({ query: { ...router.query, page: e.selected + 1 } }, undefined, { scroll: true });
       }}
+      renderOnZeroPageCount={null}
     />
   );
 };

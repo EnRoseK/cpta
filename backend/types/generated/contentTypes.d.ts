@@ -1347,6 +1347,87 @@ export interface ApiStatisticStatistic extends Schema.CollectionType {
   };
 }
 
+export interface ApiTaxAnalystTaxAnalyst extends Schema.CollectionType {
+  collectionName: 'tax_analysts';
+  info: {
+    singularName: 'tax-analyst';
+    pluralName: 'tax-analysts';
+    displayName: '\u0422\u0430\u0442\u0432\u0430\u0440\u044B\u043D \u0448\u0438\u043D\u0436\u044D\u044D\u0447';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    picture: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    tmzNumber: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    lastName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    firstName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    email: Attribute.Email &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    phone: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tax-analyst.tax-analyst',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tax-analyst.tax-analyst',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::tax-analyst.tax-analyst',
+      'oneToMany',
+      'api::tax-analyst.tax-analyst'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1373,6 +1454,7 @@ declare module '@strapi/types' {
       'api::main-menu.main-menu': ApiMainMenuMainMenu;
       'api::static-page.static-page': ApiStaticPageStaticPage;
       'api::statistic.statistic': ApiStatisticStatistic;
+      'api::tax-analyst.tax-analyst': ApiTaxAnalystTaxAnalyst;
     }
   }
 }

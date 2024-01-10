@@ -13,6 +13,7 @@ const button = cva('flex items-center gap-2.5', {
     },
     size: {
       DEFAULT: 'py-[14px] px-[30px] rounded-[5px] text-base font-medium',
+      small: 'py-2.5 px-5 rounded-[5px] font-medium text-sm',
     },
     fullWidth: {
       true: 'w-full',
