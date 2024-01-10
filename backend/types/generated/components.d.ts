@@ -39,7 +39,6 @@ export interface MenuMenuItem extends Schema.Component {
     description: '';
   };
   attributes: {
-    priority: Attribute.Integer & Attribute.Required;
     title: Attribute.String & Attribute.Required;
     link: Attribute.String & Attribute.Required;
   };

@@ -6,11 +6,6 @@
   },
   "options": {},
   "attributes": {
-    "priority": {
-      "required": true,
-      "unique": false,
-      "type": "integer"
-    },
     "title": {
       "type": "string",
       "required": true

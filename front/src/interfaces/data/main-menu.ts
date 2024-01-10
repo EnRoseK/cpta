@@ -30,7 +30,6 @@ export interface IMegaMenuItem {
 
 export interface IMenuItem {
   id: number;
-  priority: number;
   title: string;
   link: string;
 }
