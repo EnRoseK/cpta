@@ -1,3 +1,5 @@
+import { IAttachment } from '..';
+
 export interface IStaticPage {
   id: number;
   slug: string;
@@ -5,4 +7,5 @@ export interface IStaticPage {
   pageDescription?: string;
   pageContent: string;
   locale: string;
+  files?: IAttachment[];
 }

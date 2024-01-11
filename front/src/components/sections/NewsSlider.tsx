@@ -14,6 +14,10 @@ interface NewsSliderProps {
 }
 
 export const NewsSlider: FC<NewsSliderProps> = ({ blogs }) => {
+  if (blogs.length === 0) {
+    return <></>;
+  }
+
   return (
     <section className='relative flex min-h-[675px] w-full items-center justify-center overflow-hidden bg-[#D9D9D9]'>
       <div className='container'>

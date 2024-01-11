@@ -29,7 +29,9 @@ export const MainHeader: FC = () => {
             </span>
           </Link>
 
-          <Button asLink>Гишүүний программ</Button>
+          <Button newTab asLink href='https://members.cpta.mn'>
+            {currentLocale === 'mn' ? 'Гишүүний программ' : 'Membership Program'}
+          </Button>
         </div>
       </div>
     </div>

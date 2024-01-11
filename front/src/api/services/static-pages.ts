@@ -26,6 +26,7 @@ export const getStaticPageBySlug = async (slug: string, locale: string) => {
     filters: {
       slug: { $eq: slug },
     },
+    populate: ['files'],
   };
 
   return await axiosInstance

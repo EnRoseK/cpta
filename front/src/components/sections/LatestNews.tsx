@@ -1,17 +1,22 @@
 import React, { FC } from 'react';
 import { GridBlogCard, SeeMoreLink } from '../global';
-import { IBlog } from '@/interfaces';
+import { IBlog, ISection } from '@/interfaces';
 
 interface LatestNewsProps {
   blogs: IBlog[];
+  sectionInfo: ISection;
 }
 
-export const LatestNews: FC<LatestNewsProps> = ({ blogs }) => {
+export const LatestNews: FC<LatestNewsProps> = ({ blogs, sectionInfo }) => {
+  if (blogs.length === 0) {
+    return <></>;
+  }
+
   return (
     <section className='bg-white py-[120px]'>
       <div className='container'>
         <div className='mb-14 flex w-full items-center justify-between'>
-          <h3 className='text-sectionTitle font-bold capitalize text-dark'>Мэдээ мэдээлэл</h3>
+          <h3 className='text-sectionTitle font-bold capitalize text-dark'>{sectionInfo.sectionTitle}</h3>
 
           <SeeMoreLink href='/blog' />
         </div>

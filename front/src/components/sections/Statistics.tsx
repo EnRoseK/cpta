@@ -11,6 +11,10 @@ export const Statistics: FC<StatisticsProps> = ({ statistics }) => {
   const ref = useRef<HTMLScriptElement>(null);
   const isVisible = useOnScreen(ref);
 
+  if (statistics.length === 0) {
+    return <></>;
+  }
+
   return (
     <section ref={ref} className='container mb-25 border-t border-t-dark/[0.07] pt-14'>
       <div className='grid grid-cols-4 gap-40'>

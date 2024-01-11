@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_about_us_vision_blocks",
+  "info": {
+    "displayName": "visionBlock"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

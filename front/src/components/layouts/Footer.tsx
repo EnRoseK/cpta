@@ -1,10 +1,11 @@
-import { useLocale } from '@/hooks';
+import { useGlobalContext, useLocale } from '@/hooks';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 export const Footer: FC = () => {
   const { currentLocale } = useLocale();
+  const { footer, generalInfo } = useGlobalContext();
 
   return (
     <footer className='bg-dark text-white'>
@@ -22,27 +23,54 @@ export const Footer: FC = () => {
               </span>
             </Link>
 
-            <p className='text-base leading-[30px] text-white/70'>
-              There are many variations of passages of Lorem Ipsum available, but the majority have suffered predefined
-              chunks as necessary tests with nursing implications.
-            </p>
+            <p className='text-base leading-[30px] text-white/70'>{footer?.description}</p>
           </div>
 
-          <div className='grid flex-1 grid-cols-4 gap-6'>
+          <div className='grid flex-1 grid-cols-3 gap-5'>
             <div className='col-span-1'>
-              <h6 className='mb-3 text-xl font-bold capitalize leading-normal'>About Us</h6>
+              <h6 className='mb-4 text-xl font-bold capitalize leading-normal'>
+                {currentLocale === 'mn' ? 'ТМЗ нийгэмлэг' : 'Community'}
+              </h6>
+              <ul className='space-y-4 text-base text-white/70'>
+                {footer?.menuItems.map((item, index) => {
+                  return (
+                    <li key={index}>
+                      <Link href={item.link} className='hover:underline'>
+                        {item.title}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
 
             <div className='col-span-1'>
-              <h6 className='mb-3 text-xl font-bold capitalize leading-normal'>About Us</h6>
+              <h6 className='mb-4 text-xl font-bold capitalize leading-normal'>
+                {currentLocale === 'mn' ? 'Холбоо барих' : 'Contact'}
+              </h6>
+
+              <ul className='space-y-4 text-base text-white/70'>
+                <li>
+                  <span className='font-bold'>{currentLocale === 'mn' ? 'Утас' : 'Phone'}:</span> {generalInfo?.phone}
+                </li>
+                <li>
+                  <span className='font-bold'>{currentLocale === 'mn' ? 'И-мэйл' : 'Email'}:</span> {generalInfo?.email}
+                </li>
+                <li>
+                  <span className='font-bold'>{currentLocale === 'mn' ? 'Вэбсайт' : 'Website'}:</span>{' '}
+                  {generalInfo?.website}
+                </li>
+              </ul>
             </div>
 
             <div className='col-span-1'>
-              <h6 className='mb-3 text-xl font-bold capitalize leading-normal'>About Us</h6>
-            </div>
-
-            <div className='col-span-1'>
-              <h6 className='mb-3 text-xl font-bold capitalize leading-normal'>About Us</h6>
+              <h6 className='mb-4 text-xl font-bold capitalize leading-normal'>
+                {currentLocale === 'mn' ? 'Хаяг' : 'Address'}
+              </h6>
+              <ul className='space-y-10 text-base text-white/70'>
+                <p>{generalInfo?.address}</p>
+                <p>{generalInfo?.workingHours}</p>
+              </ul>
             </div>
           </div>
         </div>
@@ -50,12 +78,7 @@ export const Footer: FC = () => {
 
       <div className='border-t border-t-white/[0.07] pb-5 pt-6'>
         <div className='container'>
-          <p className='text-center text-base leading-[28px] text-white/70'>
-            © Copyright 2024.{' '}
-            <Link className='text-white transition hover:underline' href={'#'} target='_blank'>
-              Nexus Technology
-            </Link>
-          </p>
+          <p className='text-center text-base leading-[28px] text-white/70'>© {footer?.bottomText}</p>
         </div>
       </div>
     </footer>

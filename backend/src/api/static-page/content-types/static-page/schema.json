@@ -50,6 +50,18 @@
       },
       "type": "string",
       "required": true
+    },
+    "files": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
     }
   }
 }

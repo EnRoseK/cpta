@@ -6,6 +6,7 @@ import { GET_ABOUT_US_PAGE } from '../endpoints';
 export const getAboutUsPage = async ({ locale }: QueryFilters) => {
   const paramaters: QueryParamaters = {
     locale,
+    populate: ['picture', 'visions'],
   };
 
   return await axiosInstance

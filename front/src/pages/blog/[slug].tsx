@@ -1,4 +1,4 @@
-import { getAllBlogCategories, getBlogBySlug, getBlogSlugs, getPaginatedBlogs } from '@/api/services';
+import { getAllBlogCategories, getBlogBySlug, getBlogSlugs } from '@/api/services';
 import { BlogCategoryFilter } from '@/components/features';
 import { GridBlogCard } from '@/components/global';
 import { useLocale } from '@/hooks';
@@ -6,6 +6,7 @@ import { IBlog, IBlogCategory } from '@/interfaces';
 import { convertAttachmentUrl, parseMarkDown } from '@/utils';
 import axios from 'axios';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
@@ -76,6 +77,30 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) =
 
   return (
     <>
+      <NextSeo
+        title={`${blog.title} | ${
+          currentLocale === 'mn'
+            ? 'Монгол Улсын Татварын Мэргэшсэн Зөвлөхийн нийгэмлэг'
+            : 'Mongolian Association of Certified Tax Consultants'
+        }`}
+        description={blog.description}
+        canonical={`${process.env.NEXT_PUBLIC_SITE_URL}/${
+          currentLocale === 'mn' ? `blog/${blog.slug}` : `en/blog/${blog.slug}`
+        }`}
+        openGraph={{
+          title: `${blog.title} | ${
+            currentLocale === 'mn'
+              ? 'Монгол Улсын Татварын Мэргэшсэн Зөвлөхийн нийгэмлэг'
+              : 'Mongolian Association of Certified Tax Consultants'
+          }`,
+          description: blog.description,
+          url: `${process.env.NEXT_PUBLIC_SITE_URL}/${
+            currentLocale === 'mn' ? `blog/${blog.slug}` : `en/blog/${blog.slug}`
+          }`,
+          images: [],
+        }}
+      />
+
       <div className='container py-[120px]'>
         <div className='grid grid-cols-4 gap-10'>
           <section className='col-span-3'>

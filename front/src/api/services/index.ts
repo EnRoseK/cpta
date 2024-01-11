@@ -6,3 +6,6 @@ export * from './clients';
 export * from './honorary-members';
 export * from './static-pages';
 export * from './tax-analysts';
+export * from './home-page';
+export * from './general-info';
+export * from './footer';

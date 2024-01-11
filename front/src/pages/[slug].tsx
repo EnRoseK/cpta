@@ -1,8 +1,10 @@
 import { getStaticPageBySlug, getStaticPageSlugs } from '@/api/services';
 import { PageHeader } from '@/components/global';
+import { useLocale } from '@/hooks';
 import { IStaticPage } from '@/interfaces';
-import { parseMarkDown } from '@/utils';
+import { convertAttachmentUrl, parseMarkDown } from '@/utils';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -43,15 +45,48 @@ export const getStaticProps: GetStaticProps<StaticPageProps> = async ({ params, 
 const StaticPage: NextPage<StaticPageProps> = ({ staticPageInfo }) => {
   const router = useRouter();
   const content = parseMarkDown(staticPageInfo.pageContent);
+  const pdfFiles = staticPageInfo.files?.filter((file) => file.mime.includes('pdf'));
+  const { currentLocale } = useLocale();
 
   return (
     <>
+      <NextSeo
+        title={`${staticPageInfo.pageTitle} | ${
+          currentLocale === 'mn'
+            ? 'Монгол Улсын Татварын Мэргэшсэн Зөвлөхийн нийгэмлэг'
+            : 'Mongolian Association of Certified Tax Consultants'
+        }`}
+        description={staticPageInfo.pageDescription}
+        canonical={`${process.env.NEXT_PUBLIC_SITE_URL}${
+          currentLocale === 'mn' ? `/${staticPageInfo.slug}` : `/en/${staticPageInfo.slug}`
+        }`}
+        openGraph={{
+          title: `${staticPageInfo.pageTitle} | ${
+            currentLocale === 'mn'
+              ? 'Монгол Улсын Татварын Мэргэшсэн Зөвлөхийн нийгэмлэг'
+              : 'Mongolian Association of Certified Tax Consultants'
+          }`,
+          description: staticPageInfo.pageDescription,
+          url: `${process.env.NEXT_PUBLIC_SITE_URL}${
+            currentLocale === 'mn' ? `/${staticPageInfo.slug}` : `/en/${staticPageInfo.slug}`
+          }`,
+        }}
+      />
+
       <PageHeader
         title={staticPageInfo.pageTitle}
         pages={[{ title: staticPageInfo.pageTitle, link: router.pathname }]}
       />
 
       <section className='container py-[120px]'>
+        {pdfFiles && pdfFiles.length > 0 && (
+          <div className='mb-10 space-y-10'>
+            {pdfFiles.map((file) => {
+              return <iframe key={file.id} src={convertAttachmentUrl(file.url)} className='aspect-square w-full' />;
+            })}
+          </div>
+        )}
+
         <div className='blog-details' dangerouslySetInnerHTML={{ __html: content }}></div>
       </section>
     </>

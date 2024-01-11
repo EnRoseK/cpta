@@ -31,12 +31,22 @@ interface ButtonProps extends ComponentProps<'button'>, VariantProps<typeof butt
   children: ReactNode;
   asLink?: boolean;
   href?: string;
+  newTab?: boolean;
 }
 
-export const Button: FC<ButtonProps> = ({ children, variant, size, fullWidth, asLink = false, href, ...rest }) => {
+export const Button: FC<ButtonProps> = ({
+  children,
+  variant,
+  size,
+  fullWidth,
+  asLink = false,
+  newTab = false,
+  href,
+  ...rest
+}) => {
   if (asLink) {
     return (
-      <Link href={href || '#'} className={button({ variant, size, fullWidth })}>
+      <Link href={href || '#'} target={newTab ? '_blank' : '_self'} className={button({ variant, size, fullWidth })}>
         {children}
       </Link>
     );

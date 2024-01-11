@@ -82,6 +82,14 @@
   .swiper-news__navigation-next {
     @apply absolute right-4 top-1/2 z-10 -translate-y-1/2 cursor-pointer text-dark hover:text-primary;
   }
+
+  .about-us__vision-content ol {
+    @apply list-decimal pl-5;
+  }
+
+  .about-us__vision-content ul {
+    @apply list-disc pl-5;
+  }
 }
 
 .loading-body {

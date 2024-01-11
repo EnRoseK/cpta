@@ -1,21 +1,24 @@
 import React, { FC } from 'react';
 import { SeeMoreLink } from '../global';
-import { IClient } from '@/interfaces';
+import { IClient, ISection } from '@/interfaces';
 import Image from 'next/image';
 import { convertAttachmentUrl } from '@/utils';
 
 interface ClientsProps {
   clients: IClient[];
+  sectionInfo: ISection;
 }
 
-export const Clients: FC<ClientsProps> = ({ clients }) => {
+export const Clients: FC<ClientsProps> = ({ clients, sectionInfo }) => {
+  if (clients.length === 0) {
+    return <></>;
+  }
+
   return (
     <section className='py-[120px]'>
       <div className='container'>
         <div className='mb-14 flex items-center justify-between'>
-          <h3 className='max-w-[400px] text-sectionTitle font-bold capitalize text-dark'>
-            Татварын итгэмжлэгдсэн хуулийн этгээд
-          </h3>
+          <h3 className='max-w-[400px] text-sectionTitle font-bold capitalize text-dark'>{sectionInfo.sectionTitle}</h3>
 
           <SeeMoreLink href='/members/clients' />
         </div>

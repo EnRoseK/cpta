@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_general_bank_accounts",
+  "info": {
+    "displayName": "Bank Account"
+  },
+  "options": {},
+  "attributes": {
+    "bankName": {
+      "type": "string",
+      "required": true
+    },
+    "accountNumber": {
+      "type": "string",
+      "required": true
+    },
+    "accountName": {
+      "type": "string",
+      "required": true
+    },
+    "transferValue": {
+      "type": "string",
+      "required": true
+    },
+    "eBarimt": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

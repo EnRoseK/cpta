@@ -10,3 +10,7 @@ export * from './data/client';
 export * from './data/honorary-member';
 export * from './data/static-page';
 export * from './data/tax-analysts';
+export * from './data/section';
+export * from './data/home-page';
+export * from './data/general-info';
+export * from './data/footer';
