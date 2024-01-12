@@ -6,7 +6,7 @@ export const NavHeader: FC = () => {
   const { mainMenuItems } = useGlobalContext();
 
   return (
-    <div className='bg-primary text-white'>
+    <div className='hidden bg-primary text-white lg:block'>
       <div className='container'>
         <nav className='relative w-full'>
           <ul className='flex items-center gap-10'>

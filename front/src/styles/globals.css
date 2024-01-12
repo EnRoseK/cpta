@@ -12,6 +12,10 @@
   body {
     @apply overflow-x-hidden bg-white font-sans;
   }
+
+  section {
+    @apply overflow-hidden;
+  }
 }
 
 @layer utilities {

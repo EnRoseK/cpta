@@ -9,7 +9,7 @@ export const TopHeader: FC = () => {
   const { generalInfo } = useGlobalContext();
 
   return (
-    <div className='border-b border-b-gray bg-white pb-3 pt-4'>
+    <div className='hidden border-b border-b-gray bg-white pb-3 pt-4 lg:block'>
       <div className='container'>
         <div className='flex items-center justify-between text-small text-description'>
           <div className='flex items-center gap-5'>
