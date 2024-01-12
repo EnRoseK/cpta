@@ -7,3 +7,4 @@ export * from './statistics';
 export * from './tax-analysts';
 export * from './directors';
 export * from './supervisors';
+export * from './office-workers';

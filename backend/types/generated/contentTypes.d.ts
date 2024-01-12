@@ -1806,6 +1806,141 @@ export interface ApiMainMenuMainMenu extends Schema.CollectionType {
   };
 }
 
+export interface ApiOfficePageOfficePage extends Schema.SingleType {
+  collectionName: 'office_pages';
+  info: {
+    singularName: 'office-page';
+    pluralName: 'office-pages';
+    displayName: '\u0410\u0436\u043B\u044B\u043D \u0430\u043B\u0431\u0430 \u0445\u0443\u0443\u0434\u0430\u0441';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::office-page.office-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::office-page.office-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::office-page.office-page',
+      'oneToMany',
+      'api::office-page.office-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiOfficeWorkerOfficeWorker extends Schema.CollectionType {
+  collectionName: 'office_workers';
+  info: {
+    singularName: 'office-worker';
+    pluralName: 'office-workers';
+    displayName: '\u0410\u0436\u043B\u044B\u043D \u0430\u043B\u0431\u0430';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    firstName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    lastName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    level: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<1>;
+    priority: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<1>;
+    picture: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::office-worker.office-worker',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::office-worker.office-worker',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::office-worker.office-worker',
+      'oneToMany',
+      'api::office-worker.office-worker'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiStaticPageStaticPage extends Schema.CollectionType {
   collectionName: 'static_pages';
   info: {
@@ -2196,6 +2331,8 @@ declare module '@strapi/types' {
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::honorary-member.honorary-member': ApiHonoraryMemberHonoraryMember;
       'api::main-menu.main-menu': ApiMainMenuMainMenu;
+      'api::office-page.office-page': ApiOfficePageOfficePage;
+      'api::office-worker.office-worker': ApiOfficeWorkerOfficeWorker;
       'api::static-page.static-page': ApiStaticPageStaticPage;
       'api::statistic.statistic': ApiStatisticStatistic;
       'api::supervisor.supervisor': ApiSupervisorSupervisor;
