@@ -1844,6 +1844,59 @@ export interface ApiHonoraryMemberHonoraryMember extends Schema.CollectionType {
   };
 }
 
+export interface ApiHonoraryMemberPageHonoraryMemberPage
+  extends Schema.SingleType {
+  collectionName: 'honorary_member_pages';
+  info: {
+    singularName: 'honorary-member-page';
+    pluralName: 'honorary-member-pages';
+    displayName: '\u0425\u04AF\u043D\u0434\u044D\u0442 \u0433\u0438\u0448\u04AF\u04AF\u0434 \u0445\u0443\u0443\u0434\u0430\u0441';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::honorary-member-page.honorary-member-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::honorary-member-page.honorary-member-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::honorary-member-page.honorary-member-page',
+      'oneToMany',
+      'api::honorary-member-page.honorary-member-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiJobJob extends Schema.CollectionType {
   collectionName: 'jobs';
   info: {
@@ -2609,6 +2662,7 @@ declare module '@strapi/types' {
       'api::greetings-page.greetings-page': ApiGreetingsPageGreetingsPage;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::honorary-member.honorary-member': ApiHonoraryMemberHonoraryMember;
+      'api::honorary-member-page.honorary-member-page': ApiHonoraryMemberPageHonoraryMemberPage;
       'api::job.job': ApiJobJob;
       'api::jobs-page.jobs-page': ApiJobsPageJobsPage;
       'api::logo-page.logo-page': ApiLogoPageLogoPage;
