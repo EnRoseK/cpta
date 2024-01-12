@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "tax_analysts_pages",
+  "info": {
+    "singularName": "tax-analysts-page",
+    "pluralName": "tax-analysts-pages",
+    "displayName": "Татварын шинжээч хуудас"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "pageTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "pageDescription": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    }
+  }
+}

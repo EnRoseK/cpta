@@ -2714,6 +2714,58 @@ export interface ApiTaxAnalystTaxAnalyst extends Schema.CollectionType {
   };
 }
 
+export interface ApiTaxAnalystsPageTaxAnalystsPage extends Schema.SingleType {
+  collectionName: 'tax_analysts_pages';
+  info: {
+    singularName: 'tax-analysts-page';
+    pluralName: 'tax-analysts-pages';
+    displayName: '\u0422\u0430\u0442\u0432\u0430\u0440\u044B\u043D \u0448\u0438\u043D\u0436\u044D\u044D\u0447 \u0445\u0443\u0443\u0434\u0430\u0441';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tax-analysts-page.tax-analysts-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tax-analysts-page.tax-analysts-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::tax-analysts-page.tax-analysts-page',
+      'oneToMany',
+      'api::tax-analysts-page.tax-analysts-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiTaxSpecialistsPageTaxSpecialistsPage
   extends Schema.SingleType {
   collectionName: 'tax_specialists_pages';
@@ -2826,6 +2878,7 @@ declare module '@strapi/types' {
       'api::supervisor.supervisor': ApiSupervisorSupervisor;
       'api::supervisors-page.supervisors-page': ApiSupervisorsPageSupervisorsPage;
       'api::tax-analyst.tax-analyst': ApiTaxAnalystTaxAnalyst;
+      'api::tax-analysts-page.tax-analysts-page': ApiTaxAnalystsPageTaxAnalystsPage;
       'api::tax-specialists-page.tax-specialists-page': ApiTaxSpecialistsPageTaxSpecialistsPage;
     }
   }

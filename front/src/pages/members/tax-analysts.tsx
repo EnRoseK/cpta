@@ -1,24 +1,34 @@
-import { getPaginatedTaxAnalysts } from '@/api/services';
+import { getPaginatedTaxAnalysts, getTaxAnalystsPage } from '@/api/services';
 import { Button, Input, PageHeader, TaxAnalystCard } from '@/components/global';
-import { ITaxAnalyst } from '@/interfaces';
+import { siteName } from '@/constants';
+import { useLocale } from '@/hooks';
+import { ITaxAnalyst, ITaxAnalystsPage } from '@/interfaces';
 import { GetStaticProps, NextPage } from 'next';
+import { NextSeo } from 'next-seo';
 import React, { ChangeEvent, useState } from 'react';
 
 interface TaxAnalystsPageProps {
   taxAnalysts: ITaxAnalyst[];
+  taxAnalystsPage: ITaxAnalystsPage;
 }
 
 export const getStaticProps: GetStaticProps<TaxAnalystsPageProps> = async ({ locale }) => {
-  const res = await getPaginatedTaxAnalysts({ locale: locale as string });
+  const [taxAnalystsRes, taxAnalystsPageRes] = await Promise.all([
+    getPaginatedTaxAnalysts({ locale: locale as string }),
+    getTaxAnalystsPage({ locale: locale as string }),
+  ]);
 
   return {
     props: {
-      taxAnalysts: res.data,
+      taxAnalysts: taxAnalystsRes.data,
+      taxAnalystsPage: taxAnalystsPageRes.data,
     },
   };
 };
 
-const TaxAnalystsPage: NextPage<TaxAnalystsPageProps> = ({ taxAnalysts }) => {
+const TaxAnalystsPage: NextPage<TaxAnalystsPageProps> = ({ taxAnalysts, taxAnalystsPage }) => {
+  const { currentLocale } = useLocale();
+
   const [displayTaxAnalysts, setDisplayTaxAnalysts] = useState<ITaxAnalyst[]>(taxAnalysts);
   const [formValues, setFormValues] = useState({ firstName: '', lastName: '' });
 
@@ -56,7 +66,21 @@ const TaxAnalystsPage: NextPage<TaxAnalystsPageProps> = ({ taxAnalysts }) => {
 
   return (
     <>
-      <PageHeader title='Татварын шинжээч' pages={[{ title: 'Татварын шинжээч', link: '/members/tax-analysts' }]} />
+      <NextSeo
+        title={`${taxAnalystsPage.pageTitle} | ${siteName[currentLocale! as 'mn' | 'en']}`}
+        description={taxAnalystsPage.pageDescription}
+        canonical={process.env.NEXT_PUBLIC_SITE_URL + '/members/tax-analysts'}
+        openGraph={{
+          title: `${taxAnalystsPage.pageTitle} | ${siteName[currentLocale! as 'mn' | 'en']}`,
+          description: taxAnalystsPage.pageDescription,
+          url: process.env.NEXT_PUBLIC_SITE_URL + '/members/tax-analysts',
+        }}
+      />
+
+      <PageHeader
+        title={taxAnalystsPage.pageTitle}
+        pages={[{ title: taxAnalystsPage.pageTitle, link: '/members/tax-analysts' }]}
+      />
 
       <section className='container py-[120px]'>
         <div className='grid grid-cols-5 gap-15'>
@@ -68,23 +92,25 @@ const TaxAnalystsPage: NextPage<TaxAnalystsPageProps> = ({ taxAnalysts }) => {
               }}
               className='space-y-5'
             >
-              <h6 className='text-xl font-bold leading-normal text-dark'>Хайх</h6>
+              <h6 className='text-xl font-bold leading-normal text-dark'>
+                {currentLocale === 'mn' ? 'Хайх' : 'Search'}
+              </h6>
               <Input
                 id='lastName'
                 name='lastName'
                 value={formValues.lastName}
                 onChange={onChangeHandler}
-                placeholder='Овог'
+                placeholder={currentLocale === 'mn' ? 'Овог' : 'Lastname'}
               />
               <Input
                 id='firstName'
                 name='firstName'
                 value={formValues.firstName}
                 onChange={onChangeHandler}
-                placeholder='Нэр'
+                placeholder={currentLocale === 'mn' ? 'Нэр' : 'Firstname'}
               />
               <Button type='submit' size='small'>
-                Хайх
+                {currentLocale === 'mn' ? 'Хайх' : 'Search'}
               </Button>
             </form>
           </aside>
@@ -99,7 +125,9 @@ const TaxAnalystsPage: NextPage<TaxAnalystsPageProps> = ({ taxAnalysts }) => {
             )}
             {displayTaxAnalysts.length === 0 && (
               <div className='flex h-[200px] w-full items-center justify-center'>
-                <p className='text-xl font-medium text-description'>Илэрц олдсонгүй</p>
+                <p className='text-xl font-medium text-description'>
+                  {currentLocale === 'mn' ? 'Илэрц олдсонгүй' : 'No record found'}
+                </p>
               </div>
             )}
           </div>

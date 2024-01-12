@@ -54,7 +54,7 @@ export const UnverifiedClients: FC<UnverifiedClientsProps> = ({ clients, title }
             {clients.length === 0 && (
               <tr className='border-b border-b-dark/10 odd:bg-white even:bg-description/10 hover:bg-description/10'>
                 <th colSpan={3} scope='row' className='whitespace-nowrap px-6 py-4 text-center font-medium text-dark'>
-                  Илэрц олдсонгүй
+                  {currentLocale === 'mn' ? 'Илэрц олдсонгүй' : 'No record found'}
                 </th>
               </tr>
             )}

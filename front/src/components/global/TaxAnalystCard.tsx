@@ -1,3 +1,4 @@
+import { useLocale } from '@/hooks';
 import { ITaxAnalyst } from '@/interfaces';
 import { convertAttachmentUrl } from '@/utils';
 import Image from 'next/image';
@@ -8,6 +9,8 @@ interface TaxAnalystCardProps {
 }
 
 export const TaxAnalystCard: FC<TaxAnalystCardProps> = ({ taxAnalyst }) => {
+  const { currentLocale } = useLocale();
+
   return (
     <div className='w-full overflow-hidden rounded-xl border border-dark/[0.07]'>
       <div className='group aspect-[1/1.13] w-full overflow-hidden'>
@@ -24,9 +27,17 @@ export const TaxAnalystCard: FC<TaxAnalystCardProps> = ({ taxAnalyst }) => {
           {taxAnalyst.lastName} {taxAnalyst.firstName}
         </h6>
         <p className='text-base leading-[30px] text-description'>
-          <span>ТМЗ дугаар: {taxAnalyst.tmzNumber}</span>
-          <span>И-мэйл: {taxAnalyst.email}</span> <br />
-          <span>Утас: {taxAnalyst.phone}</span> <br />
+          <span>
+            {currentLocale === 'mn' ? 'ТМЗ дугаар' : 'TMZ number'}: {taxAnalyst.tmzNumber}
+          </span>{' '}
+          <br />
+          <span>
+            {currentLocale === 'mn' ? 'И-мэйл' : 'E-mail'}: {taxAnalyst.email}
+          </span>{' '}
+          <br />
+          <span>
+            {currentLocale === 'mn' ? 'Утас' : 'Phone number'}: {taxAnalyst.phone}
+          </span>
         </p>
       </div>
     </div>

@@ -12,3 +12,4 @@ export * from './blog-page';
 export * from './honorary-member-page';
 export * from './clients-page';
 export * from './tax-specialists-page';
+export * from './tax-analysts-page';
