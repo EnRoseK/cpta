@@ -2714,6 +2714,72 @@ export interface ApiTaxAnalystTaxAnalyst extends Schema.CollectionType {
   };
 }
 
+export interface ApiTaxSpecialistsPageTaxSpecialistsPage
+  extends Schema.SingleType {
+  collectionName: 'tax_specialists_pages';
+  info: {
+    singularName: 'tax-specialists-page';
+    pluralName: 'tax-specialists-pages';
+    displayName: '\u041C\u043E\u043D\u0433\u043E\u043B \u0423\u043B\u0441\u044B\u043D \u0422\u0430\u0442\u0432\u0430\u0440\u044B\u043D \u041C\u044D\u0440\u0433\u044D\u0448\u0441\u044D\u043D \u0437\u04E9\u0432\u043B\u04E9\u0445';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    smallTitle: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    smallSubTitle: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tax-specialists-page.tax-specialists-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tax-specialists-page.tax-specialists-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::tax-specialists-page.tax-specialists-page',
+      'oneToMany',
+      'api::tax-specialists-page.tax-specialists-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -2760,6 +2826,7 @@ declare module '@strapi/types' {
       'api::supervisor.supervisor': ApiSupervisorSupervisor;
       'api::supervisors-page.supervisors-page': ApiSupervisorsPageSupervisorsPage;
       'api::tax-analyst.tax-analyst': ApiTaxAnalystTaxAnalyst;
+      'api::tax-specialists-page.tax-specialists-page': ApiTaxSpecialistsPageTaxSpecialistsPage;
     }
   }
 }
