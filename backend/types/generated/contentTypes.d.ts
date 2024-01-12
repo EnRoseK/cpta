@@ -1307,6 +1307,66 @@ export interface ApiDirectorsPageDirectorsPage extends Schema.SingleType {
   };
 }
 
+export interface ApiFaqPageFaqPage extends Schema.SingleType {
+  collectionName: 'faq_pages';
+  info: {
+    singularName: 'faq-page';
+    pluralName: 'faq-pages';
+    displayName: '\u0422\u04AF\u0433\u044D\u044D\u043C\u044D\u043B \u0430\u0441\u0443\u0443\u043B\u0442\u0443\u0443\u0434 \u0445\u0443\u0443\u0434\u0430\u0441';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    groupQuestions: Attribute.Component<'faq.group-questions', true> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::faq-page.faq-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::faq-page.faq-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::faq-page.faq-page',
+      'oneToMany',
+      'api::faq-page.faq-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiFooterFooter extends Schema.SingleType {
   collectionName: 'footers';
   info: {
@@ -2384,6 +2444,7 @@ declare module '@strapi/types' {
       'api::client.client': ApiClientClient;
       'api::director.director': ApiDirectorDirector;
       'api::directors-page.directors-page': ApiDirectorsPageDirectorsPage;
+      'api::faq-page.faq-page': ApiFaqPageFaqPage;
       'api::footer.footer': ApiFooterFooter;
       'api::general-info.general-info': ApiGeneralInfoGeneralInfo;
       'api::greeting.greeting': ApiGreetingGreeting;

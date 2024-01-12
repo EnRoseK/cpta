@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_faq_group_questions",
+  "info": {
+    "displayName": "GroupQuestions"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "questions": {
+      "type": "component",
+      "repeatable": true,
+      "component": "faq.question",
+      "required": true
+    }
+  }
+}

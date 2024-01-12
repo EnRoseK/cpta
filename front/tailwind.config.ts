@@ -94,6 +94,14 @@ const config: Config = {
           '0%': { opacity: '1', transform: 'translateY(0)' },
           '100%': { opacity: '0', transform: 'translateY(100%)' },
         },
+        collapseOpen: {
+          '0%': { opacity: '0', 'max-height': '0' },
+          '100%': { opacity: '1', 'max-height': '200px' },
+        },
+        collapseClose: {
+          '0%': { opacity: '1', 'max-height': '200px' },
+          '100%': { opacity: '0', 'max-height': '0' },
+        },
       },
       animation: {
         fadeIn: 'fadeIn .2s ease forwards',
@@ -102,6 +110,8 @@ const config: Config = {
         modalOut: 'modalOut .2s ease forwards',
         scrollBtnIn: 'scrollBtnIn .4s ease forwards',
         scrollBtnOut: 'scrollBtnOut .4s ease forwards',
+        collapseOpen: 'collapseOpen .2s ease forwards',
+        collapseClose: 'collapseClose .2s ease forwards',
       },
     },
   },

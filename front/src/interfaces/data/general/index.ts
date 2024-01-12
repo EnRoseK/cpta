@@ -4,3 +4,4 @@ export * from './general-info';
 export * from './main-menu';
 export * from './pagination';
 export * from './section';
+export * from './page';

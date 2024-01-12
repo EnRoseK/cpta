@@ -22,6 +22,28 @@ export interface ComponentSection extends Schema.Component {
   };
 }
 
+export interface FaqGroupQuestions extends Schema.Component {
+  collectionName: 'components_faq_group_questions';
+  info: {
+    displayName: 'GroupQuestions';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    questions: Attribute.Component<'faq.question', true> & Attribute.Required;
+  };
+}
+
+export interface FaqQuestion extends Schema.Component {
+  collectionName: 'components_faq_questions';
+  info: {
+    displayName: 'Question';
+  };
+  attributes: {
+    question: Attribute.String & Attribute.Required;
+    answer: Attribute.String & Attribute.Required;
+  };
+}
+
 export interface GeneralBankAccount extends Schema.Component {
   collectionName: 'components_general_bank_accounts';
   info: {
@@ -98,6 +120,8 @@ declare module '@strapi/types' {
     export interface Components {
       'about-us.vision-block': AboutUsVisionBlock;
       'component.section': ComponentSection;
+      'faq.group-questions': FaqGroupQuestions;
+      'faq.question': FaqQuestion;
       'general.bank-account': GeneralBankAccount;
       'home.cta': HomeCta;
       'menu.dropdown': MenuDropdown;

@@ -13,3 +13,4 @@ export * from './Input';
 export * from './GreetingCard';
 export * from './StuffCard';
 export * from './LogoCard';
+export * from './Collapse';

@@ -6,3 +6,4 @@ export * from './directors-page';
 export * from './supervisors-page';
 export * from './office-page';
 export * from './logo-page';
+export * from './faq-page';
