@@ -6,3 +6,4 @@ export * from './static-pages';
 export * from './statistics';
 export * from './tax-analysts';
 export * from './directors';
+export * from './supervisors';

@@ -1,0 +1,44 @@
+{
+  "kind": "singleType",
+  "collectionName": "supervisors_pages",
+  "info": {
+    "singularName": "supervisors-page",
+    "pluralName": "supervisors-pages",
+    "displayName": "Хяналтын зөвлөл хуудас"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "pageTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "pageDescription": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    },
+    "smallDescription": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    }
+  }
+}

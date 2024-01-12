@@ -1941,6 +1941,148 @@ export interface ApiStatisticStatistic extends Schema.CollectionType {
   };
 }
 
+export interface ApiSupervisorSupervisor extends Schema.CollectionType {
+  collectionName: 'supervisors';
+  info: {
+    singularName: 'supervisor';
+    pluralName: 'supervisors';
+    displayName: '\u0425\u044F\u043D\u0430\u043B\u0442\u044B\u043D \u0437\u04E9\u0432\u043B\u04E9\u043B';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    firstName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    lastName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    picture: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    level: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<1>;
+    priority: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<1>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::supervisor.supervisor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::supervisor.supervisor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::supervisor.supervisor',
+      'oneToMany',
+      'api::supervisor.supervisor'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiSupervisorsPageSupervisorsPage extends Schema.SingleType {
+  collectionName: 'supervisors_pages';
+  info: {
+    singularName: 'supervisors-page';
+    pluralName: 'supervisors-pages';
+    displayName: '\u0425\u044F\u043D\u0430\u043B\u0442\u044B\u043D \u0437\u04E9\u0432\u043B\u04E9\u043B \u0445\u0443\u0443\u0434\u0430\u0441';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    smallDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::supervisors-page.supervisors-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::supervisors-page.supervisors-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::supervisors-page.supervisors-page',
+      'oneToMany',
+      'api::supervisors-page.supervisors-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiTaxAnalystTaxAnalyst extends Schema.CollectionType {
   collectionName: 'tax_analysts';
   info: {
@@ -2056,6 +2198,8 @@ declare module '@strapi/types' {
       'api::main-menu.main-menu': ApiMainMenuMainMenu;
       'api::static-page.static-page': ApiStaticPageStaticPage;
       'api::statistic.statistic': ApiStatisticStatistic;
+      'api::supervisor.supervisor': ApiSupervisorSupervisor;
+      'api::supervisors-page.supervisors-page': ApiSupervisorsPageSupervisorsPage;
       'api::tax-analyst.tax-analyst': ApiTaxAnalystTaxAnalyst;
     }
   }

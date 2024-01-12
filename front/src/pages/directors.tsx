@@ -60,7 +60,7 @@ const DirectorsPage: NextPage<DirectorsPageProps> = ({ directorsPage, directors 
             const currentLevelDirectors = directors.filter((dir) => dir.level === level);
 
             return (
-              <div key={level} className='flex items-center justify-center gap-6'>
+              <div key={level} className='flex items-center justify-center gap-10'>
                 {currentLevelDirectors
                   .sort((a, b) => a.priority - b.priority)
                   .map((director) => {
