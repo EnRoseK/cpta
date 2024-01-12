@@ -14,3 +14,4 @@ export * from './data/section';
 export * from './data/home-page';
 export * from './data/general-info';
 export * from './data/footer';
+export * from './data/bank-accounts-page';

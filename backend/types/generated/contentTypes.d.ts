@@ -851,6 +851,66 @@ export interface ApiAboutUsPageAboutUsPage extends Schema.SingleType {
   };
 }
 
+export interface ApiBankAccountsPageBankAccountsPage extends Schema.SingleType {
+  collectionName: 'bank_accounts_pages';
+  info: {
+    singularName: 'bank-accounts-page';
+    pluralName: 'bank-accounts-pages';
+    displayName: '\u0414\u0430\u043D\u0441\u043D\u044B \u043C\u044D\u0434\u044D\u044D\u043B\u044D\u043B \u0445\u0443\u0443\u0434\u0430\u0441';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    bankAccounts: Attribute.Component<'general.bank-account', true> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::bank-accounts-page.bank-accounts-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::bank-accounts-page.bank-accounts-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::bank-accounts-page.bank-accounts-page',
+      'oneToMany',
+      'api::bank-accounts-page.bank-accounts-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiBlogBlog extends Schema.CollectionType {
   collectionName: 'blogs';
   info: {
@@ -1212,13 +1272,6 @@ export interface ApiGeneralInfoGeneralInfo extends Schema.SingleType {
         };
       }>;
     workingHours: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    bankAccounts: Attribute.Component<'general.bank-account', true> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1711,6 +1764,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::about-us-page.about-us-page': ApiAboutUsPageAboutUsPage;
+      'api::bank-accounts-page.bank-accounts-page': ApiBankAccountsPageBankAccountsPage;
       'api::blog.blog': ApiBlogBlog;
       'api::blog-category.blog-category': ApiBlogCategoryBlogCategory;
       'api::client.client': ApiClientClient;

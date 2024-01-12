@@ -1,4 +1,5 @@
 import bg from '@/assets/images/pageHeaderBg.svg';
+import { useLocale } from '@/hooks';
 import { Icons } from '@/libs';
 import classNames from 'classnames';
 import Image from 'next/image';
@@ -11,6 +12,8 @@ interface PageHeaderProps {
 }
 
 export const PageHeader: FC<PageHeaderProps> = ({ title, pages }) => {
+  const { currentLocale } = useLocale();
+
   return (
     <section className='relative flex min-h-[250px] w-full items-center justify-center'>
       <div className='container relative z-10 flex items-center justify-between'>
@@ -18,7 +21,7 @@ export const PageHeader: FC<PageHeaderProps> = ({ title, pages }) => {
 
         <div className='flex items-center gap-4'>
           <Link href='/' className='text-base font-medium leading-[30px] text-dark'>
-            Нүүр хуудас
+            {currentLocale === 'mn' ? 'Нүүр хуудас' : 'Home Page'}
           </Link>
           {pages.map((page, index) => {
             return (

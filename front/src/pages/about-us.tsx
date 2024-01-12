@@ -47,7 +47,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({ statistics, pageInfo }) => {
               : 'Mongolian Association of Certified Tax Consultants'
           }`,
           description: pageInfo.pageDescription,
-          url: process.env.NEXT_PUBLIC_SITE_URL,
+          url: process.env.NEXT_PUBLIC_SITE_URL + '/about-us',
           images: [
             {
               url: convertAttachmentUrl(pageInfo.picture?.url || ''),

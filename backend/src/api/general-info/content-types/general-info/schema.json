@@ -60,17 +60,6 @@
       },
       "type": "string",
       "required": true
-    },
-    "bankAccounts": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "general.bank-account",
-      "required": true
     }
   }
 }

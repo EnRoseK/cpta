@@ -9,3 +9,4 @@ export * from './tax-analysts';
 export * from './home-page';
 export * from './general-info';
 export * from './footer';
+export * from './bank-accounts-page';

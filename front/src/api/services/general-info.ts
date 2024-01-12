@@ -6,7 +6,6 @@ import { GET_GENERAL_INFO } from '../endpoints';
 export const getGeneralInfo = async ({ locale }: QueryFilters) => {
   const paramaters: QueryParamaters = {
     locale,
-    populate: ['bankAccounts'],
   };
 
   return await axiosInstance
