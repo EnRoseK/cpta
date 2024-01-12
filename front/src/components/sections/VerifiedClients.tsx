@@ -1,21 +1,30 @@
+import { useLocale } from '@/hooks';
 import { IClient } from '@/interfaces';
 import React, { FC } from 'react';
 
+const tableHeaders = [
+  { mn: 'Байгууллагын нэр', en: 'Organization name' },
+  { mn: 'Тусгай зөвшөөрлийн хүчинтэй хугацаа', en: 'License expiration date' },
+  { mn: 'Захирлын нэр', en: "Director's name" },
+  { mn: 'Утасны дугаар', en: 'Phone number' },
+  { mn: 'Цахим хаяг', en: 'Email address' },
+  { mn: 'Байгууллагын хаяг', en: 'Organization address' },
+];
+
 interface VerifiedClientsProps {
   clients: IClient[];
+  title?: string;
+  subTitle?: string;
 }
 
-export const VerifiedClients: FC<VerifiedClientsProps> = ({ clients }) => {
+export const VerifiedClients: FC<VerifiedClientsProps> = ({ clients, title, subTitle }) => {
+  const { currentLocale } = useLocale();
+
   return (
     <>
-      <h3 className='mb-10 text-center text-xl text-dark'>
-        Татварын мэргэшсэн зөвлөхийн үйлчилгээ эрхлэх тусгай зөвшөөрөл нь хүчинтэй, үйл ажиллагаа эрхэлж буй хуулийн
-        этгээдүүдийн жагсаалт
-      </h3>
+      {title && <h3 className='mb-10 text-center text-xl text-dark'>{title}</h3>}
 
-      <span className='mb-5 block text-end text-base italic text-description'>
-        /2023 оны 9 дүгээр сарын 13-ны өдрийн байдлаар/
-      </span>
+      {subTitle && <span className='mb-5 block text-end text-base italic text-description'>{subTitle}</span>}
 
       <div className='relative overflow-x-auto sm:rounded-lg'>
         <table className='w-full text-left text-base text-dark'>
@@ -24,24 +33,13 @@ export const VerifiedClients: FC<VerifiedClientsProps> = ({ clients }) => {
               <th scope='col' className='px-6 py-3'>
                 #
               </th>
-              <th scope='col' className='px-6 py-3'>
-                Байгууллагын нэр
-              </th>
-              <th scope='col' className='px-6 py-3'>
-                Тусгай зөвшөөрлийн хүчинтэй хугацаа
-              </th>
-              <th scope='col' className='px-6 py-3'>
-                Захирлын нэр
-              </th>
-              <th scope='col' className='px-6 py-3'>
-                Утасны дугаар
-              </th>
-              <th scope='col' className='px-6 py-3'>
-                Цахим хаяг
-              </th>
-              <th scope='col' className='px-6 py-3'>
-                Байгууллагын хаяг
-              </th>
+              {tableHeaders.map((header, index) => {
+                return (
+                  <th key={index} scope='col' className='px-6 py-3'>
+                    {header[currentLocale! as 'mn' | 'en']}
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody>

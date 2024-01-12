@@ -10,3 +10,4 @@ export * from './faq-page';
 export * from './jobs-page';
 export * from './blog-page';
 export * from './honorary-member-page';
+export * from './clients-page';

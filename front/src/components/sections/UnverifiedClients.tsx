@@ -1,16 +1,23 @@
+import { useLocale } from '@/hooks';
 import { IClient } from '@/interfaces';
 import React, { FC } from 'react';
 
+const tableHeaders = [
+  { mn: 'Хуулийн этгээдийн нэрс', en: 'Name' },
+  { mn: 'Тусгай зөвшөөрөл дуусах хугацаа', en: 'License expiration date' },
+];
+
 interface UnverifiedClientsProps {
   clients: IClient[];
+  title?: string;
 }
 
-export const UnverifiedClients: FC<UnverifiedClientsProps> = ({ clients }) => {
+export const UnverifiedClients: FC<UnverifiedClientsProps> = ({ clients, title }) => {
+  const { currentLocale } = useLocale();
+
   return (
     <>
-      <h3 className='mb-10 text-center text-xl text-dark'>
-        Тусгай зөвшөөрөл нь хүчингүй болсон хуулийн этгээдийн жагсаалт
-      </h3>
+      {title && <h3 className='mb-10 text-center text-xl text-dark'>{title}</h3>}
 
       <div className='relative overflow-x-auto sm:rounded-lg'>
         <table className='w-full text-left text-base text-dark'>
@@ -19,12 +26,13 @@ export const UnverifiedClients: FC<UnverifiedClientsProps> = ({ clients }) => {
               <th scope='col' className='px-6 py-3'>
                 #
               </th>
-              <th scope='col' className='px-6 py-3'>
-                Хуулийн этгээдийн нэрс
-              </th>
-              <th scope='col' className='px-6 py-3'>
-                Тусгай зөвшөөрөл дуусах хугацаа
-              </th>
+              {tableHeaders.map((header, index) => {
+                return (
+                  <th key={index} scope='col' className='px-6 py-3'>
+                    {header[currentLocale! as 'mn' | 'en']}
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody>

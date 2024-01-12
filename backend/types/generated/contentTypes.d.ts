@@ -1217,6 +1217,91 @@ export interface ApiClientClient extends Schema.CollectionType {
   };
 }
 
+export interface ApiClientsPageClientsPage extends Schema.SingleType {
+  collectionName: 'clients_pages';
+  info: {
+    singularName: 'clients-page';
+    pluralName: 'clients-pages';
+    displayName: '\u0422\u0430\u0442\u0432\u0430\u0440\u044B\u043D \u0438\u0442\u0433\u044D\u043C\u0436\u043B\u044D\u0433\u0434\u0441\u044D\u043D \u0445\u0443\u0443\u043B\u0438\u0439\u043D \u044D\u0442\u0433\u044D\u044D\u0434 \u0445\u0443\u0443\u0434\u0430\u0441 ';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    verifiedTitle: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    verifiedSubTitle: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    unverifiedTitle: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    verified: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    unverified: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::clients-page.clients-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::clients-page.clients-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::clients-page.clients-page',
+      'oneToMany',
+      'api::clients-page.clients-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiDirectorDirector extends Schema.CollectionType {
   collectionName: 'directors';
   info: {
@@ -2653,6 +2738,7 @@ declare module '@strapi/types' {
       'api::blog-category.blog-category': ApiBlogCategoryBlogCategory;
       'api::blog-page.blog-page': ApiBlogPageBlogPage;
       'api::client.client': ApiClientClient;
+      'api::clients-page.clients-page': ApiClientsPageClientsPage;
       'api::director.director': ApiDirectorDirector;
       'api::directors-page.directors-page': ApiDirectorsPageDirectorsPage;
       'api::faq-page.faq-page': ApiFaqPageFaqPage;
