@@ -16,7 +16,7 @@ const button = cva('flex items-center gap-2.5', {
       small: 'py-2.5 px-5 rounded-[5px] font-medium text-sm',
     },
     fullWidth: {
-      true: 'w-full',
+      true: 'w-full flex items-center justify-center',
       false: 'w-max',
     },
   },

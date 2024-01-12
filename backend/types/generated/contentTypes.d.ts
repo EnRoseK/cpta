@@ -1732,6 +1732,66 @@ export interface ApiHonoraryMemberHonoraryMember extends Schema.CollectionType {
   };
 }
 
+export interface ApiLogoPageLogoPage extends Schema.SingleType {
+  collectionName: 'logo_pages';
+  info: {
+    singularName: 'logo-page';
+    pluralName: 'logo-pages';
+    displayName: '\u041B\u043E\u0433\u043E \u0442\u0430\u0442\u0430\u0445 \u0445\u0443\u0443\u0434\u0430\u0441';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    logos: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::logo-page.logo-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::logo-page.logo-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::logo-page.logo-page',
+      'oneToMany',
+      'api::logo-page.logo-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiMainMenuMainMenu extends Schema.CollectionType {
   collectionName: 'main_menus';
   info: {
@@ -2330,6 +2390,7 @@ declare module '@strapi/types' {
       'api::greetings-page.greetings-page': ApiGreetingsPageGreetingsPage;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::honorary-member.honorary-member': ApiHonoraryMemberHonoraryMember;
+      'api::logo-page.logo-page': ApiLogoPageLogoPage;
       'api::main-menu.main-menu': ApiMainMenuMainMenu;
       'api::office-page.office-page': ApiOfficePageOfficePage;
       'api::office-worker.office-worker': ApiOfficeWorkerOfficeWorker;

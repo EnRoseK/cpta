@@ -12,3 +12,4 @@ export * from './TaxAnalystCard';
 export * from './Input';
 export * from './GreetingCard';
 export * from './StuffCard';
+export * from './LogoCard';
