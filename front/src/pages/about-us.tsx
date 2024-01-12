@@ -1,6 +1,7 @@
 import { getAboutUsPage, getStatistics } from '@/api/services';
 import { PageHeader } from '@/components/global';
 import { Statistics } from '@/components/sections';
+import { siteName } from '@/constants';
 import { useLocale } from '@/hooks';
 import { IAboutUsPage, IStatistic } from '@/interfaces';
 import { convertAttachmentUrl, parseMarkDown } from '@/utils';
@@ -33,19 +34,11 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({ statistics, pageInfo }) => {
   return (
     <>
       <NextSeo
-        title={`${pageInfo.pageTitle} | ${
-          currentLocale === 'mn'
-            ? 'Монгол Улсын Татварын Мэргэшсэн Зөвлөхийн нийгэмлэг'
-            : 'Mongolian Association of Certified Tax Consultants'
-        }`}
+        title={`${pageInfo.pageTitle} | ${siteName[currentLocale! as 'mn' | 'en']}`}
         description={pageInfo.pageDescription}
         canonical={process.env.NEXT_PUBLIC_SITE_URL + '/about-us'}
         openGraph={{
-          title: `${pageInfo.pageTitle} | ${
-            currentLocale === 'mn'
-              ? 'Монгол Улсын Татварын Мэргэшсэн Зөвлөхийн нийгэмлэг'
-              : 'Mongolian Association of Certified Tax Consultants'
-          }`,
+          title: `${pageInfo.pageTitle} | ${siteName[currentLocale! as 'mn' | 'en']}`,
           description: pageInfo.pageDescription,
           url: process.env.NEXT_PUBLIC_SITE_URL + '/about-us',
           images: [

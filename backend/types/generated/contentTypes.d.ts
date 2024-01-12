@@ -1301,6 +1301,141 @@ export interface ApiGeneralInfoGeneralInfo extends Schema.SingleType {
   };
 }
 
+export interface ApiGreetingGreeting extends Schema.CollectionType {
+  collectionName: 'greetings';
+  info: {
+    singularName: 'greeting';
+    pluralName: 'greetings';
+    displayName: '\u041C\u044D\u043D\u0434\u0447\u0438\u043B\u0433\u044D\u044D';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    firstName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    lastName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    picture: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    content: Attribute.RichText &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    priority: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<1>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::greeting.greeting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::greeting.greeting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::greeting.greeting',
+      'oneToMany',
+      'api::greeting.greeting'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiGreetingsPageGreetingsPage extends Schema.SingleType {
+  collectionName: 'greetings_pages';
+  info: {
+    singularName: 'greetings-page';
+    pluralName: 'greetings-pages';
+    displayName: '\u041C\u044D\u043D\u0434\u0447\u0438\u043B\u0433\u044D\u044D \u0445\u0443\u0443\u0434\u0430\u0441';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::greetings-page.greetings-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::greetings-page.greetings-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::greetings-page.greetings-page',
+      'oneToMany',
+      'api::greetings-page.greetings-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiHomePageHomePage extends Schema.SingleType {
   collectionName: 'home_pages';
   info: {
@@ -1770,6 +1905,8 @@ declare module '@strapi/types' {
       'api::client.client': ApiClientClient;
       'api::footer.footer': ApiFooterFooter;
       'api::general-info.general-info': ApiGeneralInfoGeneralInfo;
+      'api::greeting.greeting': ApiGreetingGreeting;
+      'api::greetings-page.greetings-page': ApiGreetingsPageGreetingsPage;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::honorary-member.honorary-member': ApiHonoraryMemberHonoraryMember;
       'api::main-menu.main-menu': ApiMainMenuMainMenu;

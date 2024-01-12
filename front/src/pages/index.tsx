@@ -1,5 +1,6 @@
 import { getClients, getHomePage, getPaginatedBlogs, getStatistics } from '@/api/services';
 import { Clients, HomeCTA, LatestNews, NewsSlider, Statistics } from '@/components/sections';
+import { siteName } from '@/constants';
 import { useLocale } from '@/hooks';
 import { IBlog, IClient, IHomePage, IStatistic } from '@/interfaces';
 import { convertAttachmentUrl } from '@/utils';
@@ -40,19 +41,11 @@ const HomePage: NextPage<HomeProps> = ({ blogs, sliderBlogs, statistics, clients
   return (
     <>
       <NextSeo
-        title={`${homePageInfo.pageTitle} | ${
-          currentLocale === 'mn'
-            ? 'Монгол Улсын Татварын Мэргэшсэн Зөвлөхийн нийгэмлэг'
-            : 'Mongolian Association of Certified Tax Consultants'
-        }`}
+        title={`${homePageInfo.pageTitle} | ${siteName[currentLocale! as 'mn' | 'en']}`}
         description={homePageInfo.pageDescription}
         canonical={process.env.NEXT_PUBLIC_SITE_URL}
         openGraph={{
-          title: `${homePageInfo.pageTitle} | ${
-            currentLocale === 'mn'
-              ? 'Монгол Улсын Татварын Мэргэшсэн Зөвлөхийн нийгэмлэг'
-              : 'Mongolian Association of Certified Tax Consultants'
-          }`,
+          title: `${homePageInfo.pageTitle} | ${siteName[currentLocale! as 'mn' | 'en']}`,
           description: homePageInfo.pageDescription,
           url: process.env.NEXT_PUBLIC_SITE_URL,
           images: sliderBlogs

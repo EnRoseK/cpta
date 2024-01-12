@@ -1,5 +1,6 @@
 import { getBankAccountsPage } from '@/api/services';
 import { PageHeader } from '@/components/global';
+import { siteName } from '@/constants';
 import { useLocale } from '@/hooks';
 import { IBankAccountsPage } from '@/interfaces';
 import { GetStaticProps, NextPage } from 'next';
@@ -34,19 +35,11 @@ const BankAccountsPage: NextPage<BankAccountsPageProps> = ({ bankAccountsPage })
   return (
     <>
       <NextSeo
-        title={`${bankAccountsPage.pageTitle} | ${
-          currentLocale === 'mn'
-            ? 'Монгол Улсын Татварын Мэргэшсэн Зөвлөхийн нийгэмлэг'
-            : 'Mongolian Association of Certified Tax Consultants'
-        }`}
+        title={`${bankAccountsPage.pageTitle} | ${siteName[currentLocale! as 'mn' | 'en']}`}
         description={bankAccountsPage.pageDescription}
         canonical={process.env.NEXT_PUBLIC_SITE_URL + '/bank-accounts'}
         openGraph={{
-          title: `${bankAccountsPage.pageTitle} | ${
-            currentLocale === 'mn'
-              ? 'Монгол Улсын Татварын Мэргэшсэн Зөвлөхийн нийгэмлэг'
-              : 'Mongolian Association of Certified Tax Consultants'
-          }`,
+          title: `${bankAccountsPage.pageTitle} | ${siteName[currentLocale! as 'mn' | 'en']}`,
           description: bankAccountsPage.pageDescription,
           url: process.env.NEXT_PUBLIC_SITE_URL + '/bank-accounts',
         }}

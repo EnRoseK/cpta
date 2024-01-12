@@ -1,6 +1,7 @@
 import { getAllBlogCategories, getBlogBySlug, getBlogSlugs } from '@/api/services';
 import { BlogCategoryFilter } from '@/components/features';
 import { GridBlogCard } from '@/components/global';
+import { siteName } from '@/constants';
 import { useLocale } from '@/hooks';
 import { IBlog, IBlogCategory } from '@/interfaces';
 import { convertAttachmentUrl, parseMarkDown } from '@/utils';
@@ -78,21 +79,13 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) =
   return (
     <>
       <NextSeo
-        title={`${blog.title} | ${
-          currentLocale === 'mn'
-            ? 'Монгол Улсын Татварын Мэргэшсэн Зөвлөхийн нийгэмлэг'
-            : 'Mongolian Association of Certified Tax Consultants'
-        }`}
+        title={`${blog.title} | ${siteName[currentLocale! as 'mn' | 'en']}`}
         description={blog.description}
         canonical={`${process.env.NEXT_PUBLIC_SITE_URL}/${
           currentLocale === 'mn' ? `blog/${blog.slug}` : `en/blog/${blog.slug}`
         }`}
         openGraph={{
-          title: `${blog.title} | ${
-            currentLocale === 'mn'
-              ? 'Монгол Улсын Татварын Мэргэшсэн Зөвлөхийн нийгэмлэг'
-              : 'Mongolian Association of Certified Tax Consultants'
-          }`,
+          title: `${blog.title} | ${siteName[currentLocale! as 'mn' | 'en']}`,
           description: blog.description,
           url: `${process.env.NEXT_PUBLIC_SITE_URL}/${
             currentLocale === 'mn' ? `blog/${blog.slug}` : `en/blog/${blog.slug}`

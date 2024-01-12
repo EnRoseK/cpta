@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "greetings_pages",
+  "info": {
+    "singularName": "greetings-page",
+    "pluralName": "greetings-pages",
+    "displayName": "Мэндчилгээ хуудас"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "pageTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "pageDescription": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    }
+  }
+}

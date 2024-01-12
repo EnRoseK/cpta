@@ -10,3 +10,4 @@ export * from './SearchInput';
 export * from './Dropdown';
 export * from './TaxAnalystCard';
 export * from './Input';
+export * from './GreetingCard';

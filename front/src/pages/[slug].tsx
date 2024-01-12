@@ -1,5 +1,6 @@
 import { getStaticPageBySlug, getStaticPageSlugs } from '@/api/services';
 import { PageHeader } from '@/components/global';
+import { siteName } from '@/constants';
 import { useLocale } from '@/hooks';
 import { IStaticPage } from '@/interfaces';
 import { convertAttachmentUrl, parseMarkDown } from '@/utils';
@@ -51,21 +52,13 @@ const StaticPage: NextPage<StaticPageProps> = ({ staticPageInfo }) => {
   return (
     <>
       <NextSeo
-        title={`${staticPageInfo.pageTitle} | ${
-          currentLocale === 'mn'
-            ? 'Монгол Улсын Татварын Мэргэшсэн Зөвлөхийн нийгэмлэг'
-            : 'Mongolian Association of Certified Tax Consultants'
-        }`}
+        title={`${staticPageInfo.pageTitle} | ${siteName[currentLocale! as 'mn' | 'en']}`}
         description={staticPageInfo.pageDescription}
         canonical={`${process.env.NEXT_PUBLIC_SITE_URL}${
           currentLocale === 'mn' ? `/${staticPageInfo.slug}` : `/en/${staticPageInfo.slug}`
         }`}
         openGraph={{
-          title: `${staticPageInfo.pageTitle} | ${
-            currentLocale === 'mn'
-              ? 'Монгол Улсын Татварын Мэргэшсэн Зөвлөхийн нийгэмлэг'
-              : 'Mongolian Association of Certified Tax Consultants'
-          }`,
+          title: `${staticPageInfo.pageTitle} | ${siteName[currentLocale! as 'mn' | 'en']}`,
           description: staticPageInfo.pageDescription,
           url: `${process.env.NEXT_PUBLIC_SITE_URL}${
             currentLocale === 'mn' ? `/${staticPageInfo.slug}` : `/en/${staticPageInfo.slug}`
