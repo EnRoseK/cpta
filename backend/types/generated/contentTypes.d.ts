@@ -1792,6 +1792,111 @@ export interface ApiHonoraryMemberHonoraryMember extends Schema.CollectionType {
   };
 }
 
+export interface ApiJobJob extends Schema.CollectionType {
+  collectionName: 'jobs';
+  info: {
+    singularName: 'job';
+    pluralName: 'jobs';
+    displayName: '\u0410\u0436\u043B\u044B\u043D \u0431\u0430\u0439\u0440';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Attribute.RichText &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::job.job',
+      'oneToMany',
+      'api::job.job'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiJobsPageJobsPage extends Schema.SingleType {
+  collectionName: 'jobs_pages';
+  info: {
+    singularName: 'jobs-page';
+    pluralName: 'jobs-pages';
+    displayName: '\u0410\u0436\u043B\u044B\u043D \u0431\u0430\u0439\u0440 \u0445\u0443\u0443\u0434\u0430\u0441';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::jobs-page.jobs-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::jobs-page.jobs-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::jobs-page.jobs-page',
+      'oneToMany',
+      'api::jobs-page.jobs-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiLogoPageLogoPage extends Schema.SingleType {
   collectionName: 'logo_pages';
   info: {
@@ -2451,6 +2556,8 @@ declare module '@strapi/types' {
       'api::greetings-page.greetings-page': ApiGreetingsPageGreetingsPage;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::honorary-member.honorary-member': ApiHonoraryMemberHonoraryMember;
+      'api::job.job': ApiJobJob;
+      'api::jobs-page.jobs-page': ApiJobsPageJobsPage;
       'api::logo-page.logo-page': ApiLogoPageLogoPage;
       'api::main-menu.main-menu': ApiMainMenuMainMenu;
       'api::office-page.office-page': ApiOfficePageOfficePage;

@@ -6,3 +6,4 @@ export * from './static-page';
 export * from './statistic';
 export * from './tax-analysts';
 export * from './stuffs';
+export * from './jobs';

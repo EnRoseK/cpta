@@ -1,18 +1,59 @@
+import { getJobs, getJobsPage } from '@/api/services';
 import { JobCard, PageHeader, Pagination } from '@/components/global';
-import { NextPage } from 'next';
+import { siteName } from '@/constants';
+import { useLocale } from '@/hooks';
+import { IJob, IJobsPage, IPagination } from '@/interfaces';
+import { GetServerSideProps, NextPage } from 'next';
+import { NextSeo } from 'next-seo';
 
-const JobsPage: NextPage = () => {
+interface JobsPageProps {
+  jobsPage: IJobsPage;
+  jobs: IJob[];
+  pagination: IPagination;
+}
+
+export const getServerSideProps: GetServerSideProps<JobsPageProps> = async ({ locale, query }) => {
+  const { page = '1' } = query;
+
+  const [jobsPageRes, jobsRes] = await Promise.all([
+    getJobsPage({ locale: locale as string }),
+    getJobs({ locale: locale as string, page: Number(page) }),
+  ]);
+
+  return {
+    props: {
+      jobsPage: jobsPageRes.data,
+      jobs: jobsRes.data,
+      pagination: jobsRes.meta.pagination,
+    },
+  };
+};
+
+const JobsPage: NextPage<JobsPageProps> = ({ jobsPage, jobs, pagination }) => {
+  const { currentLocale } = useLocale();
+
   return (
     <>
-      <PageHeader title='Ажлын байр' pages={[{ title: 'Ажлын байр', link: '/jobs' }]} />
+      <NextSeo
+        title={`${jobsPage.pageTitle} | ${siteName[currentLocale! as 'mn' | 'en']}`}
+        description={jobsPage.pageDescription}
+        canonical={process.env.NEXT_PUBLIC_SITE_URL + '/jobs'}
+        openGraph={{
+          title: `${jobsPage.pageTitle} | ${siteName[currentLocale! as 'mn' | 'en']}`,
+          description: jobsPage.pageDescription,
+          url: process.env.NEXT_PUBLIC_SITE_URL + '/jobs',
+        }}
+      />
+
+      <PageHeader title={jobsPage.pageTitle} pages={[{ title: jobsPage.pageTitle, link: '/jobs' }]} />
 
       <section className='container py-[120px]'>
         <div className='mb-10 grid grid-cols-3 gap-x-6 gap-y-[30px]'>
-          {Array.from(Array(9)).map((_, index) => {
-            return <JobCard key={index} />;
+          {jobs.map((job) => {
+            return <JobCard job={job} key={job.id} />;
           })}
         </div>
-        {/* <Pagination /> */}
+        <Pagination pagination={pagination} />
       </section>
     </>
   );
