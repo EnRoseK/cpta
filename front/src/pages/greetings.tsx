@@ -3,6 +3,7 @@ import { GreetingCard, PageHeader } from '@/components/global';
 import { siteName } from '@/constants';
 import { useLocale } from '@/hooks';
 import { IGreeting, IGreetingsPage } from '@/interfaces';
+import { convertAttachmentUrl } from '@/utils';
 import { GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 
@@ -37,7 +38,12 @@ const GreetinsPage: NextPage<GreetinsPageProps> = ({ greetingsPage, greetings })
         openGraph={{
           title: `${greetingsPage.pageTitle} | ${siteName[currentLocale! as 'mn' | 'en']}`,
           description: greetingsPage.pageDescription,
-          url: process.env.NEXT_PUBLIC_SITE_URL + '/bank-accounts',
+          url: process.env.NEXT_PUBLIC_SITE_URL + '/greetings',
+          images: greetings.map((greeting) => ({
+            url: convertAttachmentUrl(greeting.picture.url),
+            width: greeting.picture.width,
+            height: greeting.picture.height,
+          })),
         }}
       />
 

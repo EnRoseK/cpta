@@ -1165,6 +1165,148 @@ export interface ApiClientClient extends Schema.CollectionType {
   };
 }
 
+export interface ApiDirectorDirector extends Schema.CollectionType {
+  collectionName: 'directors';
+  info: {
+    singularName: 'director';
+    pluralName: 'directors';
+    displayName: '\u0423\u0434\u0438\u0440\u0434\u0430\u0445 \u0437\u04E9\u0432\u043B\u04E9\u043B';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    firstName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    lastName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    picture: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    level: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<1>;
+    priority: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<1>;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::director.director',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::director.director',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::director.director',
+      'oneToMany',
+      'api::director.director'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiDirectorsPageDirectorsPage extends Schema.SingleType {
+  collectionName: 'directors_pages';
+  info: {
+    singularName: 'directors-page';
+    pluralName: 'directors-pages';
+    displayName: '\u0423\u0434\u0438\u0440\u0434\u0430\u0445 \u0437\u04E9\u0432\u043B\u04E9\u043B \u0445\u0443\u0443\u0434\u0430\u0441';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    smallDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::directors-page.directors-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::directors-page.directors-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::directors-page.directors-page',
+      'oneToMany',
+      'api::directors-page.directors-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiFooterFooter extends Schema.SingleType {
   collectionName: 'footers';
   info: {
@@ -1903,6 +2045,8 @@ declare module '@strapi/types' {
       'api::blog.blog': ApiBlogBlog;
       'api::blog-category.blog-category': ApiBlogCategoryBlogCategory;
       'api::client.client': ApiClientClient;
+      'api::director.director': ApiDirectorDirector;
+      'api::directors-page.directors-page': ApiDirectorsPageDirectorsPage;
       'api::footer.footer': ApiFooterFooter;
       'api::general-info.general-info': ApiGeneralInfoGeneralInfo;
       'api::greeting.greeting': ApiGreetingGreeting;
