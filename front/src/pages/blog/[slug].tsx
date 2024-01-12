@@ -134,7 +134,7 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) =
           </section>
 
           <aside className='sticky top-44 col-span-1 h-max space-y-[30px]'>
-            <BlogCategoryFilter categories={categories} isDetailsPage />
+            {/* <BlogCategoryFilter categories={categories} isDetailsPage /> */}
           </aside>
         </div>
       </div>

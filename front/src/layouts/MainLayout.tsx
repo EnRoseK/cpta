@@ -36,7 +36,7 @@ export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
 
       <ScrollButton />
 
-      {/* {renderLoading && <LoadingScreen show={isLoading} onAnimationEnd={onAnimationEnd} />} */}
+      {renderLoading && <LoadingScreen show={isLoading} onAnimationEnd={onAnimationEnd} />}
     </>
   );
 };

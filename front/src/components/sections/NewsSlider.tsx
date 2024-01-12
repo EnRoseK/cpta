@@ -61,11 +61,14 @@ export const NewsSlider: FC<NewsSliderProps> = ({ blogs }) => {
                   <div className='col-span-3'>
                     <Link
                       href={moreUrl}
-                      className='mb-6 text-5xl font-bold normal-case leading-normal text-dark hover:text-primary'
+                      className='mb-6 block text-[40px] font-bold normal-case leading-snug text-dark hover:text-primary'
                     >
                       {blog.title}
                     </Link>
-                    <p className='mb-10 text-xl leading-normal text-description'>{blog.description}</p>
+                    <p className='mb-10 text-lg leading-normal text-description'>
+                      {blog.description.slice(0, 150)}
+                      {blog.description.length > 150 && '...'}
+                    </p>
                     <Button asLink href={moreUrl}>
                       Дэлгэрэнгүй
                     </Button>

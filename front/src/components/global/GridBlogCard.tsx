@@ -44,7 +44,10 @@ export const GridBlogCard: FC<GridBlogCardProps> = ({ blog }) => {
           {blog.title}
         </Link>
 
-        <p className='mb-7 text-base leading-[30px] text-description'>{blog.description}</p>
+        <p className='mb-7 text-base leading-[30px] text-description'>
+          {blog.description.slice(0, 150)}
+          {blog.description.length > 150 && '...'}
+        </p>
 
         <Button asLink href={moreUrl} variant='gray'>
           Дэлгэрэнгүй
