@@ -50,7 +50,7 @@ const BankAccountsPage: NextPage<BankAccountsPageProps> = ({ bankAccountsPage })
         pages={[{ title: bankAccountsPage.pageTitle, link: '/bank-accounts' }]}
       />
 
-      <section className='container py-[120px]'>
+      <section className='container py-20 lg:py-[120px]'>
         <div className='relative overflow-x-auto sm:rounded-lg'>
           <table className='w-full text-left text-base text-dark'>
             <thead className='dark:bg-gray-700 bg-gray text-sm uppercase text-dark'>
