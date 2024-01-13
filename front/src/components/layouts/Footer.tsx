@@ -9,8 +9,8 @@ export const Footer: FC = () => {
 
   return (
     <footer className='bg-dark text-white'>
-      <div className='container pb-[100px] pt-[120px]'>
-        <div className='flex gap-20'>
+      <div className='container pb-10 pt-15 lg:pb-25 lg:pt-[120px]'>
+        <div className='flex flex-col gap-20 lg:flex-row'>
           <div className='max-w-[420px] shrink-0'>
             <Link href={'/'} className='mb-4 flex items-center gap-4'>
               <div className='h-[60px] w-[60px] shrink-0'>
@@ -26,7 +26,7 @@ export const Footer: FC = () => {
             <p className='text-base leading-[30px] text-white/70'>{footer?.description}</p>
           </div>
 
-          <div className='grid flex-1 grid-cols-3 gap-5'>
+          <div className='grid flex-1 grid-cols-1 gap-15 sm:grid-cols-2 md:grid-cols-3 md:gap-5'>
             <div className='col-span-1'>
               <h6 className='mb-4 text-xl font-bold capitalize leading-normal'>
                 {currentLocale === 'mn' ? 'ТМЗ нийгэмлэг' : 'Community'}
