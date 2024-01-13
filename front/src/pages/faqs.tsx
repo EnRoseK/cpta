@@ -39,8 +39,8 @@ const FAQPage: NextPage<FAQPageProps> = ({ faqPage }) => {
 
       <PageHeader title={faqPage.pageTitle} pages={[{ title: faqPage.pageTitle, link: '/faqs' }]} />
 
-      <section className='container py-[120px]'>
-        <div className='grid grid-cols-2 gap-25'>
+      <section className='container py-20 lg:py-[120px]'>
+        <div className='grid grid-cols-1 gap-25 xl:grid-cols-2'>
           {faqPage.groupQuestions.map((groupQuestion) => {
             return <GroupQuestions key={groupQuestion.id} groupQuestion={groupQuestion} />;
           })}
