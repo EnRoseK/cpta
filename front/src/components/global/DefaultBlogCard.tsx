@@ -17,7 +17,10 @@ export const DefaultBlogCard: FC<DefaultBlogCardProps> = ({ blog }) => {
 
   return (
     <div className='w-full overflow-hidden rounded-xl shadow-card'>
-      <Link href={moreUrl} className='group block aspect-[2.16/1] w-full overflow-hidden bg-[#d9d9d9]'>
+      <Link
+        href={moreUrl}
+        className='group block aspect-[1.3/1] w-full overflow-hidden bg-[#d9d9d9] min-[400px]:aspect-[1.6/1] sm:aspect-[2.16/1]'
+      >
         {blog.thumbnail.mime.includes('image') && (
           <Image
             src={convertAttachmentUrl(blog.thumbnail.url)}
@@ -37,10 +40,15 @@ export const DefaultBlogCard: FC<DefaultBlogCardProps> = ({ blog }) => {
 
       <div className='bg-white p-[30px]'>
         <span className='mb-4 block text-date text-description'>{convertDateToString(new Date(blog.createdAt))}</span>
-        <Link href={moreUrl} className='mb-5 block text-3xl font-bold leading-none text-dark hover:text-primary'>
+        <Link
+          href={moreUrl}
+          className='mb-5 block text-2xl font-bold text-dark hover:text-primary min-[400px]:text-3xl min-[400px]:leading-none'
+        >
           {blog.title}
         </Link>
-        <p className='mb-6 text-base leading-[30px] text-description'>{blog.description}</p>
+        <p className='mb-6 text-sm text-description min-[400px]:text-base min-[400px]:leading-[30px]'>
+          {blog.description}
+        </p>
         <Button asLink href={moreUrl} variant='gray'>
           {currentLocale === 'mn' ? 'Дэлгэрэнгүй' : 'Read More'}
         </Button>

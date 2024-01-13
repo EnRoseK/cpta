@@ -61,9 +61,9 @@ const BlogPage: NextPage<BlogPageProps> = ({ categories, blogs, pagination, blog
 
       <PageHeader title={blogPage.pageTitle} pages={[{ title: blogPage.pageTitle, link: '/blog' }]} />
 
-      <div className='container py-[120px]'>
-        <div className='grid grid-cols-4 gap-10'>
-          <section className='col-span-3 space-y-15'>
+      <div className='container py-20 lg:py-[120px]'>
+        <div className='grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-4'>
+          <section className='col-span-1 space-y-15 md:col-span-2 lg:col-span-3'>
             <div className='space-y-[30px]'>
               {blogs.map((blog) => {
                 return <DefaultBlogCard key={blog.id} blog={blog} />;
@@ -73,7 +73,7 @@ const BlogPage: NextPage<BlogPageProps> = ({ categories, blogs, pagination, blog
             <Pagination pagination={pagination} />
           </section>
 
-          <aside className='sticky top-44 col-span-1 h-max space-y-[30px]'>
+          <aside className='top-44 order-first col-span-1 h-max space-y-[30px] md:sticky md:order-last'>
             <BlogCategoryFilter categories={categories} />
           </aside>
         </div>
