@@ -15,15 +15,17 @@ export const Clients: FC<ClientsProps> = ({ clients, sectionInfo }) => {
   }
 
   return (
-    <section className='py-[120px]'>
+    <section className='py-20 lg:py-[120px]'>
       <div className='container'>
-        <div className='mb-14 flex items-center justify-between'>
-          <h3 className='max-w-[400px] text-sectionTitle font-bold capitalize text-dark'>{sectionInfo.sectionTitle}</h3>
+        <div className='mb-10 flex flex-col justify-between gap-4 min-[500px]:mb-14 min-[500px]:flex-row min-[500px]:items-center'>
+          <h3 className='max-w-[300px] text-sectionTitle font-bold capitalize text-dark min-[400px]:max-w-[400px]'>
+            {sectionInfo.sectionTitle}
+          </h3>
 
           <SeeMoreLink href='/members/clients' />
         </div>
 
-        <div className='grid grid-cols-6 gap-6'>
+        <div className='grid gap-6 min-[370px]:grid-cols-2 min-[500px]:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6'>
           {clients.map((client) => {
             return (
               <div
