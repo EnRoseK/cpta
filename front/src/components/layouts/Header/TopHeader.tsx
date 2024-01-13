@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import { LanguageButton } from './LanguageButton';
 import Link from 'next/link';
 import { useGlobalContext, useLocale } from '@/hooks';
+import { employment } from '@/constants';
 
 export const TopHeader: FC = () => {
   const { currentLocale } = useLocale();
@@ -29,7 +30,7 @@ export const TopHeader: FC = () => {
 
           <div className='flex items-center gap-4'>
             <Link href='/jobs' className='capitalize transition hover:text-primary'>
-              {currentLocale === 'mn' ? 'Ажлын байр' : 'Employment'}
+              {employment[currentLocale! as 'mn' | 'en']}
             </Link>
 
             <LanguageButton />

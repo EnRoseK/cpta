@@ -102,6 +102,14 @@ const config: Config = {
           '0%': { opacity: '1', 'max-height': '200px' },
           '100%': { opacity: '0', 'max-height': '0' },
         },
+        drawerOpen: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
+        drawerClose: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
       },
       animation: {
         fadeIn: 'fadeIn .2s ease forwards',
@@ -112,6 +120,8 @@ const config: Config = {
         scrollBtnOut: 'scrollBtnOut .4s ease forwards',
         collapseOpen: 'collapseOpen .2s ease forwards',
         collapseClose: 'collapseClose .2s ease forwards',
+        drawerOpen: 'drawerOpen .2s ease forwards',
+        drawerClose: 'drawerClose .2s ease forwards',
       },
     },
   },
