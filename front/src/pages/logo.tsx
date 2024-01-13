@@ -44,8 +44,8 @@ const LogoPage: NextPage<LogoPageProps> = ({ logoPage }) => {
 
       <PageHeader title={logoPage.pageTitle} pages={[{ title: logoPage.pageTitle, link: '/logo' }]} />
 
-      <section className='container py-[120px]'>
-        <div className='grid grid-cols-3 gap-6'>
+      <section className='container py-20 lg:py-[120px]'>
+        <div className='grid grid-cols-1 gap-6 min-[560px]:grid-cols-2 md:grid-cols-3'>
           {logoPage.logos.map((logo) => {
             return <LogoCard logo={logo} key={logo.id} />;
           })}
