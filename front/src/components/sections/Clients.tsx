@@ -17,8 +17,8 @@ export const Clients: FC<ClientsProps> = ({ clients, sectionInfo }) => {
   return (
     <section className='py-20 lg:py-[120px]'>
       <div className='container'>
-        <div className='mb-10 flex flex-col justify-between gap-4 min-[500px]:mb-14 min-[500px]:flex-row min-[500px]:items-center'>
-          <h3 className='max-w-[300px] text-sectionTitle font-bold capitalize text-dark min-[400px]:max-w-[400px]'>
+        <div className='mb-10 flex flex-col items-center justify-between gap-4 min-[500px]:mb-14 min-[500px]:flex-row'>
+          <h3 className='max-w-[400px] text-center text-sectionTitle font-bold capitalize text-dark min-[500px]:text-start'>
             {sectionInfo.sectionTitle}
           </h3>
 
