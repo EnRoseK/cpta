@@ -33,7 +33,7 @@ export const ScrollButton: FC = () => {
         <button
           onAnimationEnd={onAnimationEnd}
           className={classNames(
-            'fixed bottom-10 right-10 z-[999] rounded-full border border-dark bg-white p-4 text-dark hover:border-primary hover:bg-primary hover:text-white active:ring active:ring-primary/50',
+            'fixed bottom-5 right-5 z-[999] rounded-full border border-dark bg-white p-4 text-dark hover:border-primary hover:bg-primary hover:text-white active:ring active:ring-primary/50 lg:bottom-10 lg:right-10',
             { 'animate-scrollBtnOut': isTop, 'animate-scrollBtnIn': !isTop },
           )}
           type='button'
