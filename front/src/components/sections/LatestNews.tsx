@@ -13,15 +13,15 @@ export const LatestNews: FC<LatestNewsProps> = ({ blogs, sectionInfo }) => {
   }
 
   return (
-    <section className='bg-white py-[120px]'>
+    <section className='bg-white py-20 lg:py-[120px]'>
       <div className='container'>
-        <div className='mb-14 flex w-full items-center justify-between'>
+        <div className='[min-500px]:items-center mb-10 flex w-full flex-col items-start justify-between gap-4 min-[500px]:mb-14 min-[500px]:flex-row'>
           <h3 className='text-sectionTitle font-bold capitalize text-dark'>{sectionInfo.sectionTitle}</h3>
 
           <SeeMoreLink href='/blog' />
         </div>
 
-        <div className='grid grid-cols-3 gap-6'>
+        <div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
           {blogs.map((blog) => {
             return <GridBlogCard key={blog.slug} blog={blog} />;
           })}
