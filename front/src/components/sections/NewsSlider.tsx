@@ -36,10 +36,10 @@ export const NewsSlider: FC<NewsSliderProps> = ({ blogs }) => {
 
             return (
               <SwiperSlide key={index}>
-                <div className='grid grid-cols-5 items-center gap-10'>
+                <div className='grid grid-cols-1 items-center gap-10 py-10 md:grid-cols-2 lg:grid-cols-5 lg:py-0'>
                   <Link
                     href={moreUrl}
-                    className='group col-span-2 block aspect-square w-full overflow-hidden rounded-xl bg-black'
+                    className='group col-span-1 block aspect-square w-full overflow-hidden rounded-xl bg-black sm:aspect-[1.7/1] md:aspect-square lg:col-span-2'
                   >
                     {blog.thumbnail.mime.includes('image') && (
                       <Image
@@ -58,20 +58,22 @@ export const NewsSlider: FC<NewsSliderProps> = ({ blogs }) => {
                     )}
                   </Link>
 
-                  <div className='col-span-3'>
-                    <Link
-                      href={moreUrl}
-                      className='mb-6 block text-[40px] font-bold normal-case leading-snug text-dark hover:text-primary'
-                    >
-                      {blog.title}
-                    </Link>
-                    <p className='mb-10 text-lg leading-normal text-description'>
-                      {blog.description.slice(0, 150)}
-                      {blog.description.length > 150 && '...'}
-                    </p>
-                    <Button asLink href={moreUrl}>
-                      Дэлгэрэнгүй
-                    </Button>
+                  <div className='col-span-1 lg:col-span-3'>
+                    <div className='flex flex-col items-center text-center md:block md:text-start'>
+                      <Link
+                        href={moreUrl}
+                        className='mb-6 block text-3xl font-bold normal-case leading-snug text-dark hover:text-primary lg:text-[40px]'
+                      >
+                        {blog.title}
+                      </Link>
+                      <p className='mb-10 text-base leading-normal text-description lg:text-lg'>
+                        {blog.description.slice(0, 150)}
+                        {blog.description.length > 150 && '...'}
+                      </p>
+                      <Button asLink href={moreUrl}>
+                        Дэлгэрэнгүй
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </SwiperSlide>
@@ -80,11 +82,11 @@ export const NewsSlider: FC<NewsSliderProps> = ({ blogs }) => {
         </Swiper>
       </div>
 
-      <button type='button' className='swiper-news__navigation-prev'>
+      <button type='button' className='swiper-news__navigation-prev hidden lg:block'>
         <Icons.IoIosArrowRoundBack size={60} />
       </button>
 
-      <button type='button' className='swiper-news__navigation-next'>
+      <button type='button' className='swiper-news__navigation-next hidden lg:block'>
         <Icons.IoIosArrowRoundForward size={60} />
       </button>
 
