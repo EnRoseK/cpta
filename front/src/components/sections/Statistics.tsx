@@ -16,8 +16,8 @@ export const Statistics: FC<StatisticsProps> = ({ statistics }) => {
   }
 
   return (
-    <section ref={ref} className='container mb-25 border-t border-t-dark/[0.07] pt-14'>
-      <div className='grid grid-cols-4 gap-40'>
+    <section ref={ref} className='container mb-15 border-t border-t-dark/[0.07] pt-14 lg:mb-25'>
+      <div className='grid grid-cols-1 gap-15 sm:grid-cols-2 lg:grid-cols-4 lg:gap-40'>
         {statistics.map((statistic, index) => {
           return (
             <div key={index} className='text-center'>
