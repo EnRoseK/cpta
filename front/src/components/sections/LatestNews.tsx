@@ -15,7 +15,7 @@ export const LatestNews: FC<LatestNewsProps> = ({ blogs, sectionInfo }) => {
   return (
     <section className='bg-white py-20 lg:py-[120px]'>
       <div className='container'>
-        <div className='[min-500px]:items-center mb-10 flex w-full flex-col items-start justify-between gap-4 min-[500px]:mb-14 min-[500px]:flex-row'>
+        <div className='mb-10 flex w-full flex-col items-center justify-between gap-4 min-[500px]:mb-14 min-[500px]:flex-row'>
           <h3 className='text-sectionTitle font-bold capitalize text-dark'>{sectionInfo.sectionTitle}</h3>
 
           <SeeMoreLink href='/blog' />
