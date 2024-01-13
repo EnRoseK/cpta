@@ -1,4 +1,4 @@
-import { useAnimation } from '@/hooks';
+import { useAnimation, useStopScroll } from '@/hooks';
 import React, { FC, useState } from 'react';
 import { JobDetails } from './JobDetails';
 import { IJob } from '@/interfaces';
@@ -11,6 +11,8 @@ interface JobCardProps {
 export const JobCard: FC<JobCardProps> = ({ job }) => {
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [renderDetails, onAnimationEnd] = useAnimation(showDetails);
+
+  useStopScroll(showDetails);
 
   return (
     <div className='group w-full overflow-hidden rounded-xl bg-white p-[30px] shadow-cardSmall hover:bg-primary'>

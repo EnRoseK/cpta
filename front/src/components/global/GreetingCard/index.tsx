@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React, { FC, useState } from 'react';
 import { Button } from '..';
 import { convertAttachmentUrl } from '@/utils';
-import { useAnimation } from '@/hooks';
+import { useAnimation, useStopScroll } from '@/hooks';
 import { GreetingDetails } from './GreetingDetails';
 
 interface GreetingCardProps {
@@ -13,6 +13,8 @@ interface GreetingCardProps {
 export const GreetingCard: FC<GreetingCardProps> = ({ greeting }) => {
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [shouldRender, onAnimationEnd] = useAnimation(showDetails);
+
+  useStopScroll(showDetails);
 
   return (
     <>

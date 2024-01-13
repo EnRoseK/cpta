@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Button } from '..';
 import { MemberDetails } from './MemberDetails';
-import { useAnimation } from '@/hooks';
+import { useAnimation, useStopScroll } from '@/hooks';
 import { IHonoraryMember } from '@/interfaces';
 import Image from 'next/image';
 import { convertAttachmentUrl } from '@/utils';
@@ -13,6 +13,8 @@ interface MemberCardProps {
 export const MemberCard: FC<MemberCardProps> = ({ honoraryMember }) => {
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [shouldRender, onAnimationEnd] = useAnimation(showDetails);
+
+  useStopScroll(showDetails);
 
   return (
     <>
