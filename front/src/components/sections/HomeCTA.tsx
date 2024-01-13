@@ -15,8 +15,8 @@ export const HomeCTA: FC<HomeCTAProps> = ({ ctas }) => {
   }
 
   return (
-    <section className='pb-[120px]'>
-      <div className='container grid grid-cols-3 gap-6'>
+    <section className='pb-20 lg:pb-[120px]'>
+      <div className='container grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
         {ctas.map((cta) => {
           return (
             <Link
