@@ -1,5 +1,5 @@
 import { Button } from '@/components/global';
-import { useAnimation, useLocale } from '@/hooks';
+import { useAnimation, useLocale, useStopScroll } from '@/hooks';
 import { Icons } from '@/libs';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -25,6 +25,8 @@ export const MainHeader: FC = () => {
       });
     };
   }, [router]);
+
+  useStopScroll(showMobileMenu);
 
   return (
     <>
