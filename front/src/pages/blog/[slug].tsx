@@ -1,10 +1,9 @@
 import { getAllBlogCategories, getBlogBySlug, getBlogSlugs } from '@/api/services';
-import { BlogCategoryFilter } from '@/components/features';
 import { GridBlogCard } from '@/components/global';
 import { siteName } from '@/constants';
 import { useLocale } from '@/hooks';
 import { IBlog, IBlogCategory } from '@/interfaces';
-import { convertAttachmentUrl, parseMarkDown } from '@/utils';
+import { convertAttachmentUrl, convertDateToString, parseMarkDown } from '@/utils';
 import axios from 'axios';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
@@ -94,10 +93,10 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) =
         }}
       />
 
-      <div className='container py-[120px]'>
-        <div className='grid grid-cols-4 gap-10'>
-          <section className='col-span-3'>
-            <div className='mb-7 aspect-[1.9/1] w-full overflow-hidden rounded-xl bg-[#c4c4c4]'>
+      <div className='container py-20 lg:py-[120px]'>
+        <div className='grid grid-cols-1 gap-10 lg:grid-cols-4'>
+          <section className='col-span-1 lg:col-span-3'>
+            <div className='mb-7 aspect-square w-full overflow-hidden rounded-xl bg-[#c4c4c4] min-[400px]:aspect-[1.3/1] sm:aspect-[1.9/1]'>
               {blog.thumbnail.mime.includes('image') && (
                 <Image
                   src={convertAttachmentUrl(blog.thumbnail.url)}
@@ -115,16 +114,20 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) =
               )}
             </div>
 
-            <span className='mb-4 block text-date capitalize text-description'>April 21, 2023</span>
+            <span className='mb-4 block text-date text-description'>
+              {convertDateToString(new Date(blog.createdAt))}
+            </span>
 
-            <h1 className='mb-5 text-3xl font-bold normal-case leading-none text-dark'>{blog.title}</h1>
+            <h1 className='mb-5 text-2xl font-bold normal-case text-dark min-[400px]:text-3xl min-[400px]:leading-none'>
+              {blog.title}
+            </h1>
 
             <div className='blog-details' dangerouslySetInnerHTML={{ __html: content }} />
 
             {relatedBlogs.length > 0 && (
-              <div className='w-full py-[120px]'>
+              <div className='w-full py-20 lg:py-[120px]'>
                 <h6 className='mb-14 text-sectionTitle font-bold text-dark'>Төстэй мэдээнүүд</h6>
-                <div className='grid grid-cols-2 gap-6'>
+                <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
                   {relatedBlogs.map((blog) => {
                     return <GridBlogCard key={blog.id} blog={blog} />;
                   })}
@@ -132,10 +135,6 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) =
               </div>
             )}
           </section>
-
-          <aside className='sticky top-44 col-span-1 h-max space-y-[30px]'>
-            {/* <BlogCategoryFilter categories={categories} isDetailsPage /> */}
-          </aside>
         </div>
       </div>
     </>
