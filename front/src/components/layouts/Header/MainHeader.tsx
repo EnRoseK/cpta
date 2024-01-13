@@ -9,7 +9,7 @@ export const MainHeader: FC = () => {
   const { currentLocale } = useLocale();
 
   return (
-    <div className='bg-white py-5'>
+    <div className='bg-white py-5 shadow-card lg:shadow-none'>
       <div className='container'>
         <div className='flex items-center justify-between'>
           {/* Logo */}
