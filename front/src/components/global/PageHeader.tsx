@@ -4,7 +4,7 @@ import { Icons } from '@/libs';
 import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { FC, Fragment } from 'react';
+import { FC, Fragment } from 'react';
 
 interface PageHeaderProps {
   title: string;
@@ -16,8 +16,10 @@ export const PageHeader: FC<PageHeaderProps> = ({ title, pages }) => {
 
   return (
     <section className='relative flex min-h-[250px] w-full items-center justify-center'>
-      <div className='container relative z-10 flex items-center justify-between'>
-        <h1 className='max-w-[600px] text-[40px] font-bold capitalize leading-normal text-dark'>{title}</h1>
+      <div className='container relative z-10 flex flex-col items-center justify-between gap-5 md:flex-row'>
+        <h1 className='max-w-[600px] text-center text-[40px] font-bold capitalize leading-normal text-dark md:text-start'>
+          {title}
+        </h1>
 
         <div className='flex items-center gap-4'>
           <Link href='/' className='text-base font-medium leading-[30px] text-dark'>
