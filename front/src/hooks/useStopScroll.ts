@@ -2,6 +2,6 @@ import { useEffect } from 'react';
 
 export const useStopScroll = (show: boolean) => {
   useEffect(() => {
-    document.body.classList.toggle('overflow-y-hidden');
+    document.body.style.overflowY = show ? 'hidden' : 'auto';
   }, [show]);
 };
