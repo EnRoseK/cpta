@@ -64,7 +64,7 @@
 
   .blog-details img,
   .blog-details video {
-    @apply mb-7 block h-auto w-full overflow-hidden rounded-xl;
+    @apply mx-auto mb-7 block h-auto w-[80%] overflow-hidden rounded-xl;
   }
 
   .blog-details blockquote {

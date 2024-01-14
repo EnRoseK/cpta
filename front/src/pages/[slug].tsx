@@ -73,9 +73,15 @@ const StaticPage: NextPage<StaticPageProps> = ({ staticPageInfo }) => {
 
       <section className='container py-[120px]'>
         {pdfFiles && pdfFiles.length > 0 && (
-          <div className='mb-10 space-y-10'>
+          <div className='mb-10 flex items-center justify-center gap-10'>
             {pdfFiles.map((file) => {
-              return <iframe key={file.id} src={convertAttachmentUrl(file.url)} className='aspect-square w-full' />;
+              return (
+                <iframe
+                  key={file.id}
+                  src={convertAttachmentUrl(file.url)}
+                  className='aspect-[1/1.41] w-[calc((100%_-_40px)_/_2)]'
+                />
+              );
             })}
           </div>
         )}
