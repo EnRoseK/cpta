@@ -87,7 +87,7 @@ const ClientsPage: NextPage<ClientsPageProps> = ({ clients, clientsPage }) => {
       <PageHeader title={clientsPage.pageTitle} pages={[{ title: clientsPage.pageTitle, link: '/members/clients' }]} />
 
       <section className='container py-[120px]'>
-        <div className='mb-15 flex items-center justify-between'>
+        <div className='mb-15 flex flex-col items-start justify-between gap-5 md:flex-row md:items-center'>
           <Dropdown
             items={[
               { label: clientsPage.verified, value: 'verified' },

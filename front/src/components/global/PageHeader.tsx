@@ -31,7 +31,7 @@ export const PageHeader: FC<PageHeaderProps> = ({ title, pages }) => {
                 <Icons.MdOutlineChevronRight size={20} />
                 <Link
                   href={page.link}
-                  className={classNames(' text-base font-medium leading-[30px] hover:text-primary', {
+                  className={classNames('text-center text-base font-medium leading-[30px] hover:text-primary', {
                     'pointer-events-none text-primary': index === pages.length - 1,
                     'text-dark': index !== pages.length - 1,
                   })}
