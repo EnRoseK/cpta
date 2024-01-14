@@ -47,9 +47,9 @@ const JobsPage: NextPage<JobsPageProps> = ({ jobsPage, jobs, pagination }) => {
 
       <PageHeader title={jobsPage.pageTitle} pages={[{ title: jobsPage.pageTitle, link: '/jobs' }]} />
 
-      <section className='container py-[120px]'>
-        <div className='mb-10 grid grid-cols-3 gap-x-6 gap-y-[30px]'>
-          {jobs.map((job) => {
+      <section className='container py-20 lg:py-[120px]'>
+        <div className='mb-10 grid grid-cols-1 gap-x-6 gap-y-[30px] md:grid-cols-2 lg:grid-cols-3'>
+          {[...jobs, ...jobs, ...jobs].map((job) => {
             return <JobCard job={job} key={job.id} />;
           })}
         </div>

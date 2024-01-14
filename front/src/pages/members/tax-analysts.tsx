@@ -82,7 +82,7 @@ const TaxAnalystsPage: NextPage<TaxAnalystsPageProps> = ({ taxAnalysts, taxAnaly
         pages={[{ title: taxAnalystsPage.pageTitle, link: '/members/tax-analysts' }]}
       />
 
-      <section className='container py-[120px]'>
+      <section className='container py-20 lg:py-[120px]'>
         <div className='grid grid-cols-1 gap-15 md:grid-cols-3 lg:grid-cols-5'>
           <aside className='col-span-1'>
             <form
