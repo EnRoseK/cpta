@@ -2,6 +2,7 @@ import { IJob } from '@/interfaces';
 import { parseMarkDown } from '@/utils';
 import classNames from 'classnames';
 import React, { FC } from 'react';
+import { Button } from '..';
 
 interface JobDetailsProps {
   onAnimationEnd: () => void;
@@ -25,7 +26,11 @@ export const JobDetails: FC<JobDetailsProps> = ({ onAnimationEnd, closeHandler, 
         )}
         onAnimationEnd={onAnimationEnd}
       >
-        <div className='job-details' dangerouslySetInnerHTML={{ __html: content }}></div>
+        <div className='job-details mb-7' dangerouslySetInnerHTML={{ __html: content }}></div>
+
+        <Button size={'small'} variant={'gray'} onClick={closeHandler}>
+          Хаах
+        </Button>
       </div>
 
       <div

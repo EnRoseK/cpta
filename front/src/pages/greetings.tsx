@@ -51,7 +51,7 @@ const GreetinsPage: NextPage<GreetinsPageProps> = ({ greetingsPage, greetings })
 
       <section className='container py-20 lg:py-[120px]'>
         <div className='grid grid-cols-1 gap-6 min-[500px]:grid-cols-2 min-[900px]:grid-cols-3'>
-          {[...greetings, ...greetings, ...greetings].map((greeting) => {
+          {greetings.map((greeting) => {
             return <GreetingCard key={greeting.id} greeting={greeting} />;
           })}
         </div>

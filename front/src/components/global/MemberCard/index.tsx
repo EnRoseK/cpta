@@ -35,7 +35,7 @@ export const MemberCard: FC<MemberCardProps> = ({ honoraryMember }) => {
           </h5>
 
           <div className='flex justify-center'>
-            <Button onClick={() => setShowDetails(true)} variant='gray'>
+            <Button onClick={() => setShowDetails(true)} variant='gray' size={'small'}>
               Дэлгэрэнгүй
             </Button>
           </div>

@@ -41,7 +41,7 @@ export const MemberDetails: FC<MemberDetailsProps> = ({ closeHandler, show, onAn
               <p className='text-base italic leading-normal text-description'>{honoraryMember.description}</p>
             </div>
 
-            <Button variant='gray' onClick={closeHandler}>
+            <Button variant='gray' size={'small'} onClick={closeHandler}>
               Хаах
             </Button>
           </div>
