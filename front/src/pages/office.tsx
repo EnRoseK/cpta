@@ -50,13 +50,13 @@ const OfficePage: NextPage<OfficePageProps> = ({ officePage, officeWorkers }) =>
 
       <PageHeader title={officePage.pageTitle} pages={[{ title: officePage.pageTitle, link: '/office' }]} />
 
-      <section className='container py-[120px]'>
+      <section className='container py-20 lg:py-[120px]'>
         <div className='space-y-10'>
           {availableLevels.map((level) => {
             const currentLevelWorkers = officeWorkers.filter((worker) => worker.level === level);
 
             return (
-              <div key={level} className='flex items-center justify-center gap-10'>
+              <div key={level} className='flex flex-wrap items-center justify-center gap-10'>
                 {currentLevelWorkers
                   .sort((a, b) => a.priority - b.priority)
                   .map((worker) => {

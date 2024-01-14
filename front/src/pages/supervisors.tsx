@@ -54,7 +54,7 @@ const SupervisorsPage: NextPage<SupervisorsPageProps> = ({ supervisorsPage, supe
         pages={[{ title: supervisorsPage.pageTitle, link: '/supervisors' }]}
       />
 
-      <section className='container py-[120px]'>
+      <section className='container py-20 lg:py-[120px]'>
         {supervisorsPage.smallDescription && (
           <p className='mb-20 text-start text-base leading-[30px] text-description'>
             {supervisorsPage.smallDescription}
@@ -65,7 +65,7 @@ const SupervisorsPage: NextPage<SupervisorsPageProps> = ({ supervisorsPage, supe
             const currentLevelSupervisors = supervisors.filter((supervisor) => supervisor.level === level);
 
             return (
-              <div key={level} className='flex items-center justify-center gap-10'>
+              <div key={level} className='flex flex-wrap items-center justify-center gap-10'>
                 {currentLevelSupervisors
                   .sort((a, b) => a.priority - b.priority)
                   .map((supervisor) => {
