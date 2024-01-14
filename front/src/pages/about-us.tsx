@@ -56,7 +56,7 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({ statistics, pageInfo }) => {
       <section className='container py-[120px]'>
         <div className='mb-25 text-center'>
           {pageInfo.smallTitle && (
-            <h2 className='mb-3 text-3xl uppercase leading-none text-dark'>{pageInfo.smallTitle}</h2>
+            <h2 className='mb-3 text-3xl uppercase leading-tight text-dark'>{pageInfo.smallTitle}</h2>
           )}
           {pageInfo.subSmallTitle && <p className='text-base text-description'>{pageInfo.subSmallTitle}</p>}
         </div>
@@ -76,11 +76,11 @@ const AboutUsPage: NextPage<AboutUsPageProps> = ({ statistics, pageInfo }) => {
         )}
 
         {pageInfo.description && (
-          <p className='mb-4 text-base leading-normal text-description'>{pageInfo.description}</p>
+          <p className='mb-4 text-base leading-loose text-description'>{pageInfo.description}</p>
         )}
 
         {pageInfo.visions && pageInfo.visions.length > 0 && (
-          <div className='grid grid-cols-3 gap-10 pt-10'>
+          <div className='grid grid-cols-1 gap-10 pt-10 md:grid-cols-2 lg:grid-cols-3'>
             {pageInfo.visions.map((vision, index) => {
               const content = parseMarkDown(vision.content);
 
