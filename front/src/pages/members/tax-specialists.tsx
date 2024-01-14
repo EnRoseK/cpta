@@ -51,7 +51,7 @@ const TaxSpecialistsPage: NextPage<TaxSpecialistsPageProps> = ({ taxSpecialistsP
 
       <section className='container py-20 lg:py-[120px]'>
         <div className='grid grid-cols-1 gap-15 md:grid-cols-3 lg:grid-cols-5'>
-          <aside className='top-44 col-span-1 h-max md:sticky'>
+          <aside className='col-span-1'>
             <form
               onSubmit={(e) => {
                 e.preventDefault();

@@ -83,8 +83,8 @@ const TaxAnalystsPage: NextPage<TaxAnalystsPageProps> = ({ taxAnalysts, taxAnaly
       />
 
       <section className='container py-[120px]'>
-        <div className='grid grid-cols-5 gap-15'>
-          <aside className='sticky top-44 col-span-1 h-max'>
+        <div className='grid grid-cols-1 gap-15 md:grid-cols-3 lg:grid-cols-5'>
+          <aside className='col-span-1'>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -115,10 +115,10 @@ const TaxAnalystsPage: NextPage<TaxAnalystsPageProps> = ({ taxAnalysts, taxAnaly
             </form>
           </aside>
 
-          <div className='col-span-4'>
+          <div className='col-span-1 md:col-span-2 lg:col-span-4'>
             {displayTaxAnalysts.length > 0 && (
-              <div className='mb-15 grid grid-cols-3 gap-x-6 gap-y-[30px]'>
-                {displayTaxAnalysts.map((taxAnalyst) => {
+              <div className='mb-15 grid grid-cols-1 gap-x-6 gap-y-[30px] min-[500px]:grid-cols-2 lg:grid-cols-3'>
+                {[...displayTaxAnalysts, ...displayTaxAnalysts, ...displayTaxAnalysts].map((taxAnalyst) => {
                   return <TaxAnalystCard key={taxAnalyst.id} taxAnalyst={taxAnalyst} />;
                 })}
               </div>
