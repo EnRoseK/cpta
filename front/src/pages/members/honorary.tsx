@@ -51,8 +51,8 @@ const HonoraryMembersPage: NextPage<HonoraryMembersPageProps> = ({ honoraryMembe
         title={honoraryMemberPage.pageTitle}
         pages={[{ title: honoraryMemberPage.pageTitle, link: '/members/honorary' }]}
       />
-      <section className='container py-[120px]'>
-        <div className='grid grid-cols-4 gap-x-6 gap-y-[30px]'>
+      <section className='container py-20 lg:py-[120px]'>
+        <div className='grid grid-cols-1 gap-x-6 gap-y-[30px] min-[500px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
           {honoraryMembers.map((honoraryMember) => {
             return <MemberCard honoraryMember={honoraryMember} key={honoraryMember.id} />;
           })}
