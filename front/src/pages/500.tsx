@@ -592,7 +592,7 @@ const ErrorPage: NextPage = () => {
           </svg>
 
           <div className='flex flex-col items-center justify-center space-y-10'>
-            <h1 className='text-3xl font-semibold text-dark'>Алдаа гарлаа</h1>
+            <h1 className='text-center text-3xl font-semibold text-dark'>Алдаа гарлаа</h1>
 
             <Button asLink href='/'>
               Нүүр хуудасруу буцах
