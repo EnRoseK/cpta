@@ -95,7 +95,7 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) =
 
       <div className='container py-20 lg:py-[120px]'>
         <div className='grid grid-cols-1 gap-10 lg:grid-cols-4'>
-          <section className='col-span-1 lg:col-span-3'>
+          <section className='col-span-1 lg:col-span-4'>
             <div className='mb-7 aspect-square w-full overflow-hidden rounded-xl bg-[#c4c4c4] min-[400px]:aspect-[1.3/1] sm:aspect-[1.9/1]'>
               {blog.thumbnail.mime.includes('image') && (
                 <Image
