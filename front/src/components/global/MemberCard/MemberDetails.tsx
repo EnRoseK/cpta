@@ -16,13 +16,13 @@ export const MemberDetails: FC<MemberDetailsProps> = ({ closeHandler, show, onAn
   return (
     <div className='fixed inset-0 z-[1000] flex items-center justify-center'>
       <div
-        className={classNames(' z-[1001] w-[800px] rounded-xl bg-white p-5 shadow-card', {
+        className={classNames(' z-[1001] max-h-[90vh] w-[800px] overflow-y-auto rounded-xl bg-white p-5 shadow-card', {
           'animate-modalIn': show,
           'animate-modalOut': !show,
         })}
         onAnimationEnd={onAnimationEnd}
       >
-        <div className='grid w-full grid-cols-2 gap-8'>
+        <div className='grid w-full grid-cols-1 gap-8 sm:grid-cols-2'>
           <div className='col-span-1 aspect-[1/1.2] overflow-hidden rounded-lg bg-[#d9d9d9]'>
             <Image
               src={convertAttachmentUrl(honoraryMember.picture.url)}
@@ -33,7 +33,7 @@ export const MemberDetails: FC<MemberDetailsProps> = ({ closeHandler, show, onAn
             />
           </div>
 
-          <div className='col-span-1 flex flex-col justify-between'>
+          <div className='col-span-1 flex flex-col justify-between gap-5'>
             <div className='space-y-8'>
               <h5 className='text-xl font-bold leading-normal text-dark'>
                 {honoraryMember.lastName} <span className='uppercase'>{honoraryMember.firstName}</span>
