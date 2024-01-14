@@ -49,9 +49,9 @@ const TaxSpecialistsPage: NextPage<TaxSpecialistsPageProps> = ({ taxSpecialistsP
         pages={[{ title: taxSpecialistsPage.pageTitle, link: '/members/tax-specialists' }]}
       />
 
-      <section className='container py-[120px]'>
-        <div className='grid grid-cols-5 gap-15'>
-          <aside className='sticky top-44 col-span-1 h-max'>
+      <section className='container py-20 lg:py-[120px]'>
+        <div className='grid grid-cols-1 gap-15 md:grid-cols-3 lg:grid-cols-5'>
+          <aside className='top-44 col-span-1 h-max md:sticky'>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -69,7 +69,7 @@ const TaxSpecialistsPage: NextPage<TaxSpecialistsPageProps> = ({ taxSpecialistsP
             </form>
           </aside>
 
-          <div className='col-span-4'>
+          <div className='col-span-1 md:col-span-2 lg:col-span-4'>
             {taxSpecialistsPage.smallTitle && (
               <h3 className='mb-10 text-center text-xl text-dark'>{taxSpecialistsPage.smallTitle}</h3>
             )}
