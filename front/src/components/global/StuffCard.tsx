@@ -9,7 +9,7 @@ interface StuffCardProps {
 
 export const StuffCard: FC<StuffCardProps> = ({ stuff }) => {
   return (
-    <div className='w-[calc((100%_-_160px)_/_5)] space-y-5'>
+    <div className='w-full space-y-5 min-[500px]:w-[calc((100%_-_40px)_/_2)] md:w-[calc((100%_-_80px)_/_3)] lg:w-[calc((100%_-_120px)_/_4)] xl:w-[calc((100%_-_160px)_/_5)]'>
       <div className='group aspect-[1/1.13] w-full overflow-hidden rounded-xl'>
         <Image
           src={convertAttachmentUrl(stuff.picture.url)}

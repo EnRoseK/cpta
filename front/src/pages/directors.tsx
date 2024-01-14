@@ -51,7 +51,7 @@ const DirectorsPage: NextPage<DirectorsPageProps> = ({ directorsPage, directors 
 
       <PageHeader title={directorsPage.pageTitle} pages={[{ title: directorsPage.pageTitle, link: '/directors' }]} />
 
-      <section className='container py-[120px]'>
+      <section className='container py-20 lg:py-[120px]'>
         {directorsPage.smallDescription && (
           <p className='mb-20 text-start text-base leading-[30px] text-description'>{directorsPage.smallDescription}</p>
         )}
@@ -60,7 +60,7 @@ const DirectorsPage: NextPage<DirectorsPageProps> = ({ directorsPage, directors 
             const currentLevelDirectors = directors.filter((dir) => dir.level === level);
 
             return (
-              <div key={level} className='flex items-center justify-center gap-10'>
+              <div key={level} className='flex flex-wrap items-center justify-center gap-10'>
                 {currentLevelDirectors
                   .sort((a, b) => a.priority - b.priority)
                   .map((director) => {
