@@ -19,7 +19,7 @@ export const GreetingDetails: FC<GreetingDetailsProps> = ({ closeHandler, show, 
     <div className='fixed inset-0 z-[1000] flex items-center justify-center'>
       <div
         className={classNames(
-          ' z-[1001] max-h-[90vh] min-w-[1000px] max-w-[1300px] overflow-y-auto rounded-xl bg-white p-10 shadow-card',
+          ' z-[1001] max-h-[90vh] max-w-[1300px] overflow-y-auto rounded-xl bg-white p-10 shadow-card lg:min-w-[1000px]',
           {
             'animate-modalIn': show,
             'animate-modalOut': !show,
@@ -27,8 +27,8 @@ export const GreetingDetails: FC<GreetingDetailsProps> = ({ closeHandler, show, 
         )}
         onAnimationEnd={onAnimationEnd}
       >
-        <div className='grid w-full grid-cols-3 gap-8'>
-          <div className='sticky top-0 col-span-1 aspect-[1/1.4] h-max overflow-hidden rounded-lg bg-[#d9d9d9]'>
+        <div className='grid w-full grid-cols-1 gap-8 sm:grid-cols-3'>
+          <div className='col-span-1 aspect-[1/1.4] h-max overflow-hidden rounded-lg bg-[#d9d9d9] sm:sticky sm:top-0'>
             <Image
               src={convertAttachmentUrl(greeting.picture.url)}
               alt={greeting.picture.alternativeText || greeting.firstName}
@@ -38,7 +38,7 @@ export const GreetingDetails: FC<GreetingDetailsProps> = ({ closeHandler, show, 
             />
           </div>
 
-          <div className='col-span-2 flex flex-col justify-between'>
+          <div className='col-span-1 flex flex-col justify-between sm:col-span-2'>
             <div className='blog-details mb-2' dangerouslySetInnerHTML={{ __html: content }}></div>
             <p className='mb-5 text-end text-base font-normal italic leading-[30px] text-description'>
               <span className='font-medium text-dark'>Хүндэтгэсэн: </span> {greeting.title} <br /> {greeting.lastName}{' '}

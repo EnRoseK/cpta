@@ -49,9 +49,9 @@ const GreetinsPage: NextPage<GreetinsPageProps> = ({ greetingsPage, greetings })
 
       <PageHeader title={greetingsPage.pageTitle} pages={[{ title: greetingsPage.pageTitle, link: '/greetings' }]} />
 
-      <section className='container py-[120px]'>
-        <div className='grid grid-cols-3 gap-6'>
-          {greetings.map((greeting) => {
+      <section className='container py-20 lg:py-[120px]'>
+        <div className='grid grid-cols-1 gap-6 min-[500px]:grid-cols-2 min-[900px]:grid-cols-3'>
+          {[...greetings, ...greetings, ...greetings].map((greeting) => {
             return <GreetingCard key={greeting.id} greeting={greeting} />;
           })}
         </div>
