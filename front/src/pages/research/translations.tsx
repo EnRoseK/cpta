@@ -117,7 +117,7 @@ const TranslationsPage: NextPage<TranslationsPageProps> = ({ translationsPage, t
 
       <section className='container py-20 lg:py-[120px]'>
         <div className='mb-15 flex flex-col items-start justify-between gap-5 md:flex-row md:items-center'>
-          <div className='flex gap-4'>
+          <div className='flex flex-col gap-4 md:flex-row md:items-center'>
             <Dropdown
               items={availableYears.map((year) => ({ value: year, label: year }))}
               placeholder={currentLocale === 'mn' ? 'Оноор хайх' : 'Search by year'}
