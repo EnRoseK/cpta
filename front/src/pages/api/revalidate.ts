@@ -34,10 +34,14 @@ const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse
   try {
     const { model, entry } = req.body;
 
-    const paths = REVALIDATE_MAP[model];
+    let paths = REVALIDATE_MAP[model];
 
     if (!paths) {
       return res.status(400).json({ message: 'Wrong data model' });
+    }
+
+    if (entry.locale === 'en') {
+      paths = paths.map((path) => '/en' + path);
     }
 
     for (const path of paths) {

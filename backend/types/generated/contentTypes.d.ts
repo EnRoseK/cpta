@@ -2464,7 +2464,7 @@ export interface ApiStatisticStatistic extends Schema.CollectionType {
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }> &
       Attribute.DefaultTo<0>;
