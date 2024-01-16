@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { IBlog } from '@/interfaces';
 import { convertAttachmentUrl, convertDateToString } from '@/utils';
 import Image from 'next/image';
+import { useLocale } from '@/hooks';
+import { readMore } from '@/constants';
 
 interface GridBlogCardProps {
   blog: IBlog;
@@ -11,6 +13,7 @@ interface GridBlogCardProps {
 
 export const GridBlogCard: FC<GridBlogCardProps> = ({ blog }) => {
   const moreUrl = `/blog/${blog.slug}`;
+  const { currentLocale } = useLocale();
 
   return (
     <div className='flex h-full w-full flex-col overflow-hidden rounded-xl shadow-card'>
@@ -50,7 +53,7 @@ export const GridBlogCard: FC<GridBlogCardProps> = ({ blog }) => {
         </p>
 
         <Button asLink href={moreUrl} variant='gray'>
-          Дэлгэрэнгүй
+          {readMore[currentLocale! as 'mn' | 'en']}
         </Button>
       </div>
     </div>

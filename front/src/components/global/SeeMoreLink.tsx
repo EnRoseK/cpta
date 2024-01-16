@@ -1,6 +1,8 @@
 import { Icons } from '@/libs';
 import React, { FC } from 'react';
 import Link from 'next/link';
+import { useLocale } from '@/hooks';
+import { seeMore } from '@/constants';
 
 interface SeeMoreLinkProps {
   asButton?: boolean;
@@ -11,10 +13,14 @@ interface SeeMoreLinkProps {
 
 export const SeeMoreLink: FC<SeeMoreLinkProps> = ({
   asButton = false,
-  text = 'Бүгдийг харах',
+  text,
   href = '#',
   onClick = () => undefined,
 }) => {
+  const { currentLocale } = useLocale();
+
+  const defaultText = text || seeMore[currentLocale! as 'mn' | 'en'];
+
   if (asButton) {
     return (
       <button
@@ -22,7 +28,7 @@ export const SeeMoreLink: FC<SeeMoreLinkProps> = ({
         onClick={onClick}
         className='flex items-center gap-2 text-base leading-normal text-description hover:underline'
       >
-        <span>{text}</span>
+        <span>{defaultText}</span>
         <Icons.IoIosArrowRoundForward size={20} />
       </button>
     );
@@ -30,7 +36,7 @@ export const SeeMoreLink: FC<SeeMoreLinkProps> = ({
 
   return (
     <Link href={href} className='flex items-center gap-2 text-base leading-normal text-description hover:underline'>
-      <span>{text}</span>
+      <span>{defaultText}</span>
       <Icons.IoIosArrowRoundForward size={20} />
     </Link>
   );

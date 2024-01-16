@@ -12,3 +12,13 @@ export const employment = {
   mn: 'Ажлын байр',
   en: 'Employment',
 };
+
+export const readMore = {
+  mn: 'Дэлгэрэнгүй',
+  en: 'Read more',
+};
+
+export const seeMore = {
+  mn: 'Бүгдийг харах',
+  en: 'See more',
+};
