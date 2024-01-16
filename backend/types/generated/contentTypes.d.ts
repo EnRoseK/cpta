@@ -2430,6 +2430,132 @@ export interface ApiOfficeWorkerOfficeWorker extends Schema.CollectionType {
   };
 }
 
+export interface ApiResearchResearch extends Schema.CollectionType {
+  collectionName: 'researchs';
+  info: {
+    singularName: 'research';
+    pluralName: 'researchs';
+    displayName: '\u0421\u0443\u0434\u0430\u043B\u0433\u0430\u0430\u043D\u044B \u0436\u0430\u0433\u0441\u0430\u0430\u043B\u0442';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    topicName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    names: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    year: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    link: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    newTab: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::research.research',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::research.research',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::research.research',
+      'oneToMany',
+      'api::research.research'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiResearchPageResearchPage extends Schema.SingleType {
+  collectionName: 'research_pages';
+  info: {
+    singularName: 'research-page';
+    pluralName: 'research-pages';
+    displayName: '\u0421\u0443\u0434\u0430\u043B\u0433\u0430\u0430\u043D\u044B \u0436\u0430\u0433\u0441\u0430\u0430\u043B\u0442 \u0445\u0443\u0443\u0434\u0430\u0441';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::research-page.research-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::research-page.research-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::research-page.research-page',
+      'oneToMany',
+      'api::research-page.research-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiRulesPageRulesPage extends Schema.SingleType {
   collectionName: 'rules_pages';
   info: {
@@ -3272,6 +3398,8 @@ declare module '@strapi/types' {
       'api::main-menu.main-menu': ApiMainMenuMainMenu;
       'api::office-page.office-page': ApiOfficePageOfficePage;
       'api::office-worker.office-worker': ApiOfficeWorkerOfficeWorker;
+      'api::research.research': ApiResearchResearch;
+      'api::research-page.research-page': ApiResearchPageResearchPage;
       'api::rules-page.rules-page': ApiRulesPageRulesPage;
       'api::self-study.self-study': ApiSelfStudySelfStudy;
       'api::self-study-page.self-study-page': ApiSelfStudyPageSelfStudyPage;

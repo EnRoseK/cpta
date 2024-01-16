@@ -9,3 +9,4 @@ export * from './stuffs';
 export * from './jobs';
 export * from './translations';
 export * from './self-studies';
+export * from './researchs';

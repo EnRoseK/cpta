@@ -11,3 +11,4 @@ export * from './office-workers';
 export * from './jobs';
 export * from './translations';
 export * from './self-studies';
+export * from './researchs';
