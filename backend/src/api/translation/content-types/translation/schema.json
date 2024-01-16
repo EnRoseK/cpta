@@ -4,7 +4,8 @@
   "info": {
     "singularName": "translation",
     "pluralName": "translations",
-    "displayName": "Орчуулгын жагсаалт"
+    "displayName": "Орчуулгын жагсаалт",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -49,6 +50,24 @@
         }
       },
       "type": "string",
+      "required": true
+    },
+    "link": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string"
+    },
+    "newTab": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "boolean",
+      "default": true,
       "required": true
     }
   }

@@ -5,4 +5,6 @@ export interface ITranslations {
   mongolianName: string;
   translators: string;
   translatedYear: string;
+  link?: string;
+  newTab: boolean;
 }

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { getTranslations, getTranslationsPage } from '@/api/services';
-import { Dropdown, PageHeader, SearchInput } from '@/components/global';
+import { Button, Dropdown, PageHeader, SearchInput } from '@/components/global';
 import { siteName } from '@/constants';
 import { useLocale } from '@/hooks';
 import { ITranslations, ITranslationsPage } from '@/interfaces';
@@ -172,6 +172,13 @@ const TranslationsPage: NextPage<TranslationsPageProps> = ({ translationsPage, t
                     </td>
                     <td className='px-6 py-4'>{translation.translators}</td>
                     <td className='px-6 py-4'>{translation.translatedYear}</td>
+                    <td className='px-6 py-4'>
+                      {translation.link && (
+                        <Button asLink href={translation.link} newTab={translation.newTab} size='small'>
+                          {currentLocale === 'mn' ? 'Үзэх' : 'Watch'}
+                        </Button>
+                      )}
+                    </td>
                   </tr>
                 );
               })}

@@ -2976,6 +2976,7 @@ export interface ApiTranslationTranslation extends Schema.CollectionType {
     singularName: 'translation';
     pluralName: 'translations';
     displayName: '\u041E\u0440\u0447\u0443\u0443\u043B\u0433\u044B\u043D \u0436\u0430\u0433\u0441\u0430\u0430\u043B\u0442';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -3014,6 +3015,20 @@ export interface ApiTranslationTranslation extends Schema.CollectionType {
           localized: false;
         };
       }>;
+    link: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    newTab: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
