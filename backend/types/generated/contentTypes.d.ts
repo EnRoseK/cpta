@@ -2494,6 +2494,132 @@ export interface ApiRulesPageRulesPage extends Schema.SingleType {
   };
 }
 
+export interface ApiSelfStudySelfStudy extends Schema.CollectionType {
+  collectionName: 'self_studies';
+  info: {
+    singularName: 'self-study';
+    pluralName: 'self-studies';
+    displayName: '\u0411\u0438\u0435 \u0434\u0430\u0430\u043B\u0442\u044B\u043D \u0436\u0430\u0433\u0441\u0430\u0430\u043B\u0442';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    topicName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    names: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    year: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    link: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    newTab: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::self-study.self-study',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::self-study.self-study',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::self-study.self-study',
+      'oneToMany',
+      'api::self-study.self-study'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiSelfStudyPageSelfStudyPage extends Schema.SingleType {
+  collectionName: 'self_study_pages';
+  info: {
+    singularName: 'self-study-page';
+    pluralName: 'self-study-pages';
+    displayName: '\u0411\u0438\u0435 \u0434\u0430\u0430\u043B\u0442\u044B\u043D \u0436\u0430\u0433\u0441\u0430\u0430\u043B\u0442 \u0445\u0443\u0443\u0434\u0430\u0441';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::self-study-page.self-study-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::self-study-page.self-study-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::self-study-page.self-study-page',
+      'oneToMany',
+      'api::self-study-page.self-study-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiStaticPageStaticPage extends Schema.CollectionType {
   collectionName: 'static_pages';
   info: {
@@ -3147,6 +3273,8 @@ declare module '@strapi/types' {
       'api::office-page.office-page': ApiOfficePageOfficePage;
       'api::office-worker.office-worker': ApiOfficeWorkerOfficeWorker;
       'api::rules-page.rules-page': ApiRulesPageRulesPage;
+      'api::self-study.self-study': ApiSelfStudySelfStudy;
+      'api::self-study-page.self-study-page': ApiSelfStudyPageSelfStudyPage;
       'api::static-page.static-page': ApiStaticPageStaticPage;
       'api::statistic.statistic': ApiStatisticStatistic;
       'api::supervisor.supervisor': ApiSupervisorSupervisor;

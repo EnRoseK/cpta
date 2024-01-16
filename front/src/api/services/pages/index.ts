@@ -16,3 +16,4 @@ export * from './tax-analysts-page';
 export * from './exam-results-page';
 export * from './rules-and-regulations-page';
 export * from './translations-page';
+export * from './self-study-page';

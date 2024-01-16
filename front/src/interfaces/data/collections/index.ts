@@ -8,3 +8,4 @@ export * from './tax-analysts';
 export * from './stuffs';
 export * from './jobs';
 export * from './translations';
+export * from './self-studies';
