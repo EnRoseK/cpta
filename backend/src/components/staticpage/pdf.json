@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_staticpage_pdfs",
+  "info": {
+    "displayName": "PDF"
+  },
+  "options": {},
+  "attributes": {
+    "file": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

@@ -7,5 +7,10 @@ export interface IStaticPage {
   pageDescription?: string;
   pageContent: string;
   locale: string;
-  files?: IAttachment[];
+  pdfFiles?: IPDFFile[];
+}
+
+export interface IPDFFile {
+  id: number;
+  file: IAttachment;
 }

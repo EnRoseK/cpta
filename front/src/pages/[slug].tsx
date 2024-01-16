@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps<StaticPageProps> = async ({ params, 
 const StaticPage: NextPage<StaticPageProps> = ({ staticPageInfo }) => {
   const router = useRouter();
   const content = parseMarkDown(staticPageInfo.pageContent);
-  const pdfFiles = staticPageInfo.files?.filter((file) => file.mime.includes('pdf'));
+  const pdfFiles = staticPageInfo.pdfFiles?.filter((file) => file.file.mime.includes('pdf'));
   const { currentLocale } = useLocale();
 
   return (
@@ -73,13 +73,14 @@ const StaticPage: NextPage<StaticPageProps> = ({ staticPageInfo }) => {
 
       <section className='container py-[120px]'>
         {pdfFiles && pdfFiles.length > 0 && (
-          <div className='mb-10 flex items-center justify-center gap-10'>
+          <div className='mb-10 flex flex-col items-center justify-center gap-10'>
             {pdfFiles.map((file) => {
               return (
                 <iframe
                   key={file.id}
-                  src={convertAttachmentUrl(file.url)}
-                  className='aspect-[1/1.41] w-[calc((100%_-_40px)_/_2)]'
+                  src={convertAttachmentUrl(file.file.url) + '#view=FitH'}
+                  className='aspect-[1/1.39] w-[60%]'
+                  allowFullScreen
                 />
               );
             })}

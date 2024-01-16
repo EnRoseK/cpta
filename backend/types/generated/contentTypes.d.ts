@@ -2474,10 +2474,10 @@ export interface ApiStaticPageStaticPage extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    files: Attribute.Media &
+    pdfFiles: Attribute.Component<'staticpage.pdf', true> &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: false;
+          localized: true;
         };
       }>;
     createdAt: Attribute.DateTime;

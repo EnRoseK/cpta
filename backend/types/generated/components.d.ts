@@ -177,6 +177,16 @@ export interface ResultSorilShalgaltynDN extends Schema.Component {
   };
 }
 
+export interface StaticpagePdf extends Schema.Component {
+  collectionName: 'components_staticpage_pdfs';
+  info: {
+    displayName: 'PDF';
+  };
+  attributes: {
+    file: Attribute.Media & Attribute.Required;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -195,6 +205,7 @@ declare module '@strapi/types' {
       'result.erh-sungah-shalgaltyn-d-n': ResultErhSungahShalgaltynDN;
       'result.excel-file': ResultExcelFile;
       'result.soril-shalgaltyn-d-n': ResultSorilShalgaltynDN;
+      'staticpage.pdf': StaticpagePdf;
     }
   }
 }

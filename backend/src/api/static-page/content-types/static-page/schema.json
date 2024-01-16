@@ -51,17 +51,15 @@
       "type": "string",
       "required": true
     },
-    "files": {
-      "allowedTypes": [
-        "files"
-      ],
-      "type": "media",
-      "multiple": true,
+    "pdfFiles": {
+      "type": "component",
+      "repeatable": true,
       "pluginOptions": {
         "i18n": {
-          "localized": false
+          "localized": true
         }
-      }
+      },
+      "component": "staticpage.pdf"
     }
   }
 }

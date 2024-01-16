@@ -6,7 +6,7 @@ import { convertApiUrl } from '@/utils';
 export const getLogoPage = async ({ locale }: QueryFilters) => {
   const paramaters: QueryParamaters = {
     locale,
-    populate: ['logos', 'logoImages', 'logoImages.image'],
+    populate: ['logoImages', 'logoImages.image'],
   };
 
   return await axiosInstance.get<{ data: ILogoPage }>(convertApiUrl(GET_LOGO_PAGE, paramaters)).then((res) => res.data);
