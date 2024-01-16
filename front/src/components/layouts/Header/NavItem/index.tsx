@@ -32,7 +32,7 @@ export const NavItem: FC<NavItemProps> = ({ menuItem }) => {
         href={menuItem.link}
         className='group flex items-center gap-1 py-5 text-small font-medium uppercase hover:text-secondary'
       >
-        <span>{menuItem.title}</span>
+        <span className='whitespace-nowrap'>{menuItem.title}</span>
         {hasChild && <Icons.IoChevronDownSharp size={18} className='group-hover:rotate-180' />}
       </Link>
 

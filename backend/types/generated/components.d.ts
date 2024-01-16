@@ -177,6 +177,34 @@ export interface ResultSorilShalgaltynDN extends Schema.Component {
   };
 }
 
+export interface RulesRegulationsRegulations extends Schema.Component {
+  collectionName: 'components_rules_regulations_regulations';
+  info: {
+    displayName: 'Regulations';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    link: Attribute.String;
+    description: Attribute.Text & Attribute.Required;
+    newTab: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
+  };
+}
+
+export interface RulesRegulationsRules extends Schema.Component {
+  collectionName: 'components_rules_regulations_rules';
+  info: {
+    displayName: 'rules';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text & Attribute.Required;
+    link: Attribute.String;
+    newTab: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
+  };
+}
+
 export interface StaticpagePdf extends Schema.Component {
   collectionName: 'components_staticpage_pdfs';
   info: {
@@ -205,6 +233,8 @@ declare module '@strapi/types' {
       'result.erh-sungah-shalgaltyn-d-n': ResultErhSungahShalgaltynDN;
       'result.excel-file': ResultExcelFile;
       'result.soril-shalgaltyn-d-n': ResultSorilShalgaltynDN;
+      'rules-regulations.regulations': RulesRegulationsRegulations;
+      'rules-regulations.rules': RulesRegulationsRules;
       'staticpage.pdf': StaticpagePdf;
     }
   }

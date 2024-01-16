@@ -2430,6 +2430,70 @@ export interface ApiOfficeWorkerOfficeWorker extends Schema.CollectionType {
   };
 }
 
+export interface ApiRulesPageRulesPage extends Schema.SingleType {
+  collectionName: 'rules_pages';
+  info: {
+    singularName: 'rules-page';
+    pluralName: 'rules-pages';
+    displayName: '\u0414\u04AF\u0440\u044D\u043C, \u0436\u0443\u0440\u0430\u043C \u0445\u0443\u0443\u0434\u0430\u0441';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    rules: Attribute.Component<'rules-regulations.rules', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    regulations: Attribute.Component<'rules-regulations.regulations', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::rules-page.rules-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::rules-page.rules-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::rules-page.rules-page',
+      'oneToMany',
+      'api::rules-page.rules-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiStaticPageStaticPage extends Schema.CollectionType {
   collectionName: 'static_pages';
   info: {
@@ -2948,6 +3012,7 @@ declare module '@strapi/types' {
       'api::main-menu.main-menu': ApiMainMenuMainMenu;
       'api::office-page.office-page': ApiOfficePageOfficePage;
       'api::office-worker.office-worker': ApiOfficeWorkerOfficeWorker;
+      'api::rules-page.rules-page': ApiRulesPageRulesPage;
       'api::static-page.static-page': ApiStaticPageStaticPage;
       'api::statistic.statistic': ApiStatisticStatistic;
       'api::supervisor.supervisor': ApiSupervisorSupervisor;

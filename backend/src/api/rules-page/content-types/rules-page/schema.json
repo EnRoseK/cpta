@@ -1,0 +1,57 @@
+{
+  "kind": "singleType",
+  "collectionName": "rules_pages",
+  "info": {
+    "singularName": "rules-page",
+    "pluralName": "rules-pages",
+    "displayName": "Дүрэм, журам хуудас"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "pageTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "pageDescription": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    },
+    "rules": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "rules-regulations.rules",
+      "required": false
+    },
+    "regulations": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "rules-regulations.regulations"
+    }
+  }
+}
