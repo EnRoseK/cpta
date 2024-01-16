@@ -26,6 +26,12 @@ const REVALIDATE_MAP: { [key: string]: string[] } = {
   'tax-specialists-page': ['/tax-specialists'],
   'exam-result-page': ['/exam-results'],
   'rules-page': ['/rules-and-regulations'],
+  research: ['/research'],
+  'research-page': ['/research'],
+  'self-study': ['/research/self-study'],
+  'self-study-page': ['/research/self-study'],
+  translation: ['/research/translations'],
+  'translations-page': ['/research/translations'],
 };
 
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
