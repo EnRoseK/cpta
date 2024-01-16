@@ -11,28 +11,23 @@ interface DropdownMenuProps {
 
 export const DropdownMenu: FC<DropdownMenuProps> = ({ show, onAnimationEnd, items }) => {
   return (
-    <ul
+    <div
       onAnimationEnd={onAnimationEnd}
       className={classNames(
-        'absolute left-0 top-full -mt-2 w-max min-w-[150%] space-y-2 rounded-md bg-white p-5 text-dark shadow-card',
-        { 'animate-fadeIn': show, 'animate-fadeOut': !show },
+        'absolute left-0 top-full -mt-1 flex w-max min-w-[120%] flex-col bg-white py-2 text-dark shadow-card',
+        {
+          'animate-fadeIn': show,
+          'animate-fadeOut': !show,
+        },
       )}
     >
-      {items.map((item, index, arr) => {
+      {items.map((item, index) => {
         return (
-          <li
-            key={index}
-            className={classNames({
-              'border-b border-b-dark/10 pb-2': index !== arr.length - 1,
-              'pb-0': index === arr.length - 1,
-            })}
-          >
-            <Link href={item.link} className='text-base hover:text-primary'>
-              {item.title}
-            </Link>
-          </li>
+          <Link key={index} href={item.link} className='px-5 py-2 text-sm hover:bg-slate-100 hover:text-primary'>
+            {item.title}
+          </Link>
         );
       })}
-    </ul>
+    </div>
   );
 };
