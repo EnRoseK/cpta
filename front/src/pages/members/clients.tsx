@@ -71,6 +71,11 @@ const ClientsPage: NextPage<ClientsPageProps> = ({ clients, clientsPage }) => {
     setUnverifiedClients(originalUnverifiedClients);
   }, [selectedType]);
 
+  useEffect(() => {
+    setVerifiedClients(clients.filter((c) => !c.isExpired));
+    setUnverifiedClients(clients.filter((c) => c.isExpired));
+  }, [clients]);
+
   return (
     <>
       <NextSeo

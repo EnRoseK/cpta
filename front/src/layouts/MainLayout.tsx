@@ -1,6 +1,6 @@
 import { Footer, Header, ScrollButton } from '@/components/layouts';
 import { LoadingScreen } from '@/components/utils';
-import { useAnimation, useGlobalContext, useLocale } from '@/hooks';
+import { useAnimation, useGlobalContext, useLocale, useStopScroll } from '@/hooks';
 import { NextSeo } from 'next-seo';
 import React, { FC, ReactNode } from 'react';
 
@@ -12,6 +12,8 @@ export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
   const { isLoading } = useGlobalContext();
   const { currentLocale } = useLocale();
   const [renderLoading, onAnimationEnd] = useAnimation(isLoading);
+
+  useStopScroll(isLoading);
 
   return (
     <>

@@ -6,3 +6,5 @@ export * from './HomeCTA';
 export * from './VerifiedClients';
 export * from './UnverifiedClients';
 export * from './GroupQuestions';
+export * from './GrantRightsExam';
+export * from './ChallengeExam';

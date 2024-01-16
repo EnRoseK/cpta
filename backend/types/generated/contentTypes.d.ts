@@ -1444,6 +1444,58 @@ export interface ApiDirectorsPageDirectorsPage extends Schema.SingleType {
   };
 }
 
+export interface ApiExamResultPageExamResultPage extends Schema.SingleType {
+  collectionName: 'exam_result_pages';
+  info: {
+    singularName: 'exam-result-page';
+    pluralName: 'exam-result-pages';
+    displayName: '\u0428\u0430\u043B\u0433\u0430\u043B\u0442\u044B\u043D \u0434\u04AF\u043D \u0445\u0443\u0443\u0434\u0430\u0441';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::exam-result-page.exam-result-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::exam-result-page.exam-result-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::exam-result-page.exam-result-page',
+      'oneToMany',
+      'api::exam-result-page.exam-result-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiFaqPageFaqPage extends Schema.SingleType {
   collectionName: 'faq_pages';
   info: {
@@ -2859,6 +2911,7 @@ declare module '@strapi/types' {
       'api::clients-page.clients-page': ApiClientsPageClientsPage;
       'api::director.director': ApiDirectorDirector;
       'api::directors-page.directors-page': ApiDirectorsPageDirectorsPage;
+      'api::exam-result-page.exam-result-page': ApiExamResultPageExamResultPage;
       'api::faq-page.faq-page': ApiFaqPageFaqPage;
       'api::footer.footer': ApiFooterFooter;
       'api::general-info.general-info': ApiGeneralInfoGeneralInfo;

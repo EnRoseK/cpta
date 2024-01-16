@@ -13,3 +13,4 @@ export * from './honorary-member-page';
 export * from './clients-page';
 export * from './tax-specialists-page';
 export * from './tax-analysts-page';
+export * from './exam-results-page';
