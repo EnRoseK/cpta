@@ -2970,6 +2970,125 @@ export interface ApiTaxSpecialistsPageTaxSpecialistsPage
   };
 }
 
+export interface ApiTranslationTranslation extends Schema.CollectionType {
+  collectionName: 'translations';
+  info: {
+    singularName: 'translation';
+    pluralName: 'translations';
+    displayName: '\u041E\u0440\u0447\u0443\u0443\u043B\u0433\u044B\u043D \u0436\u0430\u0433\u0441\u0430\u0430\u043B\u0442';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    englishName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    mongolianName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    translators: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    translatedYear: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::translation.translation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::translation.translation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::translation.translation',
+      'oneToMany',
+      'api::translation.translation'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiTranslationsPageTranslationsPage extends Schema.SingleType {
+  collectionName: 'translations_pages';
+  info: {
+    singularName: 'translations-page';
+    pluralName: 'translations-pages';
+    displayName: '\u041E\u0440\u0447\u0443\u0443\u043B\u0433\u044B\u043D \u0436\u0430\u0433\u0441\u0430\u0430\u043B\u0442 \u0445\u0443\u0443\u0434\u0430\u0441';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::translations-page.translations-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::translations-page.translations-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::translations-page.translations-page',
+      'oneToMany',
+      'api::translations-page.translations-page'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -3020,6 +3139,8 @@ declare module '@strapi/types' {
       'api::tax-analyst.tax-analyst': ApiTaxAnalystTaxAnalyst;
       'api::tax-analysts-page.tax-analysts-page': ApiTaxAnalystsPageTaxAnalystsPage;
       'api::tax-specialists-page.tax-specialists-page': ApiTaxSpecialistsPageTaxSpecialistsPage;
+      'api::translation.translation': ApiTranslationTranslation;
+      'api::translations-page.translations-page': ApiTranslationsPageTranslationsPage;
     }
   }
 }

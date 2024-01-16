@@ -9,9 +9,16 @@ interface DropdownProps {
   items?: { label: string; value: string }[];
   selectedValue: string;
   onChangeHandler: (value: string) => void;
+  showAll?: boolean;
 }
 
-export const Dropdown: FC<DropdownProps> = ({ placeholder = 'Сонгох', items = [], selectedValue, onChangeHandler }) => {
+export const Dropdown: FC<DropdownProps> = ({
+  placeholder = 'Сонгох',
+  items = [],
+  selectedValue,
+  onChangeHandler,
+  showAll = false,
+}) => {
   const [showDropdown, setShowDropdown, ref] = useClickOutside();
   const [renderDropdown, onAnimationEnd] = useAnimation(showDropdown);
 
@@ -37,7 +44,7 @@ export const Dropdown: FC<DropdownProps> = ({ placeholder = 'Сонгох', item
         <div
           onAnimationEnd={onAnimationEnd}
           className={classNames(
-            'absolute left-0 top-full z-50 mt-2 w-max min-w-full rounded-[5px] bg-gray p-5 text-sm leading-normal text-description',
+            'absolute left-0 top-full z-50 mt-2 w-max min-w-full rounded-[5px] bg-gray p-5 text-sm leading-normal text-description shadow-cardSmall',
             {
               'animate-fadeIn': showDropdown,
               'animate-fadeOut': !showDropdown,
@@ -45,6 +52,18 @@ export const Dropdown: FC<DropdownProps> = ({ placeholder = 'Сонгох', item
           )}
         >
           <div className='flex flex-col gap-5'>
+            {showAll && (
+              <button
+                onClick={() => {
+                  onChangeHandler('');
+                  setShowDropdown(false);
+                }}
+                type='button'
+                className='w-full text-start hover:text-primary'
+              >
+                {placeholder}
+              </button>
+            )}
             {items.map((item, index) => {
               return (
                 <button

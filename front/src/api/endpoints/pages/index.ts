@@ -15,3 +15,4 @@ export * from './tax-specialists-page';
 export * from './tax-analysts-page';
 export * from './exam-results-page';
 export * from './rules-and-regulations-page';
+export * from './translations-page';

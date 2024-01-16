@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "translations_pages",
+  "info": {
+    "singularName": "translations-page",
+    "pluralName": "translations-pages",
+    "displayName": "Орчуулгын жагсаалт хуудас"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "pageTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "pageDescription": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    }
+  }
+}
