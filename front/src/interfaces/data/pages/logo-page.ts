@@ -5,5 +5,10 @@ export interface ILogoPage {
   pageTitle: string;
   pageDescription?: string;
   locale: string;
-  logos: IAttachment[];
+  logoImages: ILogoImage[];
+}
+
+export interface ILogoImage {
+  id: number;
+  image: IAttachment;
 }

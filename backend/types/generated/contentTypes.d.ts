@@ -2191,7 +2191,7 @@ export interface ApiLogoPageLogoPage extends Schema.SingleType {
           localized: true;
         };
       }>;
-    logos: Attribute.Media &
+    logoImages: Attribute.Component<'logo.logo', true> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {

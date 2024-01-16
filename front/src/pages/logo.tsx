@@ -34,10 +34,10 @@ const LogoPage: NextPage<LogoPageProps> = ({ logoPage }) => {
           title: `${logoPage.pageTitle} | ${siteName[currentLocale! as 'mn' | 'en']}`,
           description: logoPage.pageDescription,
           url: process.env.NEXT_PUBLIC_SITE_URL + '/directors',
-          images: logoPage.logos.map((logo) => ({
-            url: convertAttachmentUrl(logo.url),
-            width: logo.width,
-            height: logo.height,
+          images: logoPage.logoImages.map((logo) => ({
+            url: convertAttachmentUrl(logo.image.url),
+            width: logo.image.width,
+            height: logo.image.height,
           })),
         }}
       />
@@ -46,8 +46,8 @@ const LogoPage: NextPage<LogoPageProps> = ({ logoPage }) => {
 
       <section className='container py-20 lg:py-[120px]'>
         <div className='grid grid-cols-1 gap-6 min-[560px]:grid-cols-2 md:grid-cols-3'>
-          {logoPage.logos.map((logo) => {
-            return <LogoCard logo={logo} key={logo.id} />;
+          {logoPage.logoImages.map((logo) => {
+            return <LogoCard logo={logo.image} key={logo.id} />;
           })}
         </div>
       </section>

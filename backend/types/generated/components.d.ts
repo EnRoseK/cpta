@@ -71,6 +71,16 @@ export interface HomeCta extends Schema.Component {
   };
 }
 
+export interface LogoLogo extends Schema.Component {
+  collectionName: 'components_logo_logo';
+  info: {
+    displayName: '\u041B\u043E\u0433\u043E';
+  };
+  attributes: {
+    image: Attribute.Media & Attribute.Required;
+  };
+}
+
 export interface MenuDropdown extends Schema.Component {
   collectionName: 'components_menu_dropdowns';
   info: {
@@ -176,6 +186,7 @@ declare module '@strapi/types' {
       'faq.question': FaqQuestion;
       'general.bank-account': GeneralBankAccount;
       'home.cta': HomeCta;
+      'logo.logo': LogoLogo;
       'menu.dropdown': MenuDropdown;
       'menu.mega-menu-item': MenuMegaMenuItem;
       'menu.mega-menu': MenuMegaMenu;
