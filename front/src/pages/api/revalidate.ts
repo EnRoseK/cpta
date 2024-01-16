@@ -24,6 +24,8 @@ const REVALIDATE_MAP: { [key: string]: string[] } = {
   'tax-analyst': ['/tax-analysts'],
   'tax-analysts-page': ['/tax-analysts'],
   'tax-specialists-page': ['/tax-specialists'],
+  'exam-result-page': ['/exam-results'],
+  'rules-page': ['/rules-and-regulations'],
 };
 
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
