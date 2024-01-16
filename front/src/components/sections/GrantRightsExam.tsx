@@ -1,4 +1,8 @@
-import React, { FC } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { IGrantRightExam } from '@/interfaces';
+import { convertAttachmentUrl, convertDateToString } from '@/utils';
+import React, { FC, useEffect, useState } from 'react';
+import readXlsxFile, { Row } from 'read-excel-file';
 
 const tableHeaders = [
   {
@@ -21,21 +25,95 @@ const tableHeaders = [
   },
 ];
 
-export const GrantRightsExam: FC = () => {
+const returnDataRows = async (url: string) => {
+  const rows = await fetch(convertAttachmentUrl(url))
+    .then((res) => res.blob())
+    .then((res) => readXlsxFile(res));
+
+  return rows.filter((row) => typeof row[0] === 'number');
+};
+
+interface GrantRightsExamProps {
+  grantRightsExam: IGrantRightExam;
+  search: string;
+  didSearch: boolean;
+}
+
+interface ExamResult {
+  firstName: string;
+  lastName: string;
+  idNumber: string;
+  registrationNumber: string;
+  region: string;
+  taxRegistration: string;
+  taxRegPower: string;
+  taxTheory: string;
+  taxTheoryPower: string;
+  law: string;
+  lawPower: string;
+  stous: string;
+  stousPower: string;
+}
+
+export const GrantRightsExam: FC<GrantRightsExamProps> = ({ grantRightsExam, search, didSearch }) => {
+  const [examResults, setExamResults] = useState<ExamResult[]>([]);
+  const [displayResults, setDisplayResults] = useState<ExamResult[]>([]);
+
+  useEffect(() => {
+    const getRowsFromFiles = async () => {
+      let rows: Row[] = [];
+
+      for (const file of grantRightsExam.results) {
+        const res = await returnDataRows(file.excelFile.url);
+
+        rows = [...rows, ...res];
+      }
+
+      setExamResults(
+        rows.map((row) => ({
+          firstName: row[2]?.toString(),
+          lastName: row[1]?.toString(),
+          idNumber: row[3]?.toString(),
+          registrationNumber: row[4]?.toString(),
+          region: row[5]?.toString(),
+          taxRegistration: row[6]?.toString(),
+          taxRegPower: row[7]?.toString(),
+          taxTheory: row[8]?.toString(),
+          taxTheoryPower: row[9]?.toString(),
+          law: row[10]?.toString(),
+          lawPower: row[11]?.toString(),
+          stous: row[12]?.toString(),
+          stousPower: row[13]?.toString(),
+        })),
+      );
+    };
+
+    getRowsFromFiles();
+  }, []);
+
+  useEffect(() => {
+    if (didSearch) {
+      setDisplayResults(examResults.filter((res) => res.idNumber.toLowerCase() === search.toLowerCase()));
+    } else {
+      setDisplayResults([]);
+    }
+  }, [didSearch]);
+
   return (
     <>
-      <div className='flex items-center justify-end'>
-        <span className='mb-10 block max-w-[700px] text-end text-base italic text-description'>
-          Татварын мэргэшсэн зөвлөхөд эрх олгох, сунгах шалгалт авах комиссын бүрэлдэхүүний 2023 оны 12 сарын 22 -ны
-          өдрийн 009 тоот тогтоолын хоёрдугаар хавсралт{' '}
-        </span>
-      </div>
+      {grantRightsExam?.subTitle && (
+        <div className='flex items-center justify-end'>
+          <span className='mb-10 block max-w-[700px] text-end text-base italic text-description'>
+            {grantRightsExam.subTitle}
+          </span>
+        </div>
+      )}
 
-      <h3 className='mb-5 text-center text-xl text-dark'>
-        Татварын мэргэшсэн зөвлөхийн эрх олгох шалгалтад бүртгүүлсэн нягтлан бодогчдын дүнгийн жагсаалт
-      </h3>
+      {grantRightsExam?.title && <h3 className='mb-5 text-center text-xl text-dark'>{grantRightsExam.title}</h3>}
 
-      <h2 className='mb-10 text-center text-2xl text-dark'>/2023.12.22/</h2>
+      {grantRightsExam?.date && (
+        <h2 className='mb-10 text-center text-2xl text-dark'>{convertDateToString(new Date(grantRightsExam.date))}</h2>
+      )}
 
       <div className='relative overflow-x-auto sm:rounded-lg'>
         <table className='w-full text-left text-base text-dark'>
@@ -51,38 +129,48 @@ export const GrantRightsExam: FC = () => {
             </tr>
           </thead>
           <tbody>
-            {/* {clients.map((client, index) => {
+            {displayResults.map((examResult, index) => {
               return (
                 <tr
-                  key={client.id}
+                  key={index}
                   className='border-b border-b-dark/10 odd:bg-white even:bg-description/10 hover:bg-description/10'
                 >
-                  <td className='px-6 py-4'>{index + 1}</td>
                   <th scope='row' className='whitespace-nowrap px-6 py-4 font-medium text-dark '>
-                    {client.name}
+                    {examResult.registrationNumber}
                   </th>
-                  <td className='px-6 py-4'>{client.expirationDate}</td>
-                  <td className='px-6 py-4'>{client.ceoName}</td>
+                  <td className='px-6 py-4'>{examResult.region}</td>
                   <td className='px-6 py-4'>
-                    {client.phoneOne}
-                    {client.phoneTwo && <>, {client.phoneTwo}</>}
+                    {examResult.taxRegistration}
+                    {examResult.taxRegPower && Number(examResult.taxRegPower) > 0 && (
+                      <sup>{examResult.taxRegPower}</sup>
+                    )}
                   </td>
                   <td className='px-6 py-4'>
-                    {client.emailOne}
-                    {client.emailTwo && <>, {client.emailTwo}</>}
+                    {examResult.taxTheory}
+                    {examResult.taxTheoryPower && Number(examResult.taxTheoryPower) > 0 && (
+                      <sup>{examResult.taxTheoryPower}</sup>
+                    )}
                   </td>
-                  <td className='px-6 py-4'>{client.address}</td>
+                  <td className='px-6 py-4'>
+                    {examResult.law}
+                    {examResult.lawPower && Number(examResult.lawPower) > 0 && <sup>{examResult.lawPower}</sup>}
+                  </td>
+                  <td className='px-6 py-4'>
+                    {examResult.stous}
+                    {examResult.stousPower && Number(examResult.stousPower) > 0 && <sup>{examResult.stousPower}</sup>}
+                  </td>
                 </tr>
               );
             })}
 
-            {clients.length === 0 && (
+            {displayResults.length === 0 && (
               <tr className='border-b border-b-dark/10 odd:bg-white even:bg-description/10 hover:bg-description/10'>
-                <th colSpan={7} scope='row' className='whitespace-nowrap px-6 py-4 text-center font-medium text-dark'>
-                  {currentLocale === 'mn' ? 'Илэрц олдсонгүй' : 'No record found'}
+                <th colSpan={6} scope='row' className='whitespace-nowrap px-6 py-4 text-center font-medium text-dark'>
+                  {didSearch && 'Илэрц олдсонгүй'}
+                  {!didSearch && 'Та өөрийн регистрийн дугаараа оруулан хайлт хийнэ үү!'}
                 </th>
               </tr>
-            )} */}
+            )}
           </tbody>
         </table>
       </div>

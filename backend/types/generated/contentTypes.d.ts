@@ -1450,6 +1450,7 @@ export interface ApiExamResultPageExamResultPage extends Schema.SingleType {
     singularName: 'exam-result-page';
     pluralName: 'exam-result-pages';
     displayName: '\u0428\u0430\u043B\u0433\u0430\u043B\u0442\u044B\u043D \u0434\u04AF\u043D \u0445\u0443\u0443\u0434\u0430\u0441';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -1468,6 +1469,27 @@ export interface ApiExamResultPageExamResultPage extends Schema.SingleType {
         };
       }>;
     pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    grantRightExamSection: Attribute.Component<'result.erh-olgoh-shalgaltyn-d-n'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    challengeExamSection: Attribute.Component<'result.soril-shalgaltyn-d-n'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    licenseExtendSection: Attribute.Component<'result.erh-sungah-shalgaltyn-d-n'> &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

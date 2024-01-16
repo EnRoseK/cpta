@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_result_erh_sungah_shalgaltyn_d_n",
+  "info": {
+    "displayName": "Эрх сунгах шалгалтын дүн"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "leftTitleOne": {
+      "type": "string"
+    },
+    "leftTitleTwo": {
+      "type": "string"
+    },
+    "rightTitle": {
+      "type": "string"
+    },
+    "picture": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

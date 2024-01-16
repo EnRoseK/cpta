@@ -4,7 +4,8 @@
   "info": {
     "singularName": "exam-result-page",
     "pluralName": "exam-result-pages",
-    "displayName": "Шалгалтын дүн хуудас"
+    "displayName": "Шалгалтын дүн хуудас",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -31,6 +32,39 @@
         }
       },
       "type": "text"
+    },
+    "grantRightExamSection": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "result.erh-olgoh-shalgaltyn-d-n",
+      "required": true
+    },
+    "challengeExamSection": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "result.soril-shalgaltyn-d-n",
+      "required": true
+    },
+    "licenseExtendSection": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "result.erh-sungah-shalgaltyn-d-n",
+      "required": true
     }
   }
 }

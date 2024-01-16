@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_result_erh_olgoh_shalgaltyn_d_n",
+  "info": {
+    "displayName": "Эрх олгох шалгалтын дүн",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "subTitle": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "date": {
+      "type": "date"
+    },
+    "results": {
+      "type": "component",
+      "repeatable": true,
+      "component": "result.excel-file"
+    }
+  }
+}

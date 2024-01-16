@@ -115,6 +115,58 @@ export interface MenuMenuItem extends Schema.Component {
   };
 }
 
+export interface ResultErhOlgohShalgaltynDN extends Schema.Component {
+  collectionName: 'components_result_erh_olgoh_shalgaltyn_d_n';
+  info: {
+    displayName: '\u042D\u0440\u0445 \u043E\u043B\u0433\u043E\u0445 \u0448\u0430\u043B\u0433\u0430\u043B\u0442\u044B\u043D \u0434\u04AF\u043D';
+    description: '';
+  };
+  attributes: {
+    subTitle: Attribute.String;
+    title: Attribute.String;
+    date: Attribute.Date;
+    results: Attribute.Component<'result.excel-file', true>;
+  };
+}
+
+export interface ResultErhSungahShalgaltynDN extends Schema.Component {
+  collectionName: 'components_result_erh_sungah_shalgaltyn_d_n';
+  info: {
+    displayName: '\u042D\u0440\u0445 \u0441\u0443\u043D\u0433\u0430\u0445 \u0448\u0430\u043B\u0433\u0430\u043B\u0442\u044B\u043D \u0434\u04AF\u043D';
+  };
+  attributes: {
+    title: Attribute.String;
+    leftTitleOne: Attribute.String;
+    leftTitleTwo: Attribute.String;
+    rightTitle: Attribute.String;
+    picture: Attribute.Media;
+  };
+}
+
+export interface ResultExcelFile extends Schema.Component {
+  collectionName: 'components_result_excel_files';
+  info: {
+    displayName: 'Excel file';
+  };
+  attributes: {
+    excelFile: Attribute.Media;
+  };
+}
+
+export interface ResultSorilShalgaltynDN extends Schema.Component {
+  collectionName: 'components_result_soril_shalgaltyn_d_n';
+  info: {
+    displayName: '\u0421\u043E\u0440\u0438\u043B \u0448\u0430\u043B\u0433\u0430\u043B\u0442\u044B\u043D \u0434\u04AF\u043D';
+    description: '';
+  };
+  attributes: {
+    subTitle: Attribute.String;
+    title: Attribute.String;
+    results: Attribute.Component<'result.excel-file', true>;
+    date: Attribute.Date;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -128,6 +180,10 @@ declare module '@strapi/types' {
       'menu.mega-menu-item': MenuMegaMenuItem;
       'menu.mega-menu': MenuMegaMenu;
       'menu.menu-item': MenuMenuItem;
+      'result.erh-olgoh-shalgaltyn-d-n': ResultErhOlgohShalgaltynDN;
+      'result.erh-sungah-shalgaltyn-d-n': ResultErhSungahShalgaltynDN;
+      'result.excel-file': ResultExcelFile;
+      'result.soril-shalgaltyn-d-n': ResultSorilShalgaltynDN;
     }
   }
 }

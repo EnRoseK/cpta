@@ -8,3 +8,4 @@ export * from './UnverifiedClients';
 export * from './GroupQuestions';
 export * from './GrantRightsExam';
 export * from './ChallengeExam';
+export * from './LicenseExtendExam';

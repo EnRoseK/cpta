@@ -1,12 +1,12 @@
 import { getExamResultsPage } from '@/api/services';
 import { Dropdown, PageHeader, SearchInput } from '@/components/global';
-import { ChallengeExam, GrantRightsExam } from '@/components/sections';
+import { ChallengeExam, GrantRightsExam, LicenseExtendExam } from '@/components/sections';
 import { siteName } from '@/constants';
 import { useLocale } from '@/hooks';
 import { IExamResultsPage } from '@/interfaces';
 import { GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface ExamResultsPageProps {
   examResultsPage: IExamResultsPage;
@@ -27,8 +27,20 @@ const ExamResultsPage: NextPage<ExamResultsPageProps> = ({ examResultsPage }) =>
 
   const [search, setSearch] = useState<string>('');
   const [selectedExam, setSelectedExam] = useState<string>('grant-rights');
+  const [didSearch, setDidSearch] = useState<boolean>(false);
 
-  const onSearchSubmit = () => {};
+  const onSearchSubmit = () => {
+    if (search) {
+      setDidSearch(true);
+    } else {
+      setDidSearch(false);
+    }
+  };
+
+  useEffect(() => {
+    setDidSearch(false);
+    setSearch('');
+  }, [selectedExam]);
 
   return (
     <>
@@ -67,8 +79,19 @@ const ExamResultsPage: NextPage<ExamResultsPageProps> = ({ examResultsPage }) =>
           />
         </div>
 
-        {selectedExam === 'grant-rights' && <GrantRightsExam />}
-        {selectedExam === 'challenge' && <ChallengeExam />}
+        {selectedExam === 'grant-rights' && (
+          <GrantRightsExam
+            grantRightsExam={examResultsPage.grantRightExamSection}
+            search={search}
+            didSearch={didSearch}
+          />
+        )}
+        {selectedExam === 'challenge' && (
+          <ChallengeExam challengeExam={examResultsPage.challengeExamSection} search={search} didSearch={didSearch} />
+        )}
+        {selectedExam === 'license-extend' && (
+          <LicenseExtendExam licenseExtendExam={examResultsPage.licenseExtendSection} />
+        )}
       </section>
     </>
   );

@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_result_soril_shalgaltyn_d_n",
+  "info": {
+    "displayName": "Сорил шалгалтын дүн",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "subTitle": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "results": {
+      "type": "component",
+      "repeatable": true,
+      "component": "result.excel-file"
+    },
+    "date": {
+      "type": "date"
+    }
+  }
+}

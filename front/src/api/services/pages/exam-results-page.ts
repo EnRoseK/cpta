@@ -6,6 +6,16 @@ import { convertApiUrl } from '@/utils';
 export const getExamResultsPage = async ({ locale }: QueryFilters) => {
   const paramaters: QueryParamaters = {
     locale,
+    populate: [
+      'grantRightExamSection',
+      'challengeExamSection',
+      'grantRightExamSection.results',
+      'challengeExamSection.results',
+      'grantRightExamSection.results.excelFile',
+      'challengeExamSection.results.excelFile',
+      'licenseExtendSection',
+      'licenseExtendSection.picture',
+    ],
   };
 
   return await axiosInstance
