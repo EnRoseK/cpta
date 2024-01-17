@@ -95,12 +95,12 @@ const config: Config = {
           '100%': { opacity: '0', transform: 'translateY(100%)' },
         },
         collapseOpen: {
-          '0%': { opacity: '0', 'max-height': '0' },
-          '100%': { opacity: '1', 'max-height': '200px' },
+          '0%': { 'grid-template-rows': '0fr' },
+          '100%': { 'grid-template-rows': '1fr' },
         },
         collapseClose: {
-          '0%': { opacity: '1', 'max-height': '200px' },
-          '100%': { opacity: '0', 'max-height': '0' },
+          '0%': { 'grid-template-rows': '1fr' },
+          '100%': { 'grid-template-rows': '0fr' },
         },
         drawerOpen: {
           '0%': { transform: 'translateX(100%)' },

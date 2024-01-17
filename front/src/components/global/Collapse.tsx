@@ -40,9 +40,11 @@ export const Collapse: FC<CollapseProps> = ({ title, content, show, onClick }) =
       {renderContent && (
         <div
           onAnimationEnd={onAnimationEnd}
-          className={classNames({ 'animate-collapseOpen': showContent, 'animate-collapseClose': !showContent })}
+          className={classNames('grid', { 'animate-collapseOpen': showContent, 'animate-collapseClose': !showContent })}
         >
-          <span className='inline-block pt-4 text-base leading-[30px] text-description'>{content}</span>
+          <div className='overflow-hidden'>
+            <span className='inline-block pt-4 text-base leading-[30px] text-description'>{content}</span>
+          </div>
         </div>
       )}
     </div>
