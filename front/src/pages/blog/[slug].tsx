@@ -124,7 +124,7 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) =
             </div>
 
             <span className='mb-4 block text-date text-description'>
-              {convertDateToString(new Date(blog.createdAt))}
+              {convertDateToString(new Date(blog.date || blog.createdAt))}
             </span>
 
             <h1 className='mb-5 text-2xl font-bold normal-case text-dark min-[400px]:text-3xl min-[400px]:leading-none'>

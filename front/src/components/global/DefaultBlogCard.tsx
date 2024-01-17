@@ -39,7 +39,9 @@ export const DefaultBlogCard: FC<DefaultBlogCardProps> = ({ blog }) => {
       </Link>
 
       <div className='bg-white p-[30px]'>
-        <span className='mb-4 block text-date text-description'>{convertDateToString(new Date(blog.createdAt))}</span>
+        <span className='mb-4 block text-date text-description'>
+          {convertDateToString(new Date(blog.date || blog.createdAt))}
+        </span>
         <Link
           href={moreUrl}
           className='mb-5 block text-2xl font-bold text-dark hover:text-primary min-[400px]:text-3xl min-[400px]:leading-none'

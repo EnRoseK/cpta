@@ -80,6 +80,14 @@
       },
       "type": "string",
       "required": true
+    },
+    "date": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "date"
     }
   }
 }

@@ -37,7 +37,7 @@ export const GridBlogCard: FC<GridBlogCardProps> = ({ blog }) => {
 
       <div className='flex flex-1 flex-col justify-between bg-white p-7'>
         <span className='mb-3 block text-date normal-case text-description'>
-          {convertDateToString(new Date(blog.createdAt))}
+          {convertDateToString(new Date(blog.date || blog.createdAt))}
         </span>
 
         <Link

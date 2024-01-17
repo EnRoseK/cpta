@@ -19,4 +19,5 @@ export interface IBlog {
   thumbnail: IAttachment;
   locale: string;
   category: IBlogCategory;
+  date?: string;
 }
