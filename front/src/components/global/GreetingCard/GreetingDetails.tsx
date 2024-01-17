@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import React, { FC } from 'react';
 import { Button } from '..';
+import { useLocale } from '@/hooks';
+import { close, sincerely } from '@/constants';
 
 interface GreetingDetailsProps {
   closeHandler: () => void;
@@ -13,6 +15,7 @@ interface GreetingDetailsProps {
 }
 
 export const GreetingDetails: FC<GreetingDetailsProps> = ({ closeHandler, show, onAnimationEnd, greeting }) => {
+  const { currentLocale } = useLocale();
   const content = parseMarkDown(greeting.content);
 
   return (
@@ -41,13 +44,13 @@ export const GreetingDetails: FC<GreetingDetailsProps> = ({ closeHandler, show, 
           <div className='col-span-1 flex flex-col justify-between sm:col-span-2'>
             <div className='blog-details mb-2' dangerouslySetInnerHTML={{ __html: content }}></div>
             <p className='mb-5 text-end text-base font-normal italic leading-[30px] text-description'>
-              <span className='font-medium text-dark'>Хүндэтгэсэн: </span> {greeting.title} <br /> {greeting.lastName}{' '}
-              <span className='uppercase'>{greeting.firstName}</span>
+              <span className='font-medium text-dark'>{sincerely[currentLocale! as 'mn' | 'en']}: </span>{' '}
+              {greeting.title} <br /> {greeting.lastName} <span className='uppercase'>{greeting.firstName}</span>
             </p>
 
             <div className='self-end'>
               <Button size={'small'} variant='gray' onClick={closeHandler}>
-                Хаах
+                {close[currentLocale! as 'mn' | 'en']}
               </Button>
             </div>
           </div>

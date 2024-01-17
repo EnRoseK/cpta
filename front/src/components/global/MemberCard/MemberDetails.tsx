@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import { IHonoraryMember } from '@/interfaces';
 import Image from 'next/image';
 import { convertAttachmentUrl } from '@/utils';
+import { useLocale } from '@/hooks';
+import { close } from '@/constants';
 
 interface MemberDetailsProps {
   closeHandler: () => void;
@@ -13,6 +15,8 @@ interface MemberDetailsProps {
 }
 
 export const MemberDetails: FC<MemberDetailsProps> = ({ closeHandler, show, onAnimationEnd, honoraryMember }) => {
+  const { currentLocale } = useLocale();
+
   return (
     <div className='fixed inset-0 z-[1000] flex items-center justify-center'>
       <div
@@ -42,7 +46,7 @@ export const MemberDetails: FC<MemberDetailsProps> = ({ closeHandler, show, onAn
             </div>
 
             <Button variant='gray' size={'small'} onClick={closeHandler}>
-              Хаах
+              {close[currentLocale! as 'mn' | 'en']}
             </Button>
           </div>
         </div>

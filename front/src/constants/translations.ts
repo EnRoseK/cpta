@@ -22,3 +22,13 @@ export const seeMore = {
   mn: 'Бүгдийг харах',
   en: 'See more',
 };
+
+export const close = {
+  mn: 'Хаах',
+  en: 'Close',
+};
+
+export const sincerely = {
+  mn: 'Хүндэтгэсэн',
+  en: 'Sincerely',
+};

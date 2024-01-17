@@ -3,14 +3,16 @@ import Image from 'next/image';
 import React, { FC, useState } from 'react';
 import { Button } from '..';
 import { convertAttachmentUrl } from '@/utils';
-import { useAnimation, useStopScroll } from '@/hooks';
+import { useAnimation, useLocale, useStopScroll } from '@/hooks';
 import { GreetingDetails } from './GreetingDetails';
+import { readMore } from '@/constants';
 
 interface GreetingCardProps {
   greeting: IGreeting;
 }
 
 export const GreetingCard: FC<GreetingCardProps> = ({ greeting }) => {
+  const { currentLocale } = useLocale();
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [shouldRender, onAnimationEnd] = useAnimation(showDetails);
 
@@ -38,7 +40,7 @@ export const GreetingCard: FC<GreetingCardProps> = ({ greeting }) => {
 
           <div className='flex justify-center'>
             <Button size={'small'} onClick={() => setShowDetails(true)} variant='gray'>
-              Дэлгэрэнгүй
+              {readMore[currentLocale! as 'mn' | 'en']}
             </Button>
           </div>
         </div>

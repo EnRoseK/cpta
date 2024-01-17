@@ -1,16 +1,18 @@
 import React, { FC, useState } from 'react';
 import { Button } from '..';
 import { MemberDetails } from './MemberDetails';
-import { useAnimation, useStopScroll } from '@/hooks';
+import { useAnimation, useLocale, useStopScroll } from '@/hooks';
 import { IHonoraryMember } from '@/interfaces';
 import Image from 'next/image';
 import { convertAttachmentUrl } from '@/utils';
+import { readMore } from '@/constants';
 
 interface MemberCardProps {
   honoraryMember: IHonoraryMember;
 }
 
 export const MemberCard: FC<MemberCardProps> = ({ honoraryMember }) => {
+  const { currentLocale } = useLocale();
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [shouldRender, onAnimationEnd] = useAnimation(showDetails);
 
@@ -36,7 +38,7 @@ export const MemberCard: FC<MemberCardProps> = ({ honoraryMember }) => {
 
           <div className='flex justify-center'>
             <Button onClick={() => setShowDetails(true)} variant='gray' size={'small'}>
-              Дэлгэрэнгүй
+              {readMore[currentLocale! as 'mn' | 'en']}
             </Button>
           </div>
         </div>

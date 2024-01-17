@@ -98,6 +98,15 @@
   .job-details ul {
     @apply mb-5 list-disc pl-5 text-base font-normal leading-[30px] text-description;
   }
+
+  .about-us__vision-content ol,
+  .about-us__vision-content ul {
+    @apply group-hover:text-white;
+  }
+
+  .blog-details a {
+    @apply text-primary hover:underline;
+  }
 }
 
 .loading-body {

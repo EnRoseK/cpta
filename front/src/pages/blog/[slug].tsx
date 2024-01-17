@@ -75,6 +75,15 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) =
     ref.current?.load();
   }, [blog.id]);
 
+  useEffect(() => {
+    const links = document.querySelectorAll('.blog-details a');
+    for (let i = 0; i < links.length; i++) {
+      if ((links[i] as HTMLAnchorElement).hostname != window.location.hostname) {
+        (links[i] as HTMLAnchorElement).target = '_blank';
+      }
+    }
+  }, []);
+
   return (
     <>
       <NextSeo
