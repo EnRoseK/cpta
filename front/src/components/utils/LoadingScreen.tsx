@@ -14,13 +14,7 @@ export const LoadingScreen: FC<LoadingScreenProps> = ({ show, onAnimationEnd }) 
     >
       <div className='loading-container'>
         <div className='loading-text'>
-          <span>L</span>
-          <span>O</span>
-          <span>A</span>
-          <span>D</span>
-          <span>I</span>
-          <span>N</span>
-          <span>G</span>
+          <span>татварын мэргэшсэн зөвлөх үйлчилгээ монголд - 20 жил</span>
         </div>
       </div>
     </div>

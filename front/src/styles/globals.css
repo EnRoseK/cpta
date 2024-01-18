@@ -124,11 +124,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: radial-gradient(
-    circle farthest-corner at 10% 20%,
-    rgba(0, 152, 155, 1) 0.1%,
-    rgba(0, 94, 120, 1) 94.2%
-  );
+  background-image: radial-gradient(circle farthest-corner at 10% 20%, rgb(49, 35, 96) 0.1%, rgb(22, 8, 66) 94.2%);
   background-size: 100%;
   overflow: hidden;
   z-index: 2000;
@@ -136,7 +132,7 @@
 
 .loading-container {
   width: 100%;
-  max-width: 520px;
+  max-width: 1020px;
   text-align: center;
   color: #fff;
   position: relative;
@@ -182,8 +178,8 @@
 
 .loading-text {
   font-size: 5vw;
-  line-height: 64px;
-  letter-spacing: 10px;
+  line-height: 1.2;
+  letter-spacing: 0px;
   margin-bottom: 32px;
   display: flex;
   justify-content: space-evenly;
@@ -196,6 +192,7 @@
   display: inline-block;
   opacity: 0;
   text-shadow: 0px 2px 10px rgba(46, 74, 81, 0.3);
+  text-transform: uppercase;
 }
 
 .loading-text span:nth-child(1) {

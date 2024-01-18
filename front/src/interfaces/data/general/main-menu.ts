@@ -3,9 +3,6 @@ export interface IMainMenuItem {
   priority: number;
   title: string;
   link: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
   locale: string;
   child: (IDropdownMenu | IMegaMenu)[];
 }

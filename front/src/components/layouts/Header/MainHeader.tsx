@@ -1,5 +1,5 @@
 import { Button } from '@/components/global';
-import { useAnimation, useLocale, useStopScroll } from '@/hooks';
+import { useAnimation, useGlobalContext, useLocale, useStopScroll } from '@/hooks';
 import { Icons } from '@/libs';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,6 +13,7 @@ export const MainHeader: FC = () => {
   const { currentLocale } = useLocale();
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
   const [renderMobileMenu, onAnimationEnd] = useAnimation(showMobileMenu);
+  const { topMenuItems } = useGlobalContext();
 
   useEffect(() => {
     router.events.on('routeChangeStart', () => {
@@ -48,6 +49,20 @@ export const MainHeader: FC = () => {
                 {siteName[currentLocale! as 'mn' | 'en']}
               </span>
             </Link>
+
+            <div className='hidden items-center gap-6 lg:flex'>
+              {topMenuItems.map((menuItem) => {
+                return (
+                  <Link
+                    key={menuItem.id}
+                    href={menuItem.link}
+                    className='text-base font-medium uppercase text-primary hover:underline'
+                  >
+                    {menuItem.title}
+                  </Link>
+                );
+              })}
+            </div>
 
             <div className='hidden lg:block'>
               <Button newTab asLink href='https://members.cpta.mn'>

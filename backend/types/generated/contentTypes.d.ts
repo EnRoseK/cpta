@@ -3525,6 +3525,67 @@ export interface ApiTaxSpecialistsPageTaxSpecialistsPage
   };
 }
 
+export interface ApiTopMenuTopMenu extends Schema.CollectionType {
+  collectionName: 'top_menus';
+  info: {
+    singularName: 'top-menu';
+    pluralName: 'top-menus';
+    displayName: '\u0414\u044D\u044D\u0434 \u043C\u0435\u043D\u044E';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    link: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    priority: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::top-menu.top-menu',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::top-menu.top-menu',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::top-menu.top-menu',
+      'oneToMany',
+      'api::top-menu.top-menu'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiTranslationTranslation extends Schema.CollectionType {
   collectionName: 'translations';
   info: {
@@ -3787,6 +3848,7 @@ declare module '@strapi/types' {
       'api::tax-analyst.tax-analyst': ApiTaxAnalystTaxAnalyst;
       'api::tax-analysts-page.tax-analysts-page': ApiTaxAnalystsPageTaxAnalystsPage;
       'api::tax-specialists-page.tax-specialists-page': ApiTaxSpecialistsPageTaxSpecialistsPage;
+      'api::top-menu.top-menu': ApiTopMenuTopMenu;
       'api::translation.translation': ApiTranslationTranslation;
       'api::translations-category.translations-category': ApiTranslationsCategoryTranslationsCategory;
       'api::translations-page.translations-page': ApiTranslationsPageTranslationsPage;

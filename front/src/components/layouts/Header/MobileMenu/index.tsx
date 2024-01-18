@@ -15,7 +15,7 @@ interface MobileMenuProps {
 }
 
 export const MobileMenu: FC<MobileMenuProps> = ({ show, onAnimationEnd, closeHandler }) => {
-  const { generalInfo, mainMenuItems } = useGlobalContext();
+  const { generalInfo, mainMenuItems, topMenuItems } = useGlobalContext();
   const { currentLocale } = useLocale();
 
   return (
@@ -47,6 +47,22 @@ export const MobileMenu: FC<MobileMenuProps> = ({ show, onAnimationEnd, closeHan
         <div className='flex-1 overflow-y-auto p-10'>
           <nav>
             <ul>
+              {topMenuItems.map((item) => {
+                return (
+                  <MobileMenuItem
+                    key={item.id}
+                    menuItem={{
+                      child: [],
+                      id: item.id,
+                      link: item.link,
+                      locale: item.locale,
+                      title: item.title,
+                      priority: item.priority,
+                    }}
+                  />
+                );
+              })}
+
               {mainMenuItems.map((item, index) => {
                 return <MobileMenuItem key={index} menuItem={item} />;
               })}
