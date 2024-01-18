@@ -5,5 +5,13 @@ export interface ISelfStudy {
   names: string;
   year: string;
   link?: string;
-  newTab: boolean
+  newTab: boolean;
+  category?: ISelfStudyCategory;
+  priority: number;
+}
+
+export interface ISelfStudyCategory {
+  id: number;
+  name: string;
+  slug: string;
 }

@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { getTranslations, getTranslationsPage } from '@/api/services';
+import { getTranslations, getTranslationsCategories, getTranslationsPage } from '@/api/services';
 import { Button, Dropdown, PageHeader, SearchInput } from '@/components/global';
 import { siteName } from '@/constants';
 import { useLocale } from '@/hooks';
-import { ITranslations, ITranslationsPage } from '@/interfaces';
+import { ITranslations, ITranslationsCategory, ITranslationsPage } from '@/interfaces';
 import { GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import { useEffect, useState } from 'react';
@@ -26,6 +26,10 @@ const tableHeaders = [
     en: 'Translated year',
   },
   {
+    mn: 'Ангилал',
+    en: 'Category',
+  },
+  {
     mn: 'Үзэх',
     en: 'Watch',
   },
@@ -34,23 +38,26 @@ const tableHeaders = [
 interface TranslationsPageProps {
   translationsPage: ITranslationsPage;
   translations: ITranslations[];
+  categories: ITranslationsCategory[];
 }
 
 export const getStaticProps: GetStaticProps<TranslationsPageProps> = async ({ locale }) => {
-  const [translationsPageRes, translationsRes] = await Promise.all([
+  const [translationsPageRes, translationsRes, categoriesRes] = await Promise.all([
     getTranslationsPage({ locale: locale as string }),
     getTranslations({ locale: locale as string }),
+    getTranslationsCategories({ locale: locale as string }),
   ]);
 
   return {
     props: {
       translationsPage: translationsPageRes.data,
       translations: translationsRes.data,
+      categories: categoriesRes.data,
     },
   };
 };
 
-const TranslationsPage: NextPage<TranslationsPageProps> = ({ translationsPage, translations }) => {
+const TranslationsPage: NextPage<TranslationsPageProps> = ({ translationsPage, translations, categories }) => {
   const { currentLocale } = useLocale();
   const availableYears = Array.from(new Set(translations.map((translation) => translation.translatedYear)));
   const [displayTranslations, setDisplayTranslations] = useState<ITranslations[]>(translations);
@@ -58,6 +65,7 @@ const TranslationsPage: NextPage<TranslationsPageProps> = ({ translationsPage, t
   const [searchName, setSearchName] = useState<string>('');
   const [searchTranslator, setSearchTranslator] = useState<string>('');
   const [selectedYear, setSelectedYear] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
 
   const filterTranslations = () => {
     let copyTranslations = [...translations];
@@ -80,6 +88,10 @@ const TranslationsPage: NextPage<TranslationsPageProps> = ({ translationsPage, t
       copyTranslations = copyTranslations.filter((trans) => trans.translatedYear === selectedYear);
     }
 
+    if (selectedCategory) {
+      copyTranslations = copyTranslations.filter((trans) => trans.category?.slug === selectedCategory);
+    }
+
     setDisplayTranslations(copyTranslations);
   };
 
@@ -89,7 +101,7 @@ const TranslationsPage: NextPage<TranslationsPageProps> = ({ translationsPage, t
 
   useEffect(() => {
     filterTranslations();
-  }, [selectedYear]);
+  }, [selectedYear, selectedCategory]);
 
   useEffect(() => {
     setSearchName('');
@@ -118,12 +130,11 @@ const TranslationsPage: NextPage<TranslationsPageProps> = ({ translationsPage, t
       <section className='container py-20 lg:py-[120px]'>
         <div className='mb-15 flex flex-col items-start justify-between gap-5 md:flex-row md:items-center'>
           <div className='flex flex-col gap-4 md:flex-row md:items-center'>
-            <Dropdown
-              items={availableYears.map((year) => ({ value: year, label: year }))}
-              placeholder={currentLocale === 'mn' ? 'Оноор хайх' : 'Search by year'}
-              selectedValue={selectedYear}
-              onChangeHandler={setSelectedYear}
-              showAll
+            <SearchInput
+              placeholder={currentLocale === 'mn' ? 'Сэдвээр хайх' : 'Search by name'}
+              value={searchName}
+              onChange={(e) => setSearchName(e.target.value)}
+              onSubmit={filterTranslations}
             />
             <SearchInput
               placeholder={currentLocale === 'mn' ? 'Орчуулагчаар хайх' : 'Search by translators'}
@@ -132,12 +143,23 @@ const TranslationsPage: NextPage<TranslationsPageProps> = ({ translationsPage, t
               onSubmit={filterTranslations}
             />
           </div>
-          <SearchInput
-            placeholder={currentLocale === 'mn' ? 'Сэдвээр хайх' : 'Search by name'}
-            value={searchName}
-            onChange={(e) => setSearchName(e.target.value)}
-            onSubmit={filterTranslations}
-          />
+
+          <div className='flex flex-col gap-4 md:flex-row md:items-center'>
+            <Dropdown
+              items={categories.map((category) => ({ value: category.slug, label: category.name }))}
+              placeholder={currentLocale === 'mn' ? 'Ангилалаар хайх' : 'Search by category'}
+              selectedValue={selectedCategory}
+              onChangeHandler={setSelectedCategory}
+              showAll
+            />
+            <Dropdown
+              items={availableYears.map((year) => ({ value: year, label: year }))}
+              placeholder={currentLocale === 'mn' ? 'Оноор хайх' : 'Search by year'}
+              selectedValue={selectedYear}
+              onChangeHandler={setSelectedYear}
+              showAll
+            />
+          </div>
         </div>
 
         <div className='relative overflow-x-auto sm:rounded-lg'>
@@ -172,6 +194,7 @@ const TranslationsPage: NextPage<TranslationsPageProps> = ({ translationsPage, t
                     </td>
                     <td className='px-6 py-4'>{translation.translators}</td>
                     <td className='px-6 py-4'>{translation.translatedYear}</td>
+                    <td className='px-6 py-4'>{translation.category?.name}</td>
                     <td className='px-6 py-4'>
                       {translation.link && (
                         <Button asLink href={translation.link} newTab={translation.newTab} size='small'>

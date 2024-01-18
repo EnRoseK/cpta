@@ -4,7 +4,8 @@
   "info": {
     "singularName": "tax-analyst",
     "pluralName": "tax-analysts",
-    "displayName": "Татварын шинжээч"
+    "displayName": "Татварын шинжээч",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -16,17 +17,17 @@
   },
   "attributes": {
     "picture": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
-      },
-      "required": true
+      }
     },
     "tmzNumber": {
       "pluginOptions": {
@@ -72,6 +73,25 @@
       },
       "type": "string",
       "required": true
+    },
+    "confirmationNumber": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "priority": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "integer",
+      "required": true,
+      "default": 0
     }
   }
 }

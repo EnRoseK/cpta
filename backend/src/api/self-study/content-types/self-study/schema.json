@@ -4,7 +4,8 @@
   "info": {
     "singularName": "self-study",
     "pluralName": "self-studies",
-    "displayName": "Бие даалтын жагсаалт"
+    "displayName": "Бие даалтын жагсаалт",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -59,6 +60,21 @@
       "type": "boolean",
       "default": true,
       "required": true
+    },
+    "priority": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "integer",
+      "required": true,
+      "default": 0
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::self-study-category.self-study-category"
     }
   }
 }

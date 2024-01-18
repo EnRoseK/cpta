@@ -4,7 +4,8 @@
   "info": {
     "singularName": "research",
     "pluralName": "researchs",
-    "displayName": "Судалгааны жагсаалт"
+    "displayName": "Судалгааны жагсаалт",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -59,6 +60,21 @@
       "type": "boolean",
       "default": true,
       "required": true
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::research-category.research-category"
+    },
+    "priority": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "integer",
+      "required": true,
+      "default": 0
     }
   }
 }

@@ -7,7 +7,6 @@ import { convertAttachmentUrl, parseMarkDown } from '@/utils';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
-import React from 'react';
 
 interface StaticPageProps {
   staticPageInfo: IStaticPage;

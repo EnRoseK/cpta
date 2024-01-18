@@ -1,8 +1,11 @@
 import { useLocale } from '@/hooks';
 import { IClient } from '@/interfaces';
+import { convertAttachmentUrl } from '@/utils';
+import Image from 'next/image';
 import React, { FC } from 'react';
 
 const tableHeaders = [
+  { mn: 'Лого', en: 'Logo' },
   { mn: 'Байгууллагын нэр', en: 'Organization name' },
   { mn: 'Тусгай зөвшөөрлийн хүчинтэй хугацаа', en: 'License expiration date' },
   { mn: 'Захирлын нэр', en: "Director's name" },
@@ -50,6 +53,15 @@ export const VerifiedClients: FC<VerifiedClientsProps> = ({ clients, title, subT
                   className='border-b border-b-dark/10 odd:bg-white even:bg-description/10 hover:bg-description/10'
                 >
                   <td className='px-6 py-4'>{index + 1}</td>
+                  <td className='px-6 py-4'>
+                    <Image
+                      src={convertAttachmentUrl(client.logo.url)}
+                      alt={client.logo.alternativeText || client.name}
+                      width={40}
+                      height={40}
+                      className='block h-10 w-10'
+                    />
+                  </td>
                   <th scope='row' className='whitespace-nowrap px-6 py-4 font-medium text-dark '>
                     {client.name}
                   </th>
@@ -70,7 +82,7 @@ export const VerifiedClients: FC<VerifiedClientsProps> = ({ clients, title, subT
 
             {clients.length === 0 && (
               <tr className='border-b border-b-dark/10 odd:bg-white even:bg-description/10 hover:bg-description/10'>
-                <th colSpan={7} scope='row' className='whitespace-nowrap px-6 py-4 text-center font-medium text-dark'>
+                <th colSpan={8} scope='row' className='whitespace-nowrap px-6 py-4 text-center font-medium text-dark'>
                   {currentLocale === 'mn' ? 'Илэрц олдсонгүй' : 'No record found'}
                 </th>
               </tr>

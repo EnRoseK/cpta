@@ -8,4 +8,6 @@ export interface ITaxAnalyst {
   email: string;
   phone: string;
   picture: IAttachment;
+  confirmationNumber: string;
+  priority: number;
 }

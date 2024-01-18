@@ -5,7 +5,7 @@ import { useLocale } from '@/hooks';
 import { ITaxAnalyst, ITaxAnalystsPage } from '@/interfaces';
 import { GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 interface TaxAnalystsPageProps {
   taxAnalysts: ITaxAnalyst[];
@@ -64,6 +64,10 @@ const TaxAnalystsPage: NextPage<TaxAnalystsPageProps> = ({ taxAnalysts, taxAnaly
     );
   };
 
+  useEffect(() => {
+    setDisplayTaxAnalysts(taxAnalysts);
+  }, [taxAnalysts]);
+
   return (
     <>
       <NextSeo
@@ -118,7 +122,7 @@ const TaxAnalystsPage: NextPage<TaxAnalystsPageProps> = ({ taxAnalysts, taxAnaly
           <div className='col-span-1 md:col-span-2 lg:col-span-4'>
             {displayTaxAnalysts.length > 0 && (
               <div className='mb-15 grid grid-cols-1 gap-x-6 gap-y-[30px] min-[500px]:grid-cols-2 lg:grid-cols-3'>
-                {[...displayTaxAnalysts, ...displayTaxAnalysts, ...displayTaxAnalysts].map((taxAnalyst) => {
+                {displayTaxAnalysts.map((taxAnalyst) => {
                   return <TaxAnalystCard key={taxAnalyst.id} taxAnalyst={taxAnalyst} />;
                 })}
               </div>

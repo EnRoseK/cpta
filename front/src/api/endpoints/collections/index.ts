@@ -12,3 +12,4 @@ export * from './jobs';
 export * from './translations';
 export * from './self-studies';
 export * from './researchs';
+export * from './research-council';

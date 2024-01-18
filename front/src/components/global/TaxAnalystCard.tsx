@@ -32,6 +32,10 @@ export const TaxAnalystCard: FC<TaxAnalystCardProps> = ({ taxAnalyst }) => {
           </span>{' '}
           <br />
           <span>
+            {currentLocale === 'mn' ? 'Батламжийн дугаар' : 'Confirmation number'}: {taxAnalyst.confirmationNumber}
+          </span>
+          <br />
+          <span>
             {currentLocale === 'mn' ? 'И-мэйл' : 'E-mail'}: {taxAnalyst.email}
           </span>{' '}
           <br />

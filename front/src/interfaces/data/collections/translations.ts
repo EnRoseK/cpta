@@ -7,4 +7,12 @@ export interface ITranslations {
   translatedYear: string;
   link?: string;
   newTab: boolean;
+  category?: ITranslationsCategory;
+  priority: number;
+}
+
+export interface ITranslationsCategory {
+  id: number;
+  name: string;
+  slug: string;
 }

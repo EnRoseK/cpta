@@ -9,7 +9,7 @@ export const getPaginatedTaxAnalysts = async ({ locale }: QueryFilters) => {
     pagination: {
       limit: -1,
     },
-    sort: 'createdAt:desc',
+    sort: 'priority',
     populate: ['picture'],
   };
 

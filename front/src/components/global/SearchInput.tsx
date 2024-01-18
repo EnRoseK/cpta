@@ -13,15 +13,15 @@ export const SearchInput: FC<SearchInputProps> = ({ onSubmit, ...rest }) => {
         onSubmit();
       }}
     >
-      <div className='flex min-w-[270px] items-stretch rounded-[5px] border border-gray  focus-within:border-primary'>
+      <div className='relative min-w-[270px] rounded-[5px] border border-gray  focus-within:border-primary'>
         <input
           type='text'
           {...rest}
-          className='flex-1 rounded-s-[5px] px-5 py-4 text-[13px] leading-[10px] text-dark placeholder:text-description'
+          className='w-full rounded-[5px] px-5 py-4 text-[13px] leading-[10px] text-dark placeholder:text-description'
         />
         <button
           type='submit'
-          className='shrink-0 rounded-e-[5px] bg-primary px-4 text-white active:ring active:ring-primary/50'
+          className='absolute bottom-0 right-0 top-0 rounded-e-[5px] bg-primary px-4 text-white active:ring active:ring-primary/50'
         >
           <Icons.CiSearch size={16} />
         </button>

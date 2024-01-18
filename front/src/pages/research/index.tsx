@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { getResearchPage, getResearchs } from '@/api/services';
+import { getResearchCategories, getResearchPage, getResearchs } from '@/api/services';
 import { Button, Dropdown, PageHeader, SearchInput } from '@/components/global';
 import { siteName } from '@/constants';
 import { useLocale } from '@/hooks';
-import { IResearch, IResearchPage } from '@/interfaces';
+import { IResearch, IResearchCategory, IResearchPage } from '@/interfaces';
 import { GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import { useEffect, useState } from 'react';
@@ -12,35 +12,40 @@ const tableHeaders = [
   { mn: 'Судалгааны сэдэв', en: 'Research topic' },
   { mn: 'Нэр', en: 'Name' },
   { mn: 'Он', en: 'Year' },
+  { mn: 'Ангилал', en: 'Category' },
   { mn: 'Үзэх', en: 'Watch' },
 ];
 
 interface ResearchPageProps {
   researchPage: IResearchPage;
   researchs: IResearch[];
+  categories: IResearchCategory[];
 }
 
 export const getStaticProps: GetStaticProps<ResearchPageProps> = async ({ locale }) => {
-  const [researchPageRes, researchsRes] = await Promise.all([
+  const [researchPageRes, researchsRes, categoriesRes] = await Promise.all([
     getResearchPage({ locale: locale as string }),
     getResearchs({ locale: locale as string }),
+    getResearchCategories({ locale: locale as string }),
   ]);
 
   return {
     props: {
       researchPage: researchPageRes.data,
       researchs: researchsRes.data,
+      categories: categoriesRes.data,
     },
   };
 };
 
-const ResearchPage: NextPage<ResearchPageProps> = ({ researchPage, researchs }) => {
+const ResearchPage: NextPage<ResearchPageProps> = ({ researchPage, researchs, categories }) => {
   const { currentLocale } = useLocale();
   const availableYears = Array.from(new Set(researchs.map((research) => research.year)));
 
   const [displayResearchs, setDisplayResearchs] = useState<IResearch[]>(researchs);
 
   const [selectedYear, setSelectedYear] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [searchName, setSearchName] = useState<string>('');
   const [searchTopic, setSearchTopic] = useState<string>('');
 
@@ -61,6 +66,10 @@ const ResearchPage: NextPage<ResearchPageProps> = ({ researchPage, researchs }) 
       copyResearchs = copyResearchs.filter((study) => study.year === selectedYear);
     }
 
+    if (selectedCategory) {
+      copyResearchs = copyResearchs.filter((study) => study.category?.slug === selectedCategory);
+    }
+
     setDisplayResearchs(copyResearchs);
   };
 
@@ -73,7 +82,7 @@ const ResearchPage: NextPage<ResearchPageProps> = ({ researchPage, researchs }) 
 
   useEffect(() => {
     filterResearchs();
-  }, [selectedYear]);
+  }, [selectedYear, selectedCategory]);
 
   return (
     <>
@@ -93,12 +102,11 @@ const ResearchPage: NextPage<ResearchPageProps> = ({ researchPage, researchs }) 
       <section className='container py-20 lg:py-[120px]'>
         <div className='mb-15 flex flex-col items-start justify-between gap-5 md:flex-row md:items-center'>
           <div className='flex flex-col gap-4 md:flex-row md:items-center'>
-            <Dropdown
-              items={availableYears.map((year) => ({ value: year, label: year }))}
-              placeholder={currentLocale === 'mn' ? 'Оноор хайх' : 'Search by year'}
-              selectedValue={selectedYear}
-              onChangeHandler={setSelectedYear}
-              showAll
+            <SearchInput
+              placeholder={currentLocale === 'mn' ? 'Сэдвээр хайх' : 'Search by topic'}
+              value={searchTopic}
+              onChange={(e) => setSearchTopic(e.target.value)}
+              onSubmit={filterResearchs}
             />
             <SearchInput
               placeholder={currentLocale === 'mn' ? 'Нэрээр хайх' : 'Search by name'}
@@ -107,12 +115,24 @@ const ResearchPage: NextPage<ResearchPageProps> = ({ researchPage, researchs }) 
               onSubmit={filterResearchs}
             />
           </div>
-          <SearchInput
-            placeholder={currentLocale === 'mn' ? 'Сэдвээр хайх' : 'Search by topic'}
-            value={searchTopic}
-            onChange={(e) => setSearchTopic(e.target.value)}
-            onSubmit={filterResearchs}
-          />
+
+          <div className='flex flex-col gap-4 md:flex-row md:items-center'>
+            <Dropdown
+              items={categories.map((category) => ({ value: category.slug, label: category.name }))}
+              placeholder={currentLocale === 'mn' ? 'Ангилалаар хайх' : 'Search by category'}
+              selectedValue={selectedCategory}
+              onChangeHandler={setSelectedCategory}
+              showAll
+            />
+
+            <Dropdown
+              items={availableYears.map((year) => ({ value: year, label: year }))}
+              placeholder={currentLocale === 'mn' ? 'Оноор хайх' : 'Search by year'}
+              selectedValue={selectedYear}
+              onChangeHandler={setSelectedYear}
+              showAll
+            />
+          </div>
         </div>
 
         <div className='relative overflow-x-auto sm:rounded-lg'>
@@ -146,6 +166,7 @@ const ResearchPage: NextPage<ResearchPageProps> = ({ researchPage, researchs }) 
                       {research.names}
                     </td>
                     <td className='px-6 py-4'>{research.year}</td>
+                    <td className='px-6 py-4'>{research.category?.name}</td>
 
                     <td className='px-6 py-4'>
                       {research.link && (

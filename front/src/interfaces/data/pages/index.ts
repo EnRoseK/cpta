@@ -18,3 +18,4 @@ export * from './rules-and-regulations-page';
 export * from './translations-page';
 export * from './self-study-page';
 export * from './research-page';
+export * from './research-council-page';

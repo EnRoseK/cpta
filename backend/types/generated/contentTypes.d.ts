@@ -2442,6 +2442,7 @@ export interface ApiResearchResearch extends Schema.CollectionType {
     singularName: 'research';
     pluralName: 'researchs';
     displayName: '\u0421\u0443\u0434\u0430\u043B\u0433\u0430\u0430\u043D\u044B \u0436\u0430\u0433\u0441\u0430\u0430\u043B\u0442';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -2487,6 +2488,19 @@ export interface ApiResearchResearch extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<true>;
+    category: Attribute.Relation<
+      'api::research.research',
+      'oneToOne',
+      'api::research-category.research-category'
+    >;
+    priority: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -2505,6 +2519,202 @@ export interface ApiResearchResearch extends Schema.CollectionType {
       'api::research.research',
       'oneToMany',
       'api::research.research'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiResearchCategoryResearchCategory
+  extends Schema.CollectionType {
+  collectionName: 'research_categories';
+  info: {
+    singularName: 'research-category';
+    pluralName: 'research-categories';
+    displayName: '\u0421\u0443\u0434\u0430\u043B\u0433\u0430\u0430\u043D\u044B \u0430\u043D\u0433\u0438\u043B\u0430\u043B';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<'api::research-category.research-category', 'name'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::research-category.research-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::research-category.research-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::research-category.research-category',
+      'oneToMany',
+      'api::research-category.research-category'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiResearchCouncilResearchCouncil
+  extends Schema.CollectionType {
+  collectionName: 'research_councils';
+  info: {
+    singularName: 'research-council';
+    pluralName: 'research-councils';
+    displayName: '\u0421\u0443\u0434\u0430\u043B\u0433\u0430\u0430\u043D\u044B \u0437\u04E9\u0432\u043B\u04E9\u043B';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    firstName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    lastName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    picture: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    text: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    priority: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::research-council.research-council',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::research-council.research-council',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::research-council.research-council',
+      'oneToMany',
+      'api::research-council.research-council'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiResearchCouncilPageResearchCouncilPage
+  extends Schema.SingleType {
+  collectionName: 'research_council_pages';
+  info: {
+    singularName: 'research-council-page';
+    pluralName: 'research-council-pages';
+    displayName: '\u0421\u0443\u0434\u0430\u043B\u0433\u0430\u0430\u043D\u044B \u0437\u04E9\u0432\u043B\u04E9\u043B \u0445\u0443\u0443\u0434\u0430\u0441';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    pageTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    pageDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::research-council-page.research-council-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::research-council-page.research-council-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::research-council-page.research-council-page',
+      'oneToMany',
+      'api::research-council-page.research-council-page'
     >;
     locale: Attribute.String;
   };
@@ -2632,6 +2842,7 @@ export interface ApiSelfStudySelfStudy extends Schema.CollectionType {
     singularName: 'self-study';
     pluralName: 'self-studies';
     displayName: '\u0411\u0438\u0435 \u0434\u0430\u0430\u043B\u0442\u044B\u043D \u0436\u0430\u0433\u0441\u0430\u0430\u043B\u0442';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -2677,6 +2888,19 @@ export interface ApiSelfStudySelfStudy extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<true>;
+    priority: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    category: Attribute.Relation<
+      'api::self-study.self-study',
+      'oneToOne',
+      'api::self-study-category.self-study-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -2695,6 +2919,63 @@ export interface ApiSelfStudySelfStudy extends Schema.CollectionType {
       'api::self-study.self-study',
       'oneToMany',
       'api::self-study.self-study'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiSelfStudyCategorySelfStudyCategory
+  extends Schema.CollectionType {
+  collectionName: 'self_study_categories';
+  info: {
+    singularName: 'self-study-category';
+    pluralName: 'self-study-categories';
+    displayName: '\u0411\u0438\u0435 \u0434\u0430\u0430\u043B\u0442\u044B\u043D \u0430\u043D\u0433\u0438\u043B\u0430\u043B';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<
+      'api::self-study-category.self-study-category',
+      'name'
+    > &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::self-study-category.self-study-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::self-study-category.self-study-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::self-study-category.self-study-category',
+      'oneToMany',
+      'api::self-study-category.self-study-category'
     >;
     locale: Attribute.String;
   };
@@ -3035,6 +3316,7 @@ export interface ApiTaxAnalystTaxAnalyst extends Schema.CollectionType {
     singularName: 'tax-analyst';
     pluralName: 'tax-analysts';
     displayName: '\u0422\u0430\u0442\u0432\u0430\u0440\u044B\u043D \u0448\u0438\u043D\u0436\u044D\u044D\u0447';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -3087,6 +3369,21 @@ export interface ApiTaxAnalystTaxAnalyst extends Schema.CollectionType {
           localized: false;
         };
       }>;
+    confirmationNumber: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    priority: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -3287,6 +3584,19 @@ export interface ApiTranslationTranslation extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<true>;
+    priority: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<0>;
+    category: Attribute.Relation<
+      'api::translation.translation',
+      'oneToOne',
+      'api::translations-category.translations-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -3305,6 +3615,63 @@ export interface ApiTranslationTranslation extends Schema.CollectionType {
       'api::translation.translation',
       'oneToMany',
       'api::translation.translation'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiTranslationsCategoryTranslationsCategory
+  extends Schema.CollectionType {
+  collectionName: 'translations_categories';
+  info: {
+    singularName: 'translations-category';
+    pluralName: 'translations-categories';
+    displayName: '\u041E\u0440\u0447\u0443\u0443\u043B\u0433\u044B\u043D \u0430\u043D\u0433\u0438\u043B\u0430\u043B';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<
+      'api::translations-category.translations-category',
+      'name'
+    > &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::translations-category.translations-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::translations-category.translations-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::translations-category.translations-category',
+      'oneToMany',
+      'api::translations-category.translations-category'
     >;
     locale: Attribute.String;
   };
@@ -3405,9 +3772,13 @@ declare module '@strapi/types' {
       'api::office-page.office-page': ApiOfficePageOfficePage;
       'api::office-worker.office-worker': ApiOfficeWorkerOfficeWorker;
       'api::research.research': ApiResearchResearch;
+      'api::research-category.research-category': ApiResearchCategoryResearchCategory;
+      'api::research-council.research-council': ApiResearchCouncilResearchCouncil;
+      'api::research-council-page.research-council-page': ApiResearchCouncilPageResearchCouncilPage;
       'api::research-page.research-page': ApiResearchPageResearchPage;
       'api::rules-page.rules-page': ApiRulesPageRulesPage;
       'api::self-study.self-study': ApiSelfStudySelfStudy;
+      'api::self-study-category.self-study-category': ApiSelfStudyCategorySelfStudyCategory;
       'api::self-study-page.self-study-page': ApiSelfStudyPageSelfStudyPage;
       'api::static-page.static-page': ApiStaticPageStaticPage;
       'api::statistic.statistic': ApiStatisticStatistic;
@@ -3417,6 +3788,7 @@ declare module '@strapi/types' {
       'api::tax-analysts-page.tax-analysts-page': ApiTaxAnalystsPageTaxAnalystsPage;
       'api::tax-specialists-page.tax-specialists-page': ApiTaxSpecialistsPageTaxSpecialistsPage;
       'api::translation.translation': ApiTranslationTranslation;
+      'api::translations-category.translations-category': ApiTranslationsCategoryTranslationsCategory;
       'api::translations-page.translations-page': ApiTranslationsPageTranslationsPage;
     }
   }

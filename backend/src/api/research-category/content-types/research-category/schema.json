@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "research_categories",
+  "info": {
+    "singularName": "research-category",
+    "pluralName": "research-categories",
+    "displayName": "Судалгааны ангилал"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    }
+  }
+}

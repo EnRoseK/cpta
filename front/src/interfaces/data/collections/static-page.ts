@@ -8,6 +8,8 @@ export interface IStaticPage {
   pageContent: string;
   locale: string;
   pdfFiles?: IPDFFile[];
+  newSlug: string;
+  localizations: IStaticPage[];
 }
 
 export interface IPDFFile {

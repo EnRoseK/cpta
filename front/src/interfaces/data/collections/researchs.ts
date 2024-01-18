@@ -6,4 +6,13 @@ export interface IResearch {
   year: string;
   link?: string;
   newTab: boolean;
+  category?: IResearchCategory;
+  priority: number;
+}
+
+export interface IResearchCategory {
+  id: number;
+  locale: string;
+  name: string;
+  slug: string;
 }
