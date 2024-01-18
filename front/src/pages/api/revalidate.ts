@@ -28,10 +28,15 @@ const REVALIDATE_MAP: { [key: string]: string[] } = {
   'rules-page': ['/rules-and-regulations'],
   research: ['/research'],
   'research-page': ['/research'],
+  'research-category': ['/research'],
   'self-study': ['/research/self-study'],
   'self-study-page': ['/research/self-study'],
+  'self-stdudy-category': ['/research/self-study'],
   translation: ['/research/translations'],
   'translations-page': ['/research/translations'],
+  'translations-category': ['/research/translations'],
+  'research-council': ['/research/council'],
+  'research-council-page': ['/research/council'],
 };
 
 const handler: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
