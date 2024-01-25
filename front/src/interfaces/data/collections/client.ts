@@ -12,4 +12,5 @@ export interface IClient {
   phoneTwo: string;
   logo: IAttachment;
   isExpired: boolean;
+  website?: string;
 }

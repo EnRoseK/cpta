@@ -977,6 +977,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
         };
       }>;
     date: Attribute.Date &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
@@ -1200,6 +1201,12 @@ export interface ApiClientClient extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<0>;
+    website: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

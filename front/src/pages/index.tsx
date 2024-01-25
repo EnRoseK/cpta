@@ -20,7 +20,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
     getPaginatedBlogs({ locale: locale as string, pageSize: 10, filters: { showOnSlider: { $eq: true } } }),
     getPaginatedBlogs({ locale: locale as string, pageSize: 3 }),
     getStatistics({ locale: locale as string }),
-    getClients({ locale: locale as string, limit: 20, fields: ['id', 'name'] }),
+    getClients({ locale: locale as string, limit: 20, fields: ['id', 'name', 'website'] }),
     getHomePage({ locale: locale as string }),
   ]);
 

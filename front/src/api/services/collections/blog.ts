@@ -24,7 +24,7 @@ export const getPaginatedBlogs = async ({ locale, page = 1, pageSize = 10, filte
     },
     locale,
     populate: ['thumbnail'],
-    sort: 'createdAt:desc',
+    sort: 'date:desc',
   };
 
   if (filters) {

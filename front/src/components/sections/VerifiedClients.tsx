@@ -2,6 +2,7 @@ import { useLocale } from '@/hooks';
 import { IClient } from '@/interfaces';
 import { convertAttachmentUrl } from '@/utils';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { FC } from 'react';
 
 const tableHeaders = [
@@ -63,7 +64,13 @@ export const VerifiedClients: FC<VerifiedClientsProps> = ({ clients, title, subT
                     />
                   </td>
                   <th scope='row' className='whitespace-nowrap px-6 py-4 font-medium text-dark '>
-                    {client.name}
+                    {client.website ? (
+                      <Link href={client.website} target='_blank' className='hover:text-primary'>
+                        {client.name}
+                      </Link>
+                    ) : (
+                      <>{client.name}</>
+                    )}
                   </th>
                   <td className='px-6 py-4'>{client.expirationDate}</td>
                   <td className='px-6 py-4'>{client.ceoName}</td>

@@ -10,8 +10,7 @@ const tableHeaders = [
   { mn: 'ТМЗ-ийн гэрчилгээний дугаар', en: 'License number' },
   { mn: 'Овог', en: 'Lastname' },
   { mn: 'Нэр', en: 'Firstname' },
-  { mn: 'Эрх авсан огноо', en: 'Date of Entitlement' },
-  { mn: 'Эрх дуусах хугацаа', en: 'Expiry date' },
+  { mn: 'Төлөв', en: 'Status' },
 ];
 
 interface TaxSpecialistsPageProps {

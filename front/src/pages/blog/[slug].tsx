@@ -1,18 +1,18 @@
-import { getAllBlogCategories, getBlogBySlug, getBlogSlugs } from '@/api/services';
+import { getBlogBySlug, getBlogSlugs } from '@/api/services';
 import { GridBlogCard } from '@/components/global';
 import { siteName } from '@/constants';
 import { useLocale } from '@/hooks';
-import { IBlog, IBlogCategory } from '@/interfaces';
+import { IBlog } from '@/interfaces';
 import { convertAttachmentUrl, convertDateToString, parseMarkDown } from '@/utils';
 import axios from 'axios';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton } from 'react-share';
 
 interface BlogDetailsPageProps {
   blog: IBlog;
-  categories: IBlogCategory[];
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -27,10 +27,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<BlogDetailsPageProps> = async ({ params, locale }) => {
   try {
-    const [blogRes, categoriesRes] = await Promise.all([
-      getBlogBySlug(params?.slug as string, locale as string),
-      getAllBlogCategories({ locale: locale as string }),
-    ]);
+    const [blogRes] = await Promise.all([getBlogBySlug(params?.slug as string, locale as string)]);
 
     if (blogRes.data.length === 0) {
       throw new Error();
@@ -39,7 +36,6 @@ export const getStaticProps: GetStaticProps<BlogDetailsPageProps> = async ({ par
     return {
       props: {
         blog: blogRes.data[0],
-        categories: categoriesRes.data,
       },
     };
   } catch (error) {
@@ -49,11 +45,12 @@ export const getStaticProps: GetStaticProps<BlogDetailsPageProps> = async ({ par
   }
 };
 
-const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) => {
+const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog }) => {
   const { currentLocale } = useLocale();
   const content = parseMarkDown(blog.content);
   const [relatedBlogs, setRelatedBlogs] = useState<IBlog[]>([]);
   const ref = useRef<HTMLVideoElement>(null);
+  const url = process.env.NEXT_PUBLIC_SITE_URL + (currentLocale === 'mn' ? '' : '/en') + '/blog' + `/${blog.slug}`;
 
   useEffect(() => {
     const fetchRelatedBlogs = async () => {
@@ -98,7 +95,13 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) =
           url: `${process.env.NEXT_PUBLIC_SITE_URL}/${
             currentLocale === 'mn' ? `blog/${blog.slug}` : `en/blog/${blog.slug}`
           }`,
-          images: [],
+          images: [
+            {
+              url: convertAttachmentUrl(blog.thumbnail.url),
+              width: blog.thumbnail.width,
+              height: blog.thumbnail.height,
+            },
+          ],
         }}
       />
 
@@ -144,6 +147,18 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog, categories }) =
               </div>
             )}
           </section>
+        </div>
+
+        <div className='mt-5 flex items-center justify-end gap-2'>
+          <span className='pr-2 text-sm font-medium text-dark'>Хуваалцах: </span>
+
+          <FacebookShareButton url={url} className='hover:opacity-75'>
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+
+          <TwitterShareButton url={url} className='hover:opacity-75'>
+            <TwitterIcon size={32} round />
+          </TwitterShareButton>
         </div>
       </div>
     </>

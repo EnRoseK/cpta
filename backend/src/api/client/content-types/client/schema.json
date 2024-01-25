@@ -118,6 +118,14 @@
       "type": "integer",
       "required": true,
       "default": 0
+    },
+    "website": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string"
     }
   }
 }
