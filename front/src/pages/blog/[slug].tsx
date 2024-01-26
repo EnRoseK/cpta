@@ -136,6 +136,18 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog }) => {
 
             <div className='blog-details' dangerouslySetInnerHTML={{ __html: content }} />
 
+            <div className='mt-5 flex items-center justify-end gap-2'>
+              <span className='pr-2 text-sm font-medium text-dark'>Хуваалцах: </span>
+
+              <FacebookShareButton url={url} className='hover:opacity-75'>
+                <FacebookIcon size={32} round />
+              </FacebookShareButton>
+
+              <TwitterShareButton url={url} className='hover:opacity-75'>
+                <TwitterIcon size={32} round />
+              </TwitterShareButton>
+            </div>
+
             {relatedBlogs.length > 0 && (
               <div className='w-full py-20 lg:py-[120px]'>
                 <h6 className='mb-14 text-sectionTitle font-bold text-dark'>Төстэй мэдээнүүд</h6>
@@ -147,18 +159,6 @@ const BlogDetailsPage: NextPage<BlogDetailsPageProps> = ({ blog }) => {
               </div>
             )}
           </section>
-        </div>
-
-        <div className='mt-5 flex items-center justify-end gap-2'>
-          <span className='pr-2 text-sm font-medium text-dark'>Хуваалцах: </span>
-
-          <FacebookShareButton url={url} className='hover:opacity-75'>
-            <FacebookIcon size={32} round />
-          </FacebookShareButton>
-
-          <TwitterShareButton url={url} className='hover:opacity-75'>
-            <TwitterIcon size={32} round />
-          </TwitterShareButton>
         </div>
       </div>
     </>
