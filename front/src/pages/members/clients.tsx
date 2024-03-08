@@ -42,27 +42,31 @@ const ClientsPage: NextPage<ClientsPageProps> = ({ clients, clientsPage }) => {
   const onSearchSubmit = () => {
     const lowerCaseSearch = search.toLowerCase();
 
-    setVerifiedClients(
-      originalVerifiedClients.filter(
-        (c) =>
-          c.name.toLowerCase().includes(lowerCaseSearch) ||
-          c.emailOne.toLowerCase().includes(lowerCaseSearch) ||
-          c.emailTwo.toLowerCase().includes(lowerCaseSearch) ||
-          c.ceoName.toLocaleLowerCase().includes(lowerCaseSearch) ||
-          c.address.toLowerCase().includes(lowerCaseSearch),
-      ),
-    );
+    if (selectedType === 'verified') {
+      setVerifiedClients(
+        originalVerifiedClients.filter(
+          (c) =>
+            c.name.toLowerCase().includes(lowerCaseSearch) ||
+            c.emailOne.toLowerCase().includes(lowerCaseSearch) ||
+            c.emailTwo?.toLowerCase().includes(lowerCaseSearch) ||
+            c.ceoName.toLocaleLowerCase().includes(lowerCaseSearch) ||
+            c.address.toLowerCase().includes(lowerCaseSearch),
+        ),
+      );
+    }
 
-    setUnverifiedClients(
-      originalUnverifiedClients.filter(
-        (c) =>
-          c.name.toLowerCase().includes(lowerCaseSearch) ||
-          c.emailOne.toLowerCase().includes(lowerCaseSearch) ||
-          c.emailTwo.toLowerCase().includes(lowerCaseSearch) ||
-          c.ceoName.toLocaleLowerCase().includes(lowerCaseSearch) ||
-          c.address.toLowerCase().includes(lowerCaseSearch),
-      ),
-    );
+    if (selectedType === 'unverified') {
+      setUnverifiedClients(
+        originalUnverifiedClients.filter(
+          (c) =>
+            c.name.toLowerCase().includes(lowerCaseSearch) ||
+            c.emailOne.toLowerCase().includes(lowerCaseSearch) ||
+            c.emailTwo?.toLowerCase().includes(lowerCaseSearch) ||
+            c.ceoName.toLocaleLowerCase().includes(lowerCaseSearch) ||
+            c.address.toLowerCase().includes(lowerCaseSearch),
+        ),
+      );
+    }
   };
 
   useEffect(() => {
@@ -72,6 +76,7 @@ const ClientsPage: NextPage<ClientsPageProps> = ({ clients, clientsPage }) => {
   }, [selectedType]);
 
   useEffect(() => {
+    setSearch('');
     setVerifiedClients(clients.filter((c) => !c.isExpired));
     setUnverifiedClients(clients.filter((c) => c.isExpired));
   }, [clients]);
