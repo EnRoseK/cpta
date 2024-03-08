@@ -22,7 +22,7 @@ export const TaxAnalystCard: FC<TaxAnalystCardProps> = ({ taxAnalyst }) => {
           className='h-full w-full object-cover group-hover:scale-105'
         />
       </div>
-      <div className='bg-white p-[30px]'>
+      <div className='bg-white p-6'>
         <h6 className='mb-4 text-xl font-bold leading-normal text-dark'>
           {currentLocale === 'mn' ? (
             <>
