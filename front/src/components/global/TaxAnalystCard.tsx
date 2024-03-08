@@ -24,7 +24,15 @@ export const TaxAnalystCard: FC<TaxAnalystCardProps> = ({ taxAnalyst }) => {
       </div>
       <div className='bg-white p-[30px]'>
         <h6 className='mb-4 text-xl font-bold leading-normal text-dark'>
-          {taxAnalyst.lastName} {taxAnalyst.firstName}
+          {currentLocale === 'mn' ? (
+            <>
+              {taxAnalyst.lastName} {taxAnalyst.firstName}
+            </>
+          ) : (
+            <>
+              {taxAnalyst.firstName} {taxAnalyst.lastName}
+            </>
+          )}
         </h6>
         <p className='text-base leading-[30px] text-description'>
           <span>

@@ -33,7 +33,15 @@ export const MemberCard: FC<MemberCardProps> = ({ honoraryMember }) => {
 
         <div className='bg-white p-6 text-center'>
           <h5 className='mb-8 text-xl font-bold leading-normal text-dark'>
-            {honoraryMember.lastName} <span className='uppercase'>{honoraryMember.firstName}</span>
+            {currentLocale === 'mn' ? (
+              <>
+                {honoraryMember.lastName} <span className='uppercase'>{honoraryMember.firstName}</span>
+              </>
+            ) : (
+              <>
+                <span className='uppercase'>{honoraryMember.firstName}</span> {honoraryMember.lastName}
+              </>
+            )}
           </h5>
 
           <div className='flex justify-center'>

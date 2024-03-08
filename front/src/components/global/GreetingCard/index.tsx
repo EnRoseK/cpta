@@ -33,7 +33,15 @@ export const GreetingCard: FC<GreetingCardProps> = ({ greeting }) => {
 
         <div className='bg-white p-6 text-center'>
           <h5 className='mb-2 text-xl font-bold leading-normal text-dark'>
-            {greeting.lastName} <span className='uppercase'>{greeting.firstName}</span>
+            {currentLocale === 'mn' ? (
+              <>
+                {greeting.lastName} <span className='uppercase'>{greeting.firstName}</span>
+              </>
+            ) : (
+              <>
+                <span className='uppercase'>{greeting.firstName}</span> {greeting.lastName}
+              </>
+            )}
           </h5>
 
           <p className='mb-4 text-sm italic text-description'>{greeting.title}</p>
