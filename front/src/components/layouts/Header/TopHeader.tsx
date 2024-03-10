@@ -15,13 +15,19 @@ export const TopHeader: FC = () => {
         <div className='flex items-center justify-between text-small text-description'>
           <div className='flex items-center gap-5'>
             {generalInfo?.phone && (
-              <Link href='#' className='group inline-flex items-center gap-2 transition hover:text-primary'>
+              <Link
+                href={`tel:${generalInfo.phone}`}
+                className='group inline-flex items-center gap-2 transition hover:text-primary'
+              >
                 <Icons.FaPhoneAlt size={16} />
                 <span>{generalInfo.phone}</span>
               </Link>
             )}
             {generalInfo?.email && (
-              <Link href='#' className='inline-flex items-center gap-2 transition hover:text-primary'>
+              <Link
+                href={`mailto:${generalInfo.email}`}
+                className='inline-flex items-center gap-2 transition hover:text-primary'
+              >
                 <Icons.IoMail size={18} />
                 <span>{generalInfo.email}</span>
               </Link>
