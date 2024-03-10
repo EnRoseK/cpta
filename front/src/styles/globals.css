@@ -177,12 +177,18 @@
 }
 
 .loading-text {
-  font-size: 5vw;
+  font-size: 3vw;
   line-height: 1.2;
   letter-spacing: 0px;
   margin-bottom: 32px;
   display: flex;
   justify-content: space-evenly;
+}
+
+@media screen and (max-width: 700px) {
+  .loading-text {
+    font-size: 5vw;
+  }
 }
 
 .loading-text span {
