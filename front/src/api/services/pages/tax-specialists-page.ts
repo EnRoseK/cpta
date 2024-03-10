@@ -6,6 +6,7 @@ import { convertApiUrl } from '@/utils';
 export const getTaxSpecialistsPage = async ({ locale }: QueryFilters) => {
   const paramaters: QueryParamaters = {
     locale,
+    populate: ['files', 'files.excelFile'],
   };
 
   return await axiosInstance

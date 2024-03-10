@@ -3509,6 +3509,12 @@ export interface ApiTaxSpecialistsPageTaxSpecialistsPage
           localized: true;
         };
       }>;
+    files: Attribute.Component<'result.excel-file', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

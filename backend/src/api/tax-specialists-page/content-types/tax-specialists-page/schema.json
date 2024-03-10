@@ -48,6 +48,16 @@
         }
       },
       "type": "string"
+    },
+    "files": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "result.excel-file"
     }
   }
 }
