@@ -52,6 +52,7 @@ const TaxSpecialistsPage: NextPage<TaxSpecialistsPageProps> = ({ taxSpecialistsP
   const [taxSpecialists, setTaxSpecialists] = useState<TaxSpecialist[]>([]);
   const [displayTaxSpecialists, setDisplayTaxSpecialists] = useState<TaxSpecialist[]>([]);
   const [formValues, setFormValues] = useState({ firstName: '', lastName: '' });
+  const [didSearch, setDidSearch] = useState<boolean>(false);
 
   useEffect(() => {
     const getDataFromFile = async () => {
@@ -101,11 +102,12 @@ const TaxSpecialistsPage: NextPage<TaxSpecialistsPageProps> = ({ taxSpecialistsP
       });
 
       setTaxSpecialists(result);
-      setDisplayTaxSpecialists(result);
+      setDisplayTaxSpecialists([]);
     };
 
     getDataFromFile();
     setFormValues({ firstName: '', lastName: '' });
+    setDidSearch(false);
   }, [taxSpecialistsPage.files]);
 
   const inputOnChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -114,9 +116,12 @@ const TaxSpecialistsPage: NextPage<TaxSpecialistsPageProps> = ({ taxSpecialistsP
 
   const onSearchSubmitHandler = () => {
     if (!formValues.firstName && !formValues.lastName) {
-      setDisplayTaxSpecialists(taxSpecialists);
+      setDisplayTaxSpecialists([]);
+      setDidSearch(false);
       return;
     }
+
+    setDidSearch(true);
 
     if (formValues.firstName && !formValues.lastName) {
       setDisplayTaxSpecialists(
@@ -251,15 +256,29 @@ const TaxSpecialistsPage: NextPage<TaxSpecialistsPageProps> = ({ taxSpecialistsP
                   })}
 
                   {displayTaxSpecialists.length === 0 && (
-                    <tr className='border-b border-b-dark/10 odd:bg-white even:bg-description/10 hover:bg-description/10'>
-                      <th
-                        colSpan={5}
-                        scope='row'
-                        className='whitespace-nowrap px-6 py-4 text-center font-medium text-dark'
-                      >
-                        Илэрц олдсонгүй
-                      </th>
-                    </tr>
+                    <>
+                      {didSearch ? (
+                        <tr className='border-b border-b-dark/10 odd:bg-white even:bg-description/10 hover:bg-description/10'>
+                          <th
+                            colSpan={5}
+                            scope='row'
+                            className='whitespace-nowrap px-6 py-4 text-center font-medium text-dark'
+                          >
+                            {currentLocale === 'mn' ? 'Илэрц олдсонгүй' : 'No record found'}
+                          </th>
+                        </tr>
+                      ) : (
+                        <tr className='border-b border-b-dark/10 odd:bg-white even:bg-description/10 hover:bg-description/10'>
+                          <th
+                            colSpan={5}
+                            scope='row'
+                            className='whitespace-nowrap px-6 py-4 text-center font-medium text-dark'
+                          >
+                            {currentLocale === 'mn' ? 'Хайлт хийнэ үү' : 'Search to see results'}
+                          </th>
+                        </tr>
+                      )}
+                    </>
                   )}
                 </tbody>
               </table>
