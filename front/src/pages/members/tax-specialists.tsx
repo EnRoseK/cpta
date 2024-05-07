@@ -115,29 +115,7 @@ const TaxSpecialistsPage: NextPage<TaxSpecialistsPageProps> = ({ taxSpecialistsP
   };
 
   const onSearchSubmitHandler = () => {
-    if (!formValues.firstName && !formValues.lastName) {
-      setDisplayTaxSpecialists([]);
-      setDidSearch(false);
-      return;
-    }
-
-    setDidSearch(true);
-
-    if (formValues.firstName && !formValues.lastName) {
-      setDisplayTaxSpecialists(
-        taxSpecialists.filter(
-          (specialist) => specialist.firstName?.toLowerCase().includes(formValues.firstName.toLowerCase()),
-        ),
-      );
-      return;
-    }
-
-    if (!formValues.firstName && formValues.lastName) {
-      setDisplayTaxSpecialists(
-        taxSpecialists.filter(
-          (specialist) => specialist.lastName?.toLowerCase().includes(formValues.lastName.toLowerCase()),
-        ),
-      );
+    if (!formValues.firstName || !formValues.lastName) {
       return;
     }
 
